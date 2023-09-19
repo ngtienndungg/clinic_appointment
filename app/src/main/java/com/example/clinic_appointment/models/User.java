@@ -6,8 +6,19 @@ public class User {
     @SerializedName("username")
     private String username;
 
+    @SerializedName("password")
+    private String password;
+
     @SerializedName("fullName")
     private String fullName;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @SerializedName("mobile")
     private String phoneNumber;

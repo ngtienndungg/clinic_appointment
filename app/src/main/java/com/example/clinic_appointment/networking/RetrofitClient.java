@@ -5,9 +5,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static Retrofit retrofit = null;
-    private static final String BASE_URL = "http://localhost:5000/";
+    private static final String BASE_URL = "http://169.254.67.2:5000/api/";
 
-    public static AppointmentService getService() {
+    public static AppointmentService getAppointmentService() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
