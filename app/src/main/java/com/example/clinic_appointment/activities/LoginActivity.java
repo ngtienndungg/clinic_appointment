@@ -51,8 +51,9 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                     if (response.isSuccessful() && response.code() == 200) {
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        Log.d("AccessTokenTest", "Code = 200");
                     }
+                    Log.d("AccessTokenTest", response.code() + " ");
                 }
 
                 @Override
