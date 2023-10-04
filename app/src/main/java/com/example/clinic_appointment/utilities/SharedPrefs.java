@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 
 public class SharedPrefs {
     private static final String PREFS_NAME = "shared_prefs";
-    private final SharedPreferences mSharedPrefs;
     private static SharedPrefs mInstance;
+    private final SharedPreferences mSharedPrefs;
 
     private SharedPrefs() {
         mSharedPrefs = App.getSelf().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);

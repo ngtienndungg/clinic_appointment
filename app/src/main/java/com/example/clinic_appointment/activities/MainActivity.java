@@ -1,8 +1,8 @@
 package com.example.clinic_appointment.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.clinic_appointment.R;
 

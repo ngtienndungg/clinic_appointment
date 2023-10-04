@@ -1,4 +1,4 @@
-package com.example.clinic_appointment.models;
+package com.example.clinic_appointment.models.User;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Clinic Appointment</string>
+    <string name="login">Đăng nhập</string>
+    <string name="email">Email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="invalid_email_password">Email hoặc mật khẩu không đúng.</string>
+    <string name="something_wrong">Đã có lỗi xảy ra.</string>
 </resources>
