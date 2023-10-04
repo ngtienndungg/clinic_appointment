@@ -3,14 +3,44 @@ package com.example.clinic_appointment.models;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
+    @SerializedName("_id")
+    private String id;
     @SerializedName("email")
     private String email;
-
-    @SerializedName("password")
-    private String password;
-
     @SerializedName("fullName")
     private String fullName;
+    @SerializedName("mobile")
+    private String phoneNumber;
+    @SerializedName("role")
+    private String userRole;
+    @SerializedName("address")
+    private String address;
+    @SerializedName("refreshToken")
+    private String refreshToken;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
 
     public String getEmail() {
         return email;
@@ -19,20 +49,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    @SerializedName("mobile")
-    private String phoneNumber;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @SerializedName("role")
-    private String userRole;
 
     public String getFullName() {
         return fullName;
