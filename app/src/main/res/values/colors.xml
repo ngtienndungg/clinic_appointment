@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorBlack">#FF000000</color>
-    <color name="colorWhite">#FFFFFFFF</color>
-    <color name="colorPrimary">#679EBF</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorPrimary">#1BA0E1</color>
+    <color name="colorIcon">#676C70</color>
+    <color name="colorRipple">#DFEAF2</color>
 </resources>

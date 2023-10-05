@@ -18,8 +18,8 @@
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
             android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
             tools:ignore="LabelFor" />
     </com.google.android.material.textfield.TextInputLayout>
 

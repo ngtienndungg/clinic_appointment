@@ -2,15 +2,12 @@ package com.example.clinic_appointment.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivityLoginBinding;
-import com.example.clinic_appointment.databinding.ActivityMainBinding;
 import com.example.clinic_appointment.models.User.UserResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
@@ -23,11 +20,10 @@ import java.util.Objects;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Body;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
-    private SharedPrefs sharedPrefs;
+    private final SharedPrefs sharedPrefs = SharedPrefs.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private void eventHandling() {
         binding.btLogin.setOnClickListener(v -> {
             Call<UserResponse> call = RetrofitClient.getPublicAppointmentService()
-                    .login(binding.etEmail.getText().toString(), binding.etEmail.getText().toString());
+                    .login(binding.etEmail.getText().toString(), binding.etPassword.getText().toString());
             call.enqueue(new Callback<UserResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
@@ -51,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                         sharedPrefs.putData(Constants.KEY_CURRENT_NAME, userResponse != null ? userResponse.getUser().getFullName() : null);
                         sharedPrefs.putData(Constants.KEY_CURRENT_PHONE_NUMBER, userResponse != null ? userResponse.getUser().getPhoneNumber() : null);
                         sharedPrefs.putData(Constants.KEY_CURRENT_EMAIL, userResponse != null ? userResponse.getUser().getEmail() : null);
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     } else {
