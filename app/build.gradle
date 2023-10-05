@@ -6,6 +6,10 @@ android {
     namespace 'com.example.clinic_appointment'
     compileSdk 33
 
+    buildFeatures {
+        viewBinding true
+    }
+
     defaultConfig {
         applicationId "com.example.clinic_appointment"
         minSdk 24

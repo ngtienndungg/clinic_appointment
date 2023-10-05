@@ -2,7 +2,9 @@ package com.example.clinic_appointment.models.User;
 
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     @SerializedName("_id")
     private String id;
     @SerializedName("email")
