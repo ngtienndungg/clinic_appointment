@@ -10,4 +10,6 @@
     <string name="scheduling">Đặt lịch</string>
     <string name="my_scheduling">Lịch của tôi</string>
     <string name="account">Tài khoản</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
