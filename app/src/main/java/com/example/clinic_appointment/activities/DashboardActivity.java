@@ -31,7 +31,6 @@ public class DashboardActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, currentFragment).commit();
     }
 
-
     @SuppressLint("NonConstantResourceId")
     private void eventHandling() {
         binding.bnvDashboard.setOnItemSelectedListener(item -> {
@@ -50,21 +49,16 @@ public class DashboardActivity extends AppCompatActivity {
                     newFragment = new AccountFragment();
                     break;
             }
-
             if (newFragment != null && !(currentFragment.getClass().equals(newFragment.getClass()))) {
                 replaceFragment(newFragment);
                 return true;
             }
-
             return false;
         });
     }
 
     private void replaceFragment(Fragment newFragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, newFragment)
-                .commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, newFragment).commit();
         currentFragment = newFragment;
     }
 

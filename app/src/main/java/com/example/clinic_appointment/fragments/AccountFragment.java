@@ -12,6 +12,7 @@ import com.example.clinic_appointment.databinding.FragmentAccountBinding;
 
 public class AccountFragment extends Fragment {
     private FragmentAccountBinding binding;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

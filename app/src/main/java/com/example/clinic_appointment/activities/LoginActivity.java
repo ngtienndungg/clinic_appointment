@@ -22,8 +22,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    private ActivityLoginBinding binding;
     private final SharedPrefs sharedPrefs = SharedPrefs.getInstance();
+    private ActivityLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
