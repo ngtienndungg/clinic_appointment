@@ -5,7 +5,7 @@
     <string name="password">Mật khẩu</string>
     <string name="invalid_email_password">Email hoặc mật khẩu không đúng.</string>
     <string name="something_wrong">Đã có lỗi xảy ra.</string>
-    <string name="search_hint">Tìm kiếm phòng khám, bác sĩ..</string>
+    <string name="search_hint_dashboard">Tìm kiếm phòng khám, bác sĩ..</string>
     <string name="home">Trang chủ</string>
     <string name="scheduling">Đặt lịch</string>
     <string name="my_scheduling">Lịch của tôi</string>
@@ -23,4 +23,7 @@
     <string name="department_name">Tên chuyên khoa</string>
     <string name="search">Tìm kiếm</string>
     <string name="note_find_doctor">Điền tối thiểu một trong ba trường để có thể tìm kiếm</string>
+    <string name="close">Đóng</string>
+    <string name="search_hint_choose_hospital">Nhập tên bệnh viện hoặc phòng khám</string>
+    <string name="popular_hospital_and_clinic">Bệnh viện và phòng khám phổ biến</string>
 </resources>
