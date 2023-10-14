@@ -13,6 +13,8 @@ import com.example.clinic_appointment.databinding.ActivityFindDoctorBinding;
 import com.example.clinic_appointment.models.Hospital.Hospital;
 import com.example.clinic_appointment.utilities.Constants;
 
+import java.util.Objects;
+
 public class FindDoctorActivity extends AppCompatActivity {
     private ActivityFindDoctorBinding binding;
     private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -20,9 +22,13 @@ public class FindDoctorActivity extends AppCompatActivity {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent intent = result.getData();
                     if (intent != null) {
-                        Hospital selectedHospital = (Hospital) intent.getSerializableExtra(Constants.KEY_SELECTED_ITEM);
-                        if (selectedHospital != null) {
-                            binding.etHospitalOrClinic.setText(selectedHospital.getName());
+                        if ((Hospital) intent.getSerializableExtra(Constants.KEY_SELECTED_ITEM) == null) {
+                            Objects.requireNonNull(binding.etHospitalOrClinic.getText()).clear();
+                        } else {
+                            Hospital selectedHospital = (Hospital) intent.getSerializableExtra(Constants.KEY_SELECTED_ITEM);
+                            if (selectedHospital != null) {
+                                binding.etHospitalOrClinic.setText(selectedHospital.getName());
+                            }
                         }
                     }
                 }

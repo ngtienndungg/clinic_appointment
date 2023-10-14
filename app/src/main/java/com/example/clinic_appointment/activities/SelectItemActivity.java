@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.adapters.SelectHospitalAdapter;
 import com.example.clinic_appointment.databinding.ActivitySelectItemBinding;
-import com.example.clinic_appointment.listeners.HospitalListener;
+import com.example.clinic_appointment.listeners.ItemListener;
 import com.example.clinic_appointment.models.Hospital.Hospital;
 import com.example.clinic_appointment.models.Hospital.HospitalResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
@@ -22,8 +22,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SelectItemActivity extends AppCompatActivity implements HospitalListener {
+public class SelectItemActivity extends AppCompatActivity implements ItemListener {
     private ActivitySelectItemBinding binding;
+    private String itemType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,8 @@ public class SelectItemActivity extends AppCompatActivity implements HospitalLis
     }
 
     private void initiate() {
-        if (getItemType().equals(Constants.TYPE_HOSPITAL)) {
+        itemType = getItemType();
+        if (itemType.equals(Constants.TYPE_HOSPITAL)) {
             getInitiateHospitalList();
         }
 
@@ -71,10 +73,13 @@ public class SelectItemActivity extends AppCompatActivity implements HospitalLis
     }
 
     private void eventHandling() {
-        binding.tvClose.setOnClickListener(v -> {
+        binding.tvClose.setOnClickListener(v -> onBackPressed());
+        binding.tvAllMatch.setOnClickListener(v -> {
+            setResult(RESULT_OK, new Intent());
             onBackPressed();
         });
     }
+
 
     @Override
     public void onBackPressed() {

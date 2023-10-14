@@ -1,7 +1,6 @@
 package com.example.clinic_appointment.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -10,20 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.clinic_appointment.databinding.ItemContainterSelectItemBinding;
-import com.example.clinic_appointment.listeners.HospitalListener;
+import com.example.clinic_appointment.listeners.ItemListener;
 import com.example.clinic_appointment.models.Hospital.Hospital;
 
 import java.util.List;
 
 public class SelectHospitalAdapter extends RecyclerView.Adapter<SelectHospitalAdapter.HospitalViewHolder> {
-    private final HospitalListener hospitalListener;
+    private final ItemListener itemListener;
     private final List<Hospital> hospitals;
     private final Context context;
 
-    public SelectHospitalAdapter(List<Hospital> hospitals, HospitalListener hospitalListener, Context context) {
+    public SelectHospitalAdapter(List<Hospital> hospitals, ItemListener itemListener, Context context) {
         this.hospitals = hospitals;
         this.context = context;
-        this.hospitalListener = hospitalListener;
+        this.itemListener = itemListener;
     }
 
     @NonNull
@@ -39,7 +38,7 @@ public class SelectHospitalAdapter extends RecyclerView.Adapter<SelectHospitalAd
     public void onBindViewHolder(@NonNull HospitalViewHolder holder, int position) {
         holder.setData(hospitals.get(position), context);
         holder.binding.getRoot().setOnClickListener(v -> {
-            hospitalListener.onSelect(hospitals.get(holder.getAdapterPosition()));
+            itemListener.onSelect(hospitals.get(holder.getAdapterPosition()));
         });
     }
 

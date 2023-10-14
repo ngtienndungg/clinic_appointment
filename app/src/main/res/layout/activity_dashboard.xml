@@ -43,13 +43,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_6sdp"
                 android:background="@android:color/transparent"
-                android:hint="@string/search_hint"
+                android:hint="@string/search_hint_dashboard"
                 android:imeOptions="actionSearch"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
                 android:inputType="text"
                 android:maxLines="1"
-                android:textColorHint="@color/colorIcon"
+                android:textColorHint="@color/colorSecondaryText"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +85,7 @@
         android:id="@+id/supportView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_3sdp"
-        android:background="@drawable/background_shadow"
+        android:background="@drawable/background_shadow_bottom"
         app:layout_constraintBottom_toTopOf="@id/bnvDashboard" />
 
     <FrameLayout
