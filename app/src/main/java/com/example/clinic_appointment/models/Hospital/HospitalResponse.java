@@ -2,25 +2,28 @@ package com.example.clinic_appointment.models.Hospital;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class HospitalResponse {
-    @SerializedName("status")
-    private String status;
+    @SerializedName("success")
+    private boolean isSuccess;
     @SerializedName("data")
-    private Hospital hospital;
+    private List<Hospital> hospitals;
 
-    public String getStatus() {
-        return status;
+    public boolean isSuccess() {
+        return isSuccess;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setSuccess(boolean success) {
+        isSuccess = success;
     }
 
-    public Hospital getHospital() {
-        return hospital;
+    public List<Hospital> getHospitals() {
+        return hospitals;
     }
 
-    public void setHospital(Hospital hospital) {
-        this.hospital = hospital;
+    public void setHospital(List<Hospital> hospitals) {
+        this.hospitals = hospitals;
     }
+
 }

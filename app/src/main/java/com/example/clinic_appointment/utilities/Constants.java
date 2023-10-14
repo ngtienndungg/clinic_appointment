@@ -12,4 +12,8 @@ public class Constants {
     public static final String HEADER_SET_COOKIE = "Set-Cookie";
     public static final String REGEX_SEMICOLON = ";";
     public static final String KEY_NEW_ACCESS_TOKEN = "newAccessToken";
+    public static final String KEY_SELECTED_ITEM = "selectedItem";
+    public static final String KEY_ITEM_TYPE = "itemType";
+    public static final String TYPE_HOSPITAL = "typeHospital";
+    public static final String TYPE_DEPARTMENT = "typeDepartment";
 }

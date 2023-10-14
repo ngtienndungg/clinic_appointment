@@ -2,7 +2,9 @@ package com.example.clinic_appointment.models.Address;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     @SerializedName("province")
     private String province;
     @SerializedName("district")

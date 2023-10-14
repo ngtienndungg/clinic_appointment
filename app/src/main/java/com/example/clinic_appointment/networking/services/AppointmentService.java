@@ -1,5 +1,6 @@
 package com.example.clinic_appointment.networking.services;
 
+import com.example.clinic_appointment.models.Hospital.HospitalResponse;
 import com.example.clinic_appointment.models.User.UserResponse;
 import com.google.gson.JsonObject;
 
@@ -20,4 +21,7 @@ public interface AppointmentService {
 
     @GET("user/current")
     Call<Void> getCurrent(@Header("Authorization") String accessToken);
+
+    @GET("clinic")
+    Call<HospitalResponse> getFilteredClinic();
 }
