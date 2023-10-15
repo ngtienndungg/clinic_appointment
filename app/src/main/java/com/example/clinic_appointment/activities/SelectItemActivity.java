@@ -68,7 +68,7 @@ public class SelectItemActivity extends AppCompatActivity implements ItemListene
             @Override
             public void onFailure(@NonNull Call<HospitalResponse> call, @NonNull Throwable t) {
                 binding.pbLoading.setVisibility(View.GONE);
-                binding.rlError.setVisibility(View.GONE);
+                binding.rlError.setVisibility(View.VISIBLE);
             }
         });
     }
