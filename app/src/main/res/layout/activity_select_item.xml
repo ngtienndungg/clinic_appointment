@@ -123,4 +123,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvResult" />
 
+    <RelativeLayout
+        android:id="@+id/rlError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvResult">
+
+        <ImageView
+            android:id="@+id/ivError"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_error" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/ivError"
+            android:layout_alignBottom="@id/ivError"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_toEndOf="@id/ivError"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:text="@string/something_wrong_happened"
+            android:textColor="@color/colorFindText"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

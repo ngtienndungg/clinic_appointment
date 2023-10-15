@@ -48,14 +48,14 @@ public class SelectItemActivity extends AppCompatActivity implements ItemListene
     }
 
     private void getInitiateHospitalList() {
+        binding.pbLoading.setVisibility(View.VISIBLE);
+        binding.tvAllMatch.setText(getString(R.string.from_all_hospital_and_clinic));
+        binding.tvResult.setText(getString(R.string.popular_hospital_and_clinic));
+        binding.etSearchInput.setHint(R.string.search_hint_select_hospital);
         Call<HospitalResponse> call = RetrofitClient.getPublicAppointmentService().getFilteredClinic();
         call.enqueue(new Callback<HospitalResponse>() {
             @Override
             public void onResponse(@NonNull Call<HospitalResponse> call, @NonNull Response<HospitalResponse> response) {
-                binding.pbLoading.setVisibility(View.VISIBLE);
-                binding.tvAllMatch.setText(getString(R.string.from_all_hospital_and_clinic));
-                binding.tvResult.setText(getString(R.string.popular_hospital_and_clinic));
-                binding.etSearchInput.setHint(R.string.search_hint_select_hospital);
                 if (response.body() != null && response.body().isSuccess()) {
                     List<Hospital> hospitals = response.body().getHospitals();
                     SelectHospitalAdapter adapter = new SelectHospitalAdapter(hospitals, SelectItemActivity.this, getApplicationContext());
@@ -67,7 +67,8 @@ public class SelectItemActivity extends AppCompatActivity implements ItemListene
 
             @Override
             public void onFailure(@NonNull Call<HospitalResponse> call, @NonNull Throwable t) {
-
+                binding.pbLoading.setVisibility(View.GONE);
+                binding.rlError.setVisibility(View.GONE);
             }
         });
     }

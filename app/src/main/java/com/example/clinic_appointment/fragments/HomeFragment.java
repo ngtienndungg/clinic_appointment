@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
         binding.llOptionFindDoctor.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), FindDoctorActivity.class));
             if (getActivity() != null) {
-                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                //getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }

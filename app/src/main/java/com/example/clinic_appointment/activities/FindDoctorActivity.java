@@ -28,7 +28,7 @@ public class FindDoctorActivity extends AppCompatActivity {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent intent = result.getData();
                     if (intent != null) {
-                        if ((Hospital) intent.getSerializableExtra(Constants.KEY_SELECTED_ITEM) == null) {
+                        if (intent.getSerializableExtra(Constants.KEY_SELECTED_ITEM) == null) {
                             Objects.requireNonNull(binding.etHospitalOrClinic.getText()).clear();
                         } else {
                             Hospital selectedHospital = (Hospital) intent.getSerializableExtra(Constants.KEY_SELECTED_ITEM);
@@ -64,7 +64,6 @@ public class FindDoctorActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     @Override

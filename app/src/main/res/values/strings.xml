@@ -28,4 +28,5 @@
     <string name="popular_hospital_and_clinic">Bệnh viện và phòng khám phổ biến</string>
     <string name="from_all_hospital_and_clinic"><![CDATA[Từ tất cả bệnh viện & phòng khám]]></string>
     <string name="from_all_department">Từ tất cả chuyên khoa</string>
+    <string name="something_wrong_happened">Đã có lỗi xảy ra</string>
 </resources>
