@@ -136,8 +136,8 @@
 
         <ImageView
             android:id="@+id/ivError"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
             android:importantForAccessibility="no"
             android:src="@drawable/ic_error" />
 
@@ -148,12 +148,12 @@
             android:layout_alignBottom="@id/ivError"
             android:layout_marginStart="@dimen/_6sdp"
             android:layout_toEndOf="@id/ivError"
+            android:fontFamily="sans-serif-medium"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:text="@string/something_wrong_happened"
-            android:textColor="@color/colorFindText"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="bold" />
+            android:textColor="@color/colorTextViewResult"
+            android:textSize="@dimen/_11sdp" />
 
     </RelativeLayout>
 

@@ -14,6 +14,8 @@ public class Constants {
     public static final String KEY_NEW_ACCESS_TOKEN = "newAccessToken";
     public static final String KEY_SELECTED_ITEM = "selectedItem";
     public static final String KEY_ITEM_TYPE = "itemType";
+    public static final String RETURN_TYPE = "returnType";
     public static final String TYPE_HOSPITAL = "typeHospital";
     public static final String TYPE_DEPARTMENT = "typeDepartment";
+    public static final Integer RESULT_ALL_MATCH = 999;
 }

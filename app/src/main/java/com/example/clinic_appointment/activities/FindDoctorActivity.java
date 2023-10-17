@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivityFindDoctorBinding;
+import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Hospital.Hospital;
 import com.example.clinic_appointment.utilities.Constants;
 
@@ -25,17 +26,23 @@ public class FindDoctorActivity extends AppCompatActivity {
     private ActivityFindDoctorBinding binding;
     private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Intent intent = result.getData();
-                    if (intent != null) {
-                        if (intent.getSerializableExtra(Constants.KEY_SELECTED_ITEM) == null) {
-                            Objects.requireNonNull(binding.etHospitalOrClinic.getText()).clear();
-                        } else {
-                            Hospital selectedHospital = (Hospital) intent.getSerializableExtra(Constants.KEY_SELECTED_ITEM);
-                            if (selectedHospital != null) {
-                                binding.etHospitalOrClinic.setText(selectedHospital.getName());
-                            }
-                        }
+                Intent intent = result.getData();
+                Integer resultCode = result.getResultCode();
+                if (resultCode == Activity.RESULT_OK) {
+                    String returnType = Objects.requireNonNull(intent).getStringExtra(Constants.RETURN_TYPE);
+                    if (Objects.equals(returnType, Constants.TYPE_HOSPITAL)) {
+                        Hospital selectedHospital = (Hospital) intent.getSerializableExtra(Constants.KEY_SELECTED_ITEM);
+                        binding.etHospitalOrClinic.setText(Objects.requireNonNull(selectedHospital).getName());
+                    } else if (Objects.equals(returnType, Constants.TYPE_DEPARTMENT)) {
+                        Department selectedDepartment = (Department) intent.getSerializableExtra(Constants.KEY_SELECTED_ITEM);
+                        binding.etDepartment.setText(Objects.requireNonNull(selectedDepartment).getName());
+                    }
+                } else if (resultCode.equals(Constants.RESULT_ALL_MATCH)) {
+                    String returnType = Objects.requireNonNull(intent).getStringExtra(Constants.RETURN_TYPE);
+                    if (Objects.equals(returnType, Constants.TYPE_HOSPITAL)) {
+                        Objects.requireNonNull(binding.etHospitalOrClinic.getText()).clear();
+                    } else if (Objects.equals(returnType, Constants.TYPE_DEPARTMENT)) {
+                        Objects.requireNonNull(binding.etDepartment.getText()).clear();
                     }
                 }
             });
@@ -49,21 +56,16 @@ public class FindDoctorActivity extends AppCompatActivity {
     }
 
     private void eventHandling() {
-        binding.ivBack.setOnClickListener(v -> {
-            onBackPressed();
-        });
-        binding.etHospitalOrClinic.setOnClickListener(v -> {
-                    Intent intent = new Intent(this, SelectItemActivity.class);
-                    intent.putExtra(Constants.KEY_ITEM_TYPE, Constants.TYPE_HOSPITAL);
-                    mStartForResult.launch(intent);
-                    overridePendingTransition(R.anim.slide_up, R.anim.slide_default);
-                }
-        );
+        binding.ivBack.setOnClickListener(v -> onBackPressed());
+        binding.etHospitalOrClinic.setOnClickListener(v -> openSelectItem(Constants.TYPE_HOSPITAL));
+        binding.etDepartment.setOnClickListener(v -> openSelectItem(Constants.TYPE_DEPARTMENT));
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    private void openSelectItem(String itemType) {
+        Intent intent = new Intent(this, SelectItemActivity.class);
+        intent.putExtra(Constants.KEY_ITEM_TYPE, itemType);
+        mStartForResult.launch(intent);
+        overridePendingTransition(R.anim.slide_up, R.anim.slide_default);
     }
 
     @Override

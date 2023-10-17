@@ -187,6 +187,7 @@
                         android:id="@+id/etDepartment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:focusableInTouchMode="false"
                         android:fontFamily="sans-serif-medium"
                         android:hint="@string/from_all_department"
                         android:includeFontPadding="false"

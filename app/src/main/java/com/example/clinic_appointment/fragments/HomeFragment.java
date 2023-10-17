@@ -32,9 +32,6 @@ public class HomeFragment extends Fragment {
     private void eventHandling() {
         binding.llOptionFindDoctor.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), FindDoctorActivity.class));
-            if (getActivity() != null) {
-                //getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
         });
     }
 }

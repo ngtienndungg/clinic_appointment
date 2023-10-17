@@ -25,8 +25,10 @@
     <string name="note_find_doctor">Điền tối thiểu một trong ba trường để có thể tìm kiếm</string>
     <string name="close">Đóng</string>
     <string name="search_hint_select_hospital">Nhập tên bệnh viện hoặc phòng khám</string>
+    <string name="search_hint_select_department">Nhập tên chuyên khoa cần tìm kiếm</string>
     <string name="popular_hospital_and_clinic">Bệnh viện và phòng khám phổ biến</string>
     <string name="from_all_hospital_and_clinic"><![CDATA[Từ tất cả bệnh viện & phòng khám]]></string>
     <string name="from_all_department">Từ tất cả chuyên khoa</string>
     <string name="something_wrong_happened">Đã có lỗi xảy ra</string>
+    <string name="department_list">Danh sách chuyên khoa</string>
 </resources>

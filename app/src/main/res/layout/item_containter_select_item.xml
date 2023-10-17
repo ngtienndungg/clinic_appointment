@@ -6,46 +6,83 @@
     android:paddingHorizontal="@dimen/_4sdp"
     android:paddingBottom="@dimen/_3sdp">
 
-    <ImageView
-        android:id="@+id/ivImage"
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:importantForAccessibility="no"
-        android:padding="@dimen/_2sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginTop="@dimen/_3sdp"
-        android:fontFamily="sans-serif-medium"
-        android:includeFontPadding="false"
-        android:textColor="@color/colorFindText"
-        android:textSize="@dimen/_12sdp"
-        app:layout_constraintStart_toEndOf="@id/ivImage"
-        app:layout_constraintTop_toTopOf="@id/ivImage" />
-
-    <TextView
-        android:id="@+id/tvAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginBottom="@dimen/_3sdp"
-        android:includeFontPadding="false"
-        android:textColor="@color/colorSecondaryText"
-        android:textSize="@dimen/_11sdp"
-        app:layout_constraintBottom_toBottomOf="@id/ivImage"
-        app:layout_constraintStart_toEndOf="@id/ivImage" />
-
-    <View
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ctlHospital"
         android:layout_width="match_parent"
-        android:layout_height="0.9dp"
-        android:layout_marginTop="@dimen/_3sdp"
-        android:background="@color/colorDivider"
-        app:layout_constraintTop_toBottomOf="@id/ivImage" />
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivHospitalImage"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:importantForAccessibility="no"
+            android:padding="@dimen/_2sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvHospitalName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorFindText"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toEndOf="@id/ivHospitalImage"
+            app:layout_constraintTop_toTopOf="@id/ivHospitalImage" />
+
+        <TextView
+            android:id="@+id/tvHospitalAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintBottom_toBottomOf="@id/ivHospitalImage"
+            app:layout_constraintStart_toEndOf="@id/ivHospitalImage" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.9dp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:background="@color/colorDivider"
+            app:layout_constraintTop_toBottomOf="@id/ivHospitalImage" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlOtherItem"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorFindText"
+            android:textSize="@dimen/_12sdp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.9dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorDivider" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
