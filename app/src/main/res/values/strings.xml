@@ -31,4 +31,26 @@
     <string name="from_all_department">Từ tất cả chuyên khoa</string>
     <string name="something_wrong_happened">Đã có lỗi xảy ra</string>
     <string name="department_list">Danh sách chuyên khoa</string>
+    <string name="create_account">Tạo tài khoản</string>
+    <string name="please_fill_this_information">Vui lòng nhập đầy đủ thông tin bên dưới để tạo tài khoản</string>
+    <string name="asterisk">*</string>
+    <string name="icon_back">Icon back</string>
+    <string name="icon_information">Icon information</string>
+    <string name="full_name">Họ và tên</string>
+    <string name="type_full_name">Nhập họ và tên</string>
+    <string name="type_password_at_least_6_characters">Nhập mật khẩu tối thiểu 6 ký tự</string>
+    <string name="retype_password">Nhập lại mật khẩu</string>
+    <string name="confirm_your_password">Xác nhận lại mật khẩu</string>
+    <string name="date_of_birth">Ngày sinh</string>
+    <string name="type_day_month_year">Nhập ngày/tháng/năm</string>
+    <string name="type_email">Nhập email</string>
+    <string name="gender">Giới tính</string>
+    <string name="male">Nam</string>
+    <string name="female">Nữ</string>
+    <string name="phone_number">Số điện thoại</string>
+    <string name="type_phone_number">Nhập số điện thoại</string>
+    <string name="address">Địa chỉ</string>
+    <string name="type_address">Nhập địa chỉ</string>
+    <string name="sign_up">Đăng ký</string>
+    <string name="accept_rules">Bằng việc nhấn nút Đăng ký, bạn đã đồng ý với Quy định sử dụng và Chính sách bảo mật của ứng dụng này</string>
 </resources>
