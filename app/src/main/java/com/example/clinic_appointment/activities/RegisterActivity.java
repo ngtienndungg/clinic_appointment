@@ -1,16 +1,24 @@
 package com.example.clinic_appointment.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.example.clinic_appointment.R;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.clinic_appointment.databinding.ActivityRegisterBinding;
 
 public class RegisterActivity extends AppCompatActivity {
+    private ActivityRegisterBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        binding = ActivityRegisterBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        eventHandling();
+    }
+
+    private void eventHandling() {
+        binding.etDateOfBirth.listen();
+        binding.ivBack.setOnClickListener(v -> onBackPressed());
     }
 }
