@@ -40,6 +40,7 @@
         </RelativeLayout>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/rlTopAppBar"
@@ -108,8 +109,8 @@
                     app:layout_constraintTop_toBottomOf="@id/rlMandatory" />
 
                 <TextView
-                    android:layout_width="5dp"
-                    android:layout_height="11dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/registerAsteriskMarginStart"
                     android:includeFontPadding="false"
                     android:text="@string/asterisk"
@@ -121,7 +122,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilFullName"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_32sdp"
+                    android:layout_height="@dimen/registerTextFieldHeight"
                     android:layout_marginTop="@dimen/registerLabelTextFieldSpace"
                     app:boxCornerRadiusBottomEnd="@dimen/_16sdp"
                     app:boxCornerRadiusBottomStart="@dimen/_16sdp"
@@ -136,12 +137,68 @@
                     <EditText
                         android:id="@+id/etFullName"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/quicksand_regular"
                         android:hint="@string/type_full_name"
                         android:importantForAutofill="no"
                         android:includeFontPadding="false"
                         android:inputType="textPersonName"
+                        android:padding="@dimen/_9sdp"
+                        android:textColor="@color/colorRegisterFieldLabel"
+                        android:textColorHint="@color/colorRegisterFieldHint"
+                        android:textSize="@dimen/_11sdp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvPhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/registerFieldLabelMarginStart"
+                    android:layout_marginTop="@dimen/registerFieldSpace"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/phone_number"
+                    android:textColor="@color/colorRegisterFieldLabel"
+                    android:textSize="@dimen/registerLabelFieldSize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tilFullName" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/registerAsteriskMarginStart"
+                    android:includeFontPadding="false"
+                    android:text="@string/asterisk"
+                    android:textColor="@color/colorAsterisk"
+                    android:textSize="@dimen/registerAsteriskSize"
+                    app:layout_constraintStart_toEndOf="@id/tvPhoneNumber"
+                    app:layout_constraintTop_toTopOf="@id/tvPhoneNumber" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/registerTextFieldHeight"
+                    android:layout_marginTop="@dimen/registerLabelTextFieldSpace"
+                    app:boxCornerRadiusBottomEnd="@dimen/_16sdp"
+                    app:boxCornerRadiusBottomStart="@dimen/_16sdp"
+                    app:boxCornerRadiusTopEnd="@dimen/_16sdp"
+                    app:boxCornerRadiusTopStart="@dimen/_16sdp"
+                    app:boxStrokeColor="@color/colorStrokeBox"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:endIconMode="clear_text"
+                    app:hintEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/tvPhoneNumber">
+
+                    <EditText
+                        android:id="@+id/etPhoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/quicksand_regular"
+                        android:hint="@string/type_phone_number"
+                        android:importantForAutofill="no"
+                        android:includeFontPadding="false"
+                        android:inputType="phone"
                         android:padding="@dimen/_9sdp"
                         android:textColor="@color/colorRegisterFieldLabel"
                         android:textColorHint="@color/colorRegisterFieldHint"
@@ -161,7 +218,7 @@
                     android:textColor="@color/colorRegisterFieldLabel"
                     android:textSize="@dimen/registerLabelFieldSize"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tilFullName" />
+                    app:layout_constraintTop_toBottomOf="@id/tilPhoneNumber" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -177,7 +234,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilEmail"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_32sdp"
+                    android:layout_height="@dimen/registerTextFieldHeight"
                     android:layout_marginTop="@dimen/registerLabelTextFieldSpace"
                     app:boxCornerRadiusBottomEnd="@dimen/_16sdp"
                     app:boxCornerRadiusBottomStart="@dimen/_16sdp"
@@ -192,7 +249,7 @@
                     <EditText
                         android:id="@+id/etEmail"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/quicksand_regular"
                         android:hint="@string/type_email"
                         android:importantForAutofill="no"
@@ -233,7 +290,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilPassword"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_32sdp"
+                    android:layout_height="@dimen/registerTextFieldHeight"
                     android:layout_marginTop="@dimen/registerLabelTextFieldSpace"
                     app:boxCornerRadiusBottomEnd="@dimen/_16sdp"
                     app:boxCornerRadiusBottomStart="@dimen/_16sdp"
@@ -248,7 +305,7 @@
                     <EditText
                         android:id="@+id/etPassword"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/quicksand_regular"
                         android:hint="@string/type_password_at_least_6_characters"
                         android:importantForAutofill="no"
@@ -289,7 +346,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilRepeatPassword"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_32sdp"
+                    android:layout_height="@dimen/registerTextFieldHeight"
                     android:layout_marginTop="@dimen/registerLabelTextFieldSpace"
                     app:boxCornerRadiusBottomEnd="@dimen/_16sdp"
                     app:boxCornerRadiusBottomStart="@dimen/_16sdp"
@@ -344,9 +401,8 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilDateOfBirth"
-                    app:endIconMode="clear_text"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_32sdp"
+                    android:layout_height="@dimen/registerTextFieldHeight"
                     android:layout_marginTop="@dimen/registerLabelTextFieldSpace"
                     app:boxCornerRadiusBottomEnd="@dimen/_16sdp"
                     app:boxCornerRadiusBottomStart="@dimen/_16sdp"
@@ -354,15 +410,17 @@
                     app:boxCornerRadiusTopStart="@dimen/_16sdp"
                     app:boxStrokeColor="@color/colorStrokeBox"
                     app:boxStrokeWidthFocused="1dp"
+                    app:endIconMode="clear_text"
                     app:hintEnabled="false"
                     app:layout_constraintTop_toBottomOf="@id/tvDateOfBirth">
 
                     <com.msa.dateedittext.DateEditText
                         android:id="@+id/etDateOfBirth"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/quicksand_regular"
                         android:hint="@string/type_day_month_year"
+                        android:imeOptions="actionDone"
                         android:importantForAutofill="no"
                         android:includeFontPadding="false"
                         android:inputType="date"
@@ -401,16 +459,17 @@
                 <RadioGroup
                     android:id="@+id/rgGender"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/registerTextFieldHeight"
                     android:layout_marginTop="@dimen/registerLabelTextFieldSpace"
                     android:orientation="horizontal"
                     android:weightSum="2"
                     app:layout_constraintTop_toBottomOf="@id/tvGender">
 
                     <RadioButton
-                        style="@style/GenderRadioButton"
+                        android:id="@+id/rbMale"
+                        style="@style/Widget.Material3.CompoundButton.RadioButton.GenderRadioButton"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_height="match_parent"
                         android:layout_marginEnd="@dimen/_4sdp"
                         android:layout_weight="1"
                         android:background="@drawable/selector_male"
@@ -423,9 +482,10 @@
                         android:textSize="@dimen/registerLabelFieldSize" />
 
                     <RadioButton
-                        style="@style/GenderRadioButton"
+                        android:id="@+id/rbFemale"
+                        style="@style/Widget.Material3.CompoundButton.RadioButton.GenderRadioButton"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:layout_weight="1"
                         android:background="@drawable/selector_female"
@@ -441,60 +501,18 @@
                 </RadioGroup>
 
                 <TextView
-                    android:id="@+id/tvPhoneNumber"
+                    android:id="@+id/tvGenderError"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/registerFieldLabelMarginStart"
-                    android:layout_marginTop="@dimen/registerFieldSpace"
-                    android:fontFamily="@font/quicksand_medium"
-                    android:includeFontPadding="false"
-                    android:text="@string/phone_number"
-                    android:textColor="@color/colorRegisterFieldLabel"
-                    android:textSize="@dimen/registerLabelFieldSize"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgGender" />
-
-                <TextView
-                    android:layout_width="5dp"
-                    android:layout_height="11dp"
-                    android:layout_marginStart="@dimen/registerAsteriskMarginStart"
-                    android:includeFontPadding="false"
-                    android:text="@string/asterisk"
-                    android:textColor="@color/colorAsterisk"
-                    android:textSize="@dimen/registerAsteriskSize"
-                    app:layout_constraintStart_toEndOf="@id/tvPhoneNumber"
-                    app:layout_constraintTop_toTopOf="@id/tvPhoneNumber" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilPhoneNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_32sdp"
-                    android:layout_marginTop="@dimen/registerLabelTextFieldSpace"
-                    app:boxCornerRadiusBottomEnd="@dimen/_16sdp"
-                    app:boxCornerRadiusBottomStart="@dimen/_16sdp"
-                    app:boxCornerRadiusTopEnd="@dimen/_16sdp"
-                    app:boxCornerRadiusTopStart="@dimen/_16sdp"
-                    app:boxStrokeColor="@color/colorStrokeBox"
-                    app:boxStrokeWidthFocused="1dp"
-                    app:endIconMode="clear_text"
-                    app:hintEnabled="false"
-                    app:layout_constraintTop_toBottomOf="@id/tvPhoneNumber">
-
-                    <EditText
-                        android:id="@+id/etPhoneNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/quicksand_regular"
-                        android:hint="@string/type_phone_number"
-                        android:importantForAutofill="no"
-                        android:includeFontPadding="false"
-                        android:inputType="phone"
-                        android:padding="@dimen/_9sdp"
-                        android:textColor="@color/colorRegisterFieldLabel"
-                        android:textColorHint="@color/colorRegisterFieldHint"
-                        android:textSize="@dimen/_11sdp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:fontFamily="@font/quicksand_regular"
+                    android:text="@string/please_select_gender"
+                    android:textColor="@color/design_default_color_error"
+                    android:textSize="@dimen/_10ssp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tvGender"
+                    app:layout_constraintStart_toEndOf="@id/tvGender"
+                    app:layout_constraintTop_toTopOf="@id/tvGender" />
 
                 <TextView
                     android:id="@+id/tvAddress"
@@ -508,12 +526,12 @@
                     android:textColor="@color/colorRegisterFieldLabel"
                     android:textSize="@dimen/registerLabelFieldSize"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tilPhoneNumber" />
+                    app:layout_constraintTop_toBottomOf="@id/rgGender" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilAddress"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_32sdp"
+                    android:layout_height="@dimen/registerTextFieldHeight"
                     android:layout_marginTop="@dimen/registerLabelTextFieldSpace"
                     app:boxCornerRadiusBottomEnd="@dimen/_16sdp"
                     app:boxCornerRadiusBottomStart="@dimen/_16sdp"
@@ -528,9 +546,10 @@
                     <EditText
                         android:id="@+id/etAddress"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/quicksand_regular"
                         android:hint="@string/type_address"
+                        android:imeOptions="actionDone"
                         android:importantForAutofill="no"
                         android:includeFontPadding="false"
                         android:inputType="text"
@@ -556,7 +575,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tilAddress" />
 
                 <Button
-                    android:id="@+id/tbRegister"
+                    android:id="@+id/btRegister"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/registerFieldSpace"

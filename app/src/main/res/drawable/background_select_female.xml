@@ -5,5 +5,5 @@
     <corners android:radius="@dimen/_18sdp" />
     <stroke
         android:width="@dimen/_1sdp"
-        android:color="#E34ECE" />
+        android:color="@color/colorGenderFemale" />
 </shape>

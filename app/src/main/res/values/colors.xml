@@ -9,8 +9,10 @@
     <color name="colorRegisterFieldLabel">#373737</color>
     <color name="colorRegisterMandatory">#F2F4FF</color>
     <color name="colorGenderMale">#03B2F3</color>
-    <color name="colorGenderFemale">#FF30D0</color>
+    <color name="colorGenderFemale">#FF42EE</color>
     <color name="colorAsterisk">#DB4745</color>
+    <color name="colorErrorBackground">#FF9A9A</color>
+    <color name="colorAction">#1478A8</color>
     <color name="colorRipple">#DFEAF2</color>
     <color name="colorFindBackground">#E6EAED</color>
     <color name="colorSecondaryText">#7A8286</color>

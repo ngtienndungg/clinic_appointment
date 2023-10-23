@@ -1,6 +1,5 @@
 package com.example.clinic_appointment.networking.services;
 
-import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
 import com.example.clinic_appointment.models.Hospital.HospitalResponse;
 import com.example.clinic_appointment.models.User.UserResponse;
@@ -23,6 +22,12 @@ public interface AppointmentService {
 
     @GET("user/current")
     Call<Void> getCurrent(@Header("Authorization") String accessToken);
+
+    @POST("user/register")
+    Call<UserResponse> register(@Field("email") String email, @Field("password") String password,
+                                @Field("fullName") String fullName, @Field("mobile") String phoneNumber,
+                                @Field("address") String address, @Field("gender") boolean gender,
+                                @Field("dateOfBirth") String dateOfBirth);
 
     @GET("clinic")
     Call<HospitalResponse> getFilteredClinic();

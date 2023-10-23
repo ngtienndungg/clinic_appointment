@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="GenderRadioButton" parent="Widget.Material3.CompoundButton.RadioButton">
+    <style name="Widget.Material3.CompoundButton.RadioButton.GenderRadioButton" parent="Widget.Material3.CompoundButton.RadioButton">
         <item name="buttonTint">@color/colorStrokeBox</item>
     </style>
 

@@ -6,4 +6,5 @@
     <dimen name="registerFieldLabelMarginStart">@dimen/_2sdp</dimen>
     <dimen name="registerFieldSpace">@dimen/_14sdp</dimen>
     <dimen name="registerLabelTextFieldSpace">@dimen/_8sdp</dimen>
+    <dimen name="registerTextFieldHeight">@dimen/_32sdp</dimen>
 </resources>

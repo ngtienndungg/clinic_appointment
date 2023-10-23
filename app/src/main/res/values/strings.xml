@@ -10,7 +10,6 @@
     <string name="scheduling">Đặt lịch</string>
     <string name="my_scheduling">Lịch của tôi</string>
     <string name="account">Tài khoản</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="find_doctor">Tìm kiếm bác sĩ</string>
     <string name="find_clinic">Tìm phòng khám</string>
@@ -53,4 +52,12 @@
     <string name="type_address">Nhập địa chỉ</string>
     <string name="sign_up">Đăng ký</string>
     <string name="accept_rules">Bằng việc nhấn nút Đăng ký, bạn đã đồng ý với Quy định sử dụng và Chính sách bảo mật của ứng dụng này</string>
+    <string name="please_select_gender">Vui lòng chọn giới tính</string>
+    <string name="accept">Đồng ý</string>
+    <string name="not_full_fill_yet">Bạn chưa nhập đầy đủ thông tin theo yêu cầu. Vui lòng kiểm tra lại.</string>
+    <string name="password_and_repeat_no_match">Mật khẩu và xác nhận mật khẩu không trùng khớp. Vui lòng kiểm tra lại.</string>
+    <string name="password_must_have_least_six">Mật khẩu phải dài tối thiểu 6 ký tự. Vui lòng kiểm tra lại.</string>
+    <string name="invalid_email">Email bạn nhập không hợp lệ. Vui lòng kiểm tra lại.</string>
+    <string name="invalid_phone_number">Số điện thoại bạn nhập không hợp lệ. Vui lòng kiểm tra lại.</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
 </resources>
