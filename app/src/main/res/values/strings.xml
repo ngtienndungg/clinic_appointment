@@ -60,4 +60,10 @@
     <string name="invalid_email">Email bạn nhập không hợp lệ. Vui lòng kiểm tra lại.</string>
     <string name="invalid_phone_number">Số điện thoại bạn nhập không hợp lệ. Vui lòng kiểm tra lại.</string>
     <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="icon_launcher">Icon launcher</string>
+    <string name="welcome_banner">Xin chào,</string>
+    <string name="make_appointment_at_health_facilities">Đặt lịch tại cơ sở</string>
+    <string name="make_appointment_with_doctor">Đặt khám bác sĩ</string>
+    <string name="remote_medical_consultation">Tư vấn khám bệnh từ xa</string>
+    <string name="help">Hỗ trợ</string>
 </resources>

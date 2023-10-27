@@ -30,8 +30,5 @@ public class HomeFragment extends Fragment {
     }
 
     private void eventHandling() {
-        binding.llOptionFindDoctor.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), FindDoctorActivity.class));
-        });
     }
 }

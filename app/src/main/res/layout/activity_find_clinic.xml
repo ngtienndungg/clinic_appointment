@@ -63,7 +63,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_2sdp"
-                android:background="@drawable/background_center_find" />
+                android:background="@drawable/background_center_menu" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

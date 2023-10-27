@@ -7,4 +7,6 @@
     <dimen name="registerFieldSpace">@dimen/_14sdp</dimen>
     <dimen name="registerLabelTextFieldSpace">@dimen/_8sdp</dimen>
     <dimen name="registerTextFieldHeight">@dimen/_32sdp</dimen>
+    <dimen name="homeItemWidth">@dimen/_94sdp</dimen>
+    <dimen name="homeItemHeight">@dimen/_87sdp</dimen>
 </resources>

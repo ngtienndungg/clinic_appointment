@@ -1,109 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/_14sdp"
+    android:background="@color/colorWhite"
     tools:context=".fragments.HomeFragment">
 
-    <LinearLayout
-        android:id="@+id/llOptions"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        app:layout_constraintTop_toTopOf="parent">
+        android:paddingBottom="@dimen/_6sdp">
 
-        <LinearLayout
-            android:id="@+id/llOptionFindDoctor"
+        <View
+            android:id="@+id/topBackground"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:ignore="UseCompoundDrawables">
+            android:layout_height="@dimen/_75sdp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/background_top_find" />
 
-            <ImageView
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:background="@drawable/background_circle"
-                android:padding="@dimen/_4sdp"
-                android:src="@drawable/ic_doctor"
-                app:tint="@color/colorWhite"
-                tools:ignore="ContentDescription" />
+        <GridLayout
+            android:id="@+id/flTOption"
+            android:layout_width="@dimen/_282sdp"
+            android:layout_height="@dimen/_262sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/background_center_menu"
+            android:columnCount="3"
+            android:elevation="@dimen/_4sdp"
+            android:rowCount="3">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_2sdp"
+            <LinearLayout
+                android:id="@+id/llMakeAppointmentAtHealthFacilities"
+                android:layout_width="@dimen/homeItemWidth"
+                android:layout_height="@dimen/homeItemHeight"
                 android:gravity="center"
-                android:text="@string/find_doctor"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/_11sdp" />
+                android:orientation="vertical"
+                android:padding="@dimen/_6sdp"
+                tools:ignore="UseCompoundDrawables">
 
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:src="@mipmap/ic_make_appointment_at_health_facilities"
+                    tools:ignore="ContentDescription" />
 
-        <LinearLayout
-            android:id="@+id/llOptionFindClinic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:ignore="UseCompoundDrawables">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:text="@string/make_appointment_at_health_facilities"
+                    android:textSize="@dimen/_10ssp" />
 
-            <ImageView
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:background="@drawable/background_circle"
-                android:padding="@dimen/_4sdp"
-                android:src="@drawable/ic_hospital"
-                app:tint="@color/colorWhite"
-                tools:ignore="ContentDescription" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_2sdp"
+            <LinearLayout
+                android:id="@+id/llMakeAppointmentWithDoctor"
+                android:layout_width="@dimen/homeItemWidth"
+                android:layout_height="@dimen/homeItemHeight"
+                android:background="@drawable/background_home_item_top_bottom_center"
                 android:gravity="center"
-                android:text="@string/find_clinic"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/_11sdp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llOptionMakeAppointment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:ignore="UseCompoundDrawables">
-
-            <ImageView
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:background="@drawable/background_circle"
+                android:orientation="vertical"
                 android:padding="@dimen/_4sdp"
-                android:src="@drawable/ic_calendar"
-                app:tint="@color/colorWhite"
-                tools:ignore="ContentDescription" />
+                tools:ignore="UseCompoundDrawables">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_2sdp"
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:src="@mipmap/ic_make_appointment_with_doctor"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:text="@string/make_appointment_with_doctor"
+                    android:textSize="@dimen/_10ssp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llRemoteMedicalConsultant"
+                android:layout_width="@dimen/homeItemWidth"
+                android:layout_height="@dimen/homeItemHeight"
                 android:gravity="center"
-                android:text="@string/make_appointment"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/_11sdp" />
+                android:orientation="vertical"
+                android:padding="@dimen/_4sdp"
+                tools:ignore="UseCompoundDrawables">
 
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:src="@mipmap/ic_remote_medical_consultation"
+                    tools:ignore="ContentDescription" />
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:text="@string/remote_medical_consultation"
+                    android:textSize="@dimen/_10ssp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llHelp"
+                android:layout_width="@dimen/homeItemWidth"
+                android:layout_height="@dimen/homeItemHeight"
+                android:background="@drawable/background_home_item_middle_left_right"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/_4sdp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:src="@mipmap/ic_help"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:text="@string/help"
+                    android:textSize="@dimen/_10ssp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llEmpty_1"
+                android:layout_width="@dimen/homeItemWidth"
+                android:layout_height="@dimen/homeItemHeight"
+                android:background="@drawable/background_home_item_middle_center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/_4sdp"
+                tools:ignore="UseCompoundDrawables" />
+
+            <LinearLayout
+                android:id="@+id/llEmpty_2"
+                android:layout_width="@dimen/homeItemWidth"
+                android:layout_height="@dimen/homeItemHeight"
+                android:background="@drawable/background_home_item_middle_left_right"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/_4sdp"
+                tools:ignore="UseCompoundDrawables" />
+
+            <LinearLayout
+                android:id="@+id/llEmpty_3"
+                android:layout_width="@dimen/homeItemWidth"
+                android:layout_height="@dimen/homeItemHeight"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/_4sdp"
+                tools:ignore="UseCompoundDrawables" />
+
+            <LinearLayout
+                android:id="@+id/llEmpty_4"
+                android:layout_width="@dimen/homeItemWidth"
+                android:layout_height="@dimen/homeItemHeight"
+                android:background="@drawable/background_home_item_top_bottom_center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/_4sdp"
+                tools:ignore="UseCompoundDrawables" />
+
+            <LinearLayout
+                android:id="@+id/llEmpty_5"
+                android:layout_width="@dimen/homeItemWidth"
+                android:layout_height="@dimen/homeItemHeight"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/_4sdp"
+                tools:ignore="UseCompoundDrawables" />
+
+        </GridLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
