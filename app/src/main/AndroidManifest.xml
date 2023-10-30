@@ -17,9 +17,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activities.SelectDepartmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.SelectHealthFacilityActivity"
-            android:exported="true" >
-
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,9 +47,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.DashboardActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

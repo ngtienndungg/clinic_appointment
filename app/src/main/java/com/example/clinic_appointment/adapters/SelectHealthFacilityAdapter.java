@@ -36,8 +36,8 @@ public class SelectHealthFacilityAdapter extends RecyclerView.Adapter<SelectHeal
 
     @Override
     public void onBindViewHolder(@NonNull SelectHealthFacilityAdapter.ItemViewHolder holder, int position) {
-            holder.setData(healthFacilities.get(position), context);
-            holder.binding.getRoot().setOnClickListener(v -> listener.onClick(healthFacilities.get(position)));
+        holder.setData(healthFacilities.get(position), context);
+        holder.binding.getRoot().setOnClickListener(v -> listener.onClick(healthFacilities.get(position)));
     }
 
     @Override
@@ -54,7 +54,7 @@ public class SelectHealthFacilityAdapter extends RecyclerView.Adapter<SelectHeal
         }
 
         public void setData(HealthFacility healthFacility, Context context) {
-            String detailedAddress = "Kiểm tra thử xem thế nào, Cơ sở 201 Hồng Bàng, Phường " + healthFacility.getAddress().getWard() + ", " + healthFacility.getAddress().getDistrict() + ", " + healthFacility.getAddress().getProvince();
+            String detailedAddress = "Vĩ dộ 38, Kinh độ 48, Cơ sở 201 Hồng Bàng, Phường " + healthFacility.getAddress().getWard() + ", " + healthFacility.getAddress().getDistrict() + ", " + healthFacility.getAddress().getProvince();
             binding.tvName.setText(healthFacility.getName());
             binding.tvAddress.setText(detailedAddress);
             Glide.with(context).load(healthFacility.getImage()).centerCrop().into(binding.ivImage);

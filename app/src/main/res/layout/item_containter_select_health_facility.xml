@@ -36,10 +36,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvName"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_1sdp"
         android:layout_toEndOf="@id/ivImage"
         android:fontFamily="@font/quicksand_regular"
         android:includeFontPadding="false"
-        android:layout_marginTop="@dimen/_1sdp"
         android:textColor="@color/colorSecondaryText"
         android:textSize="@dimen/_9ssp" />
 
