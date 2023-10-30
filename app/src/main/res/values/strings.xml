@@ -66,4 +66,7 @@
     <string name="make_appointment_with_doctor">Đặt khám bác sĩ</string>
     <string name="remote_medical_consultation">Tư vấn khám bệnh từ xa</string>
     <string name="help">Hỗ trợ</string>
+    <string name="select_health_facility">Chọn cơ sở y tế</string>
+    <string name="type_name_of_health_facility">Nhập tên cơ sở y tế</string>
+    <string name="all_province_city">Tất cả Tỉnh/Thành phố</string>
 </resources>
