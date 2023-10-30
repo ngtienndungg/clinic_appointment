@@ -10,16 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.clinic_appointment.databinding.ItemContainterSelectHealthFacilityBinding;
 import com.example.clinic_appointment.listeners.HealthFacilityListener;
-import com.example.clinic_appointment.models.Hospital.HealthFacility;
+import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 
 import java.util.List;
 
-public class SelectItemAdapter extends RecyclerView.Adapter<SelectItemAdapter.ItemViewHolder> {
+public class SelectHealthFacilityAdapter extends RecyclerView.Adapter<SelectHealthFacilityAdapter.ItemViewHolder> {
     private final HealthFacilityListener listener;
     private final List<HealthFacility> healthFacilities;
     private final Context context;
 
-    public SelectItemAdapter(List<HealthFacility> healthFacilities, HealthFacilityListener listener, Context context) {
+    public SelectHealthFacilityAdapter(List<HealthFacility> healthFacilities, HealthFacilityListener listener, Context context) {
         this.healthFacilities = healthFacilities;
         this.context = context;
         this.listener = listener;
@@ -35,7 +35,7 @@ public class SelectItemAdapter extends RecyclerView.Adapter<SelectItemAdapter.It
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SelectItemAdapter.ItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SelectHealthFacilityAdapter.ItemViewHolder holder, int position) {
             holder.setData(healthFacilities.get(position), context);
             holder.binding.getRoot().setOnClickListener(v -> listener.onClick(healthFacilities.get(position)));
     }
@@ -54,7 +54,7 @@ public class SelectItemAdapter extends RecyclerView.Adapter<SelectItemAdapter.It
         }
 
         public void setData(HealthFacility healthFacility, Context context) {
-            String detailedAddress = healthFacility.getAddress().getWard() + ", " + healthFacility.getAddress().getDistrict() + ", " + healthFacility.getAddress().getProvince();
+            String detailedAddress = "Kiểm tra thử xem thế nào, Cơ sở 201 Hồng Bàng, Phường " + healthFacility.getAddress().getWard() + ", " + healthFacility.getAddress().getDistrict() + ", " + healthFacility.getAddress().getProvince();
             binding.tvName.setText(healthFacility.getName());
             binding.tvAddress.setText(detailedAddress);
             Glide.with(context).load(healthFacility.getImage()).centerCrop().into(binding.ivImage);

@@ -1,4 +1,4 @@
-package com.example.clinic_appointment.models.Hospital;
+package com.example.clinic_appointment.models.HealthFacility;
 
 import com.example.clinic_appointment.models.Address.Address;
 import com.example.clinic_appointment.utilities.Searchable;

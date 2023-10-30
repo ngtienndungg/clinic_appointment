@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivityFindDoctorBinding;
 import com.example.clinic_appointment.models.Department.Department;
-import com.example.clinic_appointment.models.Hospital.HealthFacility;
+import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.utilities.Constants;
 
 import java.util.Objects;

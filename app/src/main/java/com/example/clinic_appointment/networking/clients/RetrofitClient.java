@@ -9,7 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    public static final String BASE_URL = "http://192.168.89.172:5000/api/";
+    public static final String BASE_URL = "http://192.168.61.2:5000/api/";
     static HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
     private static Retrofit authenticatedRetrofit = null;
     private static Retrofit publicRetrofit = null;

@@ -129,12 +129,58 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHealthFacility"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rlSearchCity"
-        android:paddingTop="@dimen/_6sdp"
-        android:paddingBottom="@dimen/_4sdp"
         android:background="@color/colorSelectHealthFacilityItemBackground"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-    
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <ProgressBar
+        android:id="@+id/pbLoading"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_below="@id/rlSearchCity"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:indeterminateTint="@color/colorNote"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/rlError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlSearchCity"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ivError"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_error" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/ivError"
+            android:layout_alignBottom="@id/ivError"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_toEndOf="@id/ivError"
+            android:fontFamily="@font/quicksand_medium"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:text="@string/something_wrong_happened"
+            android:textColor="@color/colorTextViewResult"
+            android:textSize="@dimen/_11sdp" />
+
+    </RelativeLayout>
+
+
 </RelativeLayout>

@@ -1,7 +1,7 @@
 package com.example.clinic_appointment.networking.services;
 
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
-import com.example.clinic_appointment.models.Hospital.HealthFacilityResponse;
+import com.example.clinic_appointment.models.HealthFacility.HealthFacilityResponse;
 import com.example.clinic_appointment.models.User.UserResponse;
 import com.google.gson.JsonObject;
 

@@ -69,4 +69,5 @@
     <string name="select_health_facility">Chọn cơ sở y tế</string>
     <string name="type_name_of_health_facility">Nhập tên cơ sở y tế</string>
     <string name="all_province_city">Tất cả Tỉnh/Thành phố</string>
+    <string name="icon_star">Icon star</string>
 </resources>

@@ -8,13 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.clinic_appointment.R;
-import com.example.clinic_appointment.adapters.SelectItemAdapter;
+import com.example.clinic_appointment.adapters.SelectHealthFacilityAdapter;
 import com.example.clinic_appointment.databinding.ActivitySelectItemBinding;
 import com.example.clinic_appointment.listeners.HealthFacilityListener;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
-import com.example.clinic_appointment.models.Hospital.HealthFacility;
-import com.example.clinic_appointment.models.Hospital.HealthFacilityResponse;
+import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
+import com.example.clinic_appointment.models.HealthFacility.HealthFacilityResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 import com.example.clinic_appointment.utilities.Searchable;
@@ -63,7 +63,7 @@ public class SelectItemActivity extends AppCompatActivity implements HealthFacil
             public void onResponse(@NonNull Call<HealthFacilityResponse> call, @NonNull Response<HealthFacilityResponse> response) {
                 if (response.body() != null && response.body().isSuccess()) {
                     List<HealthFacility> healthFacilities = response.body().getHospitals();
-                    SelectItemAdapter adapter = new SelectItemAdapter(healthFacilities, SelectItemActivity.this, getApplicationContext());
+                    SelectHealthFacilityAdapter adapter = new SelectHealthFacilityAdapter(healthFacilities, SelectItemActivity.this, getApplicationContext());
                     binding.rvResult.setAdapter(adapter);
                     binding.rvResult.setVisibility(View.VISIBLE);
                     binding.pbLoading.setVisibility(View.GONE);
