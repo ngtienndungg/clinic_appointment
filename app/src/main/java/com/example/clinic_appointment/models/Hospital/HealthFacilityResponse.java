@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class HospitalResponse {
+public class HealthFacilityResponse {
     @SerializedName("success")
     private boolean isSuccess;
     @SerializedName("data")
-    private List<Hospital> hospitals;
+    private List<HealthFacility> healthFacilities;
 
     public boolean isSuccess() {
         return isSuccess;
@@ -18,12 +18,12 @@ public class HospitalResponse {
         isSuccess = success;
     }
 
-    public List<Hospital> getHospitals() {
-        return hospitals;
+    public List<HealthFacility> getHospitals() {
+        return healthFacilities;
     }
 
-    public void setHospital(List<Hospital> hospitals) {
-        this.hospitals = hospitals;
+    public void setHospital(List<HealthFacility> healthFacilities) {
+        this.healthFacilities = healthFacilities;
     }
 
 }

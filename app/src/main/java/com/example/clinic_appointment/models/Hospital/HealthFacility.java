@@ -4,7 +4,7 @@ import com.example.clinic_appointment.models.Address.Address;
 import com.example.clinic_appointment.utilities.Searchable;
 import com.google.gson.annotations.SerializedName;
 
-public class Hospital extends Searchable {
+public class HealthFacility extends Searchable {
     @SerializedName("_id")
     private String id;
     @SerializedName("name")

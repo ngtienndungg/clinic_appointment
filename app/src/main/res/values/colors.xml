@@ -15,6 +15,7 @@
     <color name="colorSelectHealthFacilityStrokeBox">#02A9EB</color>
     <color name="colorSelectHealthFacilityHint">#ABE9FF</color>
     <color name="colorSelectHealthFacilityItemBackground">#F1F1F1</color>
+    <color name="colorSelectHealthFacilityItemStroke">#E1E1E1</color>
     <color name="colorErrorBackground">#FF9A9A</color>
     <color name="colorAction">#1478A8</color>
     <color name="colorRipple">#DFEAF2</color>

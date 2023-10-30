@@ -10,11 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.adapters.SelectItemAdapter;
 import com.example.clinic_appointment.databinding.ActivitySelectItemBinding;
-import com.example.clinic_appointment.listeners.ItemListener;
+import com.example.clinic_appointment.listeners.HealthFacilityListener;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
-import com.example.clinic_appointment.models.Hospital.Hospital;
-import com.example.clinic_appointment.models.Hospital.HospitalResponse;
+import com.example.clinic_appointment.models.Hospital.HealthFacility;
+import com.example.clinic_appointment.models.Hospital.HealthFacilityResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 import com.example.clinic_appointment.utilities.Searchable;
@@ -25,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SelectItemActivity extends AppCompatActivity implements ItemListener {
+public class SelectItemActivity extends AppCompatActivity implements HealthFacilityListener {
     private ActivitySelectItemBinding binding;
     private String itemType;
 
@@ -57,13 +57,13 @@ public class SelectItemActivity extends AppCompatActivity implements ItemListene
         binding.tvAllMatch.setText(getString(R.string.from_all_hospital_and_clinic));
         binding.tvResult.setText(getString(R.string.popular_hospital_and_clinic));
         binding.etSearchInput.setHint(R.string.search_hint_select_hospital);
-        Call<HospitalResponse> call = RetrofitClient.getPublicAppointmentService().getFilteredClinic();
-        call.enqueue(new Callback<HospitalResponse>() {
+        Call<HealthFacilityResponse> call = RetrofitClient.getPublicAppointmentService().getFilteredClinic();
+        call.enqueue(new Callback<HealthFacilityResponse>() {
             @Override
-            public void onResponse(@NonNull Call<HospitalResponse> call, @NonNull Response<HospitalResponse> response) {
+            public void onResponse(@NonNull Call<HealthFacilityResponse> call, @NonNull Response<HealthFacilityResponse> response) {
                 if (response.body() != null && response.body().isSuccess()) {
-                    List<Hospital> hospitals = response.body().getHospitals();
-                    SelectItemAdapter<Hospital> adapter = new SelectItemAdapter<>(hospitals, SelectItemActivity.this, getApplicationContext());
+                    List<HealthFacility> healthFacilities = response.body().getHospitals();
+                    SelectItemAdapter adapter = new SelectItemAdapter(healthFacilities, SelectItemActivity.this, getApplicationContext());
                     binding.rvResult.setAdapter(adapter);
                     binding.rvResult.setVisibility(View.VISIBLE);
                     binding.pbLoading.setVisibility(View.GONE);
@@ -71,7 +71,7 @@ public class SelectItemActivity extends AppCompatActivity implements ItemListene
             }
 
             @Override
-            public void onFailure(@NonNull Call<HospitalResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<HealthFacilityResponse> call, @NonNull Throwable t) {
                 displayError();
             }
         });
@@ -86,13 +86,7 @@ public class SelectItemActivity extends AppCompatActivity implements ItemListene
         call.enqueue(new Callback<DepartmentResponse>() {
             @Override
             public void onResponse(@NonNull Call<DepartmentResponse> call, @NonNull Response<DepartmentResponse> response) {
-                if (response.body() != null && response.body().isSuccess()) {
-                    List<Department> departments = response.body().getDepartments();
-                    SelectItemAdapter<Department> adapter = new SelectItemAdapter<>(departments, SelectItemActivity.this, getApplicationContext());
-                    binding.rvResult.setAdapter(adapter);
-                    binding.rvResult.setVisibility(View.VISIBLE);
-                    binding.pbLoading.setVisibility(View.GONE);
-                }
+
             }
 
             @Override
@@ -122,10 +116,9 @@ public class SelectItemActivity extends AppCompatActivity implements ItemListene
         overridePendingTransition(R.anim.slide_default, R.anim.slide_down);
     }
 
-    @Override
     public void onSelect(Searchable item) {
         Class<? extends Searchable> itemClass = item.getClass();
-        if (itemClass.equals(Hospital.class)) {
+        if (itemClass.equals(HealthFacility.class)) {
             setResult(Constants.TYPE_HOSPITAL, item);
         } else if (itemClass.equals(Department.class)) {
             setResult(Constants.TYPE_DEPARTMENT, item);
@@ -138,5 +131,10 @@ public class SelectItemActivity extends AppCompatActivity implements ItemListene
         intent.putExtra(Constants.KEY_SELECTED_ITEM, item);
         setResult(RESULT_OK, intent);
         onBackPressed();
+    }
+
+    @Override
+    public void onClick(HealthFacility healthFacility) {
+
     }
 }

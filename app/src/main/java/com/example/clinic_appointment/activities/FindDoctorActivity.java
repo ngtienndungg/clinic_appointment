@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivityFindDoctorBinding;
 import com.example.clinic_appointment.models.Department.Department;
-import com.example.clinic_appointment.models.Hospital.Hospital;
+import com.example.clinic_appointment.models.Hospital.HealthFacility;
 import com.example.clinic_appointment.utilities.Constants;
 
 import java.util.Objects;
@@ -31,8 +31,8 @@ public class FindDoctorActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     String returnType = Objects.requireNonNull(intent).getStringExtra(Constants.RETURN_TYPE);
                     if (Objects.equals(returnType, Constants.TYPE_HOSPITAL)) {
-                        Hospital selectedHospital = (Hospital) intent.getSerializableExtra(Constants.KEY_SELECTED_ITEM);
-                        binding.etHospitalOrClinic.setText(Objects.requireNonNull(selectedHospital).getName());
+                        HealthFacility selectedHealthFacility = (HealthFacility) intent.getSerializableExtra(Constants.KEY_SELECTED_ITEM);
+                        binding.etHospitalOrClinic.setText(Objects.requireNonNull(selectedHealthFacility).getName());
                     } else if (Objects.equals(returnType, Constants.TYPE_DEPARTMENT)) {
                         Department selectedDepartment = (Department) intent.getSerializableExtra(Constants.KEY_SELECTED_ITEM);
                         binding.etDepartment.setText(Objects.requireNonNull(selectedDepartment).getName());

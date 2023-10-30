@@ -1,7 +1,7 @@
 package com.example.clinic_appointment.networking.services;
 
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
-import com.example.clinic_appointment.models.Hospital.HospitalResponse;
+import com.example.clinic_appointment.models.Hospital.HealthFacilityResponse;
 import com.example.clinic_appointment.models.User.UserResponse;
 import com.google.gson.JsonObject;
 
@@ -30,7 +30,7 @@ public interface AppointmentService {
                                 @Field("dateOfBirth") String dateOfBirth);
 
     @GET("clinic")
-    Call<HospitalResponse> getFilteredClinic();
+    Call<HealthFacilityResponse> getFilteredClinic();
 
     @GET("specialty")
     Call<DepartmentResponse> getFilteredDepartment();
