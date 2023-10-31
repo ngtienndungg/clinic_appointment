@@ -43,7 +43,8 @@
         android:layout_below="@id/rlTopAppBar"
         android:background="@color/colorPrimary"
         android:paddingHorizontal="@dimen/_8sdp"
-        android:paddingVertical="@dimen/_8sdp">
+        android:paddingTop="@dimen/_2sdp"
+        android:paddingBottom="@dimen/_12sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,7 +64,7 @@
                 tools:ignore="ContentDescription" />
 
             <EditText
-                android:id="@+id/etSea"
+                android:id="@+id/etSearch"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/registerTextFieldHeight"
                 android:layout_marginStart="@dimen/_6sdp"
