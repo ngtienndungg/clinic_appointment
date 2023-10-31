@@ -1,5 +1,6 @@
 package com.example.clinic_appointment.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -12,6 +13,7 @@ import com.example.clinic_appointment.listeners.DepartmentListener;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
+import com.example.clinic_appointment.utilities.Constants;
 
 import java.util.List;
 
@@ -59,6 +61,8 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
 
     @Override
     public void onClick(Department department) {
-
+        Intent intent = new Intent();
+        intent.putExtra(Constants.KEY_DEPARTMENT, department);
+        startActivity(intent);
     }
 }

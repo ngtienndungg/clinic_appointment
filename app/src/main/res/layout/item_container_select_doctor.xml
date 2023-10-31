@@ -28,6 +28,7 @@
         android:fontFamily="@font/quicksand_bold"
         android:gravity="center"
         android:includeFontPadding="false"
+        android:textAllCaps="true"
         android:text="BÁC SĨ DƯƠNG THỊ THU HÀ"
         android:textColor="@color/colorDoctorName"
         android:textSize="@dimen/_11ssp" />

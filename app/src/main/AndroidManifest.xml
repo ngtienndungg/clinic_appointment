@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activities.SelectDoctorActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.SelectDepartmentActivity"
             android:exported="true">
             <intent-filter>
@@ -27,7 +30,7 @@
         </activity>
         <activity
             android:name=".activities.SelectHealthFacilityActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.RegisterActivity"
             android:exported="true"
