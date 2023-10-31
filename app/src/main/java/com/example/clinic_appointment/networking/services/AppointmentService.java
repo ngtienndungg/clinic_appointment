@@ -12,6 +12,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface AppointmentService {
     @POST("user/login")
@@ -37,6 +38,6 @@ public interface AppointmentService {
     Call<DepartmentResponse> getFilteredDepartment();
 
     @GET("doctor")
-    Call<DoctorResponse> getDoctorByDepartmentAndHealthFacility(@Field("specialtyID") String departmentId,
-                                                                @Field("clinicID") String clinicId);
+    Call<DoctorResponse> getDoctorByDepartmentAndHealthFacility(@Query("specialtyID") String departmentId,
+                                                                @Query("clinicID") String clinicId);
 }

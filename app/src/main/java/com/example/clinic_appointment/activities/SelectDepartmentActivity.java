@@ -61,8 +61,9 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
 
     @Override
     public void onClick(Department department) {
-        Intent intent = new Intent();
+        Intent intent = new Intent(this, SelectDoctorActivity.class);
         intent.putExtra(Constants.KEY_DEPARTMENT, department);
+        intent.putExtra(Constants.KEY_HEALTH_FACILITY, getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY));
         startActivity(intent);
     }
 }

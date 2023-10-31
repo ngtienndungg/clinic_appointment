@@ -37,7 +37,7 @@ public class SelectHealthFacilityAdapter extends RecyclerView.Adapter<SelectHeal
     @Override
     public void onBindViewHolder(@NonNull SelectHealthFacilityAdapter.ItemViewHolder holder, int position) {
         holder.setData(healthFacilities.get(position), context);
-        holder.binding.getRoot().setOnClickListener(v -> listener.onClick(healthFacilities.get(position)));
+        holder.binding.getRoot().setOnClickListener(v -> listener.onClick(healthFacilities.get(holder.getAdapterPosition())));
     }
 
     @Override
