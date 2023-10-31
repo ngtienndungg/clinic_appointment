@@ -16,11 +16,13 @@
     <color name="colorSelectHealthFacilityHint">#ABE9FF</color>
     <color name="colorSelectHealthFacilityItemBackground">#F1F1F1</color>
     <color name="colorSelectHealthFacilityItemStroke">#E1E1E1</color>
+    <color name="colorDoctorName">#0AB1FF</color>
     <color name="colorErrorBackground">#FF9A9A</color>
     <color name="colorAction">#1478A8</color>
     <color name="colorRipple">#DFEAF2</color>
     <color name="colorFindBackground">#E6EAED</color>
     <color name="colorSecondaryText">#7A8286</color>
+    <color name="colorDoctorInformation">#223539</color>
     <color name="colorFindText">#5D6166</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">
         @color/colorStrokeBox
