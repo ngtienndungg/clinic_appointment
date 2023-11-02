@@ -18,6 +18,9 @@
     <color name="colorSelectHealthFacilityItemStroke">#E1E1E1</color>
     <color name="colorDoctorName">#0AB1FF</color>
     <color name="colorErrorBackground">#FF9A9A</color>
+    <color name="colorCalendarDayBackground">#F1F1F1</color>
+    <color name="colorCalendarDayText">#747C89</color>
+    <color name="colorScheduleNoteBackground">#F0F9FF</color>
     <color name="colorAction">#1478A8</color>
     <color name="colorRipple">#DFEAF2</color>
     <color name="colorFindBackground">#E6EAED</color>

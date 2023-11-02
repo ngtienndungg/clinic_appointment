@@ -78,4 +78,6 @@
     <string name="department_label">Chuyên khoa:</string>
     <string name="appointment_calendar">Lịch khám:</string>
     <string name="price_label">Giá khám:</string>
+    <string name="choose_appointment_date">Chọn ngày đặt khám</string>
+    <string name="currently_allow_schedule_before_x_day">Hiện tại bệnh viện chỉ hỗ trợ đặt lịch khám trước hẹn từ 1 đến 30 ngày.</string>
 </resources>
