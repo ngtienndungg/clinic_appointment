@@ -1,7 +1,7 @@
 package com.example.clinic_appointment.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -37,7 +37,6 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
     private void initiate() {
         Department department = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
         HealthFacility healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-        Log.d("TestData", healthFacility.getId() + " " + department.getId());
         Call<DoctorResponse> call = RetrofitClient.getPublicAppointmentService().getDoctorByDepartmentAndHealthFacility(department.getId(), healthFacility.getId());
         call.enqueue(new Callback<DoctorResponse>() {
             @Override
@@ -66,6 +65,8 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
 
     @Override
     public void onClick(Doctor doctor) {
-
+        Intent intent = new Intent(this, SelectDateActivity.class);
+        intent.putExtra(Constants.KEY_DOCTOR, doctor);
+        startActivity(intent);
     }
 }
