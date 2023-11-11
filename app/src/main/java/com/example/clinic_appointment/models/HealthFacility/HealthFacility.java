@@ -1,8 +1,11 @@
 package com.example.clinic_appointment.models.HealthFacility;
 
 import com.example.clinic_appointment.models.Address.Address;
+import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.utilities.Searchable;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class HealthFacility extends Searchable {
     @SerializedName("_id")
@@ -15,6 +18,8 @@ public class HealthFacility extends Searchable {
     private String image;
     @SerializedName("address")
     private Address address;
+    @SerializedName("specialtyID")
+    private List<Department> departments;
 
     public String getId() {
         return id;
@@ -54,5 +59,13 @@ public class HealthFacility extends Searchable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
     }
 }

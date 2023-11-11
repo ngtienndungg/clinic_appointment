@@ -12,6 +12,8 @@ import com.example.clinic_appointment.databinding.ActivitySelectDepartmentBindin
 import com.example.clinic_appointment.listeners.DepartmentListener;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
+import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
+import com.example.clinic_appointment.models.HealthFacility.HealthFacilityResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 
@@ -34,12 +36,12 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
     }
 
     private void initiate() {
-        Call<DepartmentResponse> call = RetrofitClient.getPublicAppointmentService().getFilteredDepartment();
-        call.enqueue(new Callback<DepartmentResponse>() {
+        HealthFacility selectedHF = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
+        Call<HealthFacilityResponse> call = RetrofitClient.getPublicAppointmentService().getHealthFacilityById(selectedHF.getId());
+        call.enqueue(new Callback<HealthFacilityResponse>() {
             @Override
-            public void onResponse(@NonNull Call<DepartmentResponse> call, @NonNull Response<DepartmentResponse> response) {
+            public void onResponse(@NonNull Call<HealthFacilityResponse> call, @NonNull Response<HealthFacilityResponse> response) {
                 if (response.body() != null && response.body().isSuccess()) {
-                    List<Department> departments = response.body().getDepartments();
                     SelectDepartmentAdapter adapter = new SelectDepartmentAdapter(SelectDepartmentActivity.this, departments);
                     binding.rvDepartment.setAdapter(adapter);
                     binding.rvDepartment.setVisibility(View.VISIBLE);
@@ -48,7 +50,7 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
             }
 
             @Override
-            public void onFailure(@NonNull Call<DepartmentResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<HealthFacilityResponse> call, @NonNull Throwable t) {
                 displayError();
             }
         });

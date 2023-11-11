@@ -57,12 +57,12 @@ public class SelectItemActivity extends AppCompatActivity implements HealthFacil
         binding.tvAllMatch.setText(getString(R.string.from_all_hospital_and_clinic));
         binding.tvResult.setText(getString(R.string.popular_hospital_and_clinic));
         binding.etSearchInput.setHint(R.string.search_hint_select_hospital);
-        Call<HealthFacilityResponse> call = RetrofitClient.getPublicAppointmentService().getFilteredClinic();
+        Call<HealthFacilityResponse> call = RetrofitClient.getPublicAppointmentService().getAllHealthFacilities();
         call.enqueue(new Callback<HealthFacilityResponse>() {
             @Override
             public void onResponse(@NonNull Call<HealthFacilityResponse> call, @NonNull Response<HealthFacilityResponse> response) {
                 if (response.body() != null && response.body().isSuccess()) {
-                    List<HealthFacility> healthFacilities = response.body().getHospitals();
+                    List<HealthFacility> healthFacilities = response.body().getAllHealthFacilities();
                     SelectHealthFacilityAdapter adapter = new SelectHealthFacilityAdapter(healthFacilities, SelectItemActivity.this, getApplicationContext());
                     binding.rvResult.setAdapter(adapter);
                     binding.rvResult.setVisibility(View.VISIBLE);

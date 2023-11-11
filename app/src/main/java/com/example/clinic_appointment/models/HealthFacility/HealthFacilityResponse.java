@@ -18,11 +18,11 @@ public class HealthFacilityResponse {
         isSuccess = success;
     }
 
-    public List<HealthFacility> getHospitals() {
+    public List<HealthFacility> getAllHealthFacilities() {
         return healthFacilities;
     }
 
-    public void setHospital(List<HealthFacility> healthFacilities) {
+    public void setHealthFacilities(List<HealthFacility> healthFacilities) {
         this.healthFacilities = healthFacilities;
     }
 

@@ -2,6 +2,7 @@ package com.example.clinic_appointment.networking.services;
 
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
 import com.example.clinic_appointment.models.Doctor.DoctorResponse;
+import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacilityResponse;
 import com.example.clinic_appointment.models.User.UserResponse;
 import com.google.gson.JsonObject;
@@ -12,6 +13,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface AppointmentService {
@@ -32,7 +34,9 @@ public interface AppointmentService {
                                 @Field("dateOfBirth") String dateOfBirth);
 
     @GET("clinic")
-    Call<HealthFacilityResponse> getFilteredClinic();
+    Call<HealthFacilityResponse> getAllHealthFacilities();
+    @GET("clinic/{id}")
+    Call<HealthFacilityResponse> getHealthFacilityById(@Path("id") String clinicId);
 
     @GET("specialty")
     Call<DepartmentResponse> getFilteredDepartment();

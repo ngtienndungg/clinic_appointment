@@ -33,12 +33,12 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
     }
 
     private void initiate() {
-        Call<HealthFacilityResponse> call = RetrofitClient.getPublicAppointmentService().getFilteredClinic();
+        Call<HealthFacilityResponse> call = RetrofitClient.getPublicAppointmentService().getAllHealthFacilities();
         call.enqueue(new Callback<HealthFacilityResponse>() {
             @Override
             public void onResponse(@NonNull Call<HealthFacilityResponse> call, @NonNull Response<HealthFacilityResponse> response) {
                 if (response.body() != null && response.body().isSuccess()) {
-                    List<HealthFacility> healthFacilities = response.body().getHospitals();
+                    List<HealthFacility> healthFacilities = response.body().getAllHealthFacilities();
                     SelectHealthFacilityAdapter adapter = new SelectHealthFacilityAdapter(healthFacilities, SelectHealthFacilityActivity.this, getApplicationContext());
                     binding.rvHealthFacility.setAdapter(adapter);
                     binding.rvHealthFacility.setVisibility(View.VISIBLE);
