@@ -11,7 +11,6 @@ import com.example.clinic_appointment.adapters.SelectDepartmentAdapter;
 import com.example.clinic_appointment.databinding.ActivitySelectDepartmentBinding;
 import com.example.clinic_appointment.listeners.DepartmentListener;
 import com.example.clinic_appointment.models.Department.Department;
-import com.example.clinic_appointment.models.Department.DepartmentResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacilityResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
@@ -42,6 +41,8 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
             @Override
             public void onResponse(@NonNull Call<HealthFacilityResponse> call, @NonNull Response<HealthFacilityResponse> response) {
                 if (response.body() != null && response.body().isSuccess()) {
+                    HealthFacility healthFacility = response.body().getHealthFacility();
+                    List<Department> departments = healthFacility.getDepartments();
                     SelectDepartmentAdapter adapter = new SelectDepartmentAdapter(SelectDepartmentActivity.this, departments);
                     binding.rvDepartment.setAdapter(adapter);
                     binding.rvDepartment.setVisibility(View.VISIBLE);

@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.clinic_appointment.adapters.SelectHealthFacilityAdapter;
 import com.example.clinic_appointment.databinding.ActivitySelectHealthFacilityBinding;
 import com.example.clinic_appointment.listeners.HealthFacilityListener;
+import com.example.clinic_appointment.models.HealthFacility.HealthFacilitiesResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
-import com.example.clinic_appointment.models.HealthFacility.HealthFacilityResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 
@@ -33,12 +33,12 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
     }
 
     private void initiate() {
-        Call<HealthFacilityResponse> call = RetrofitClient.getPublicAppointmentService().getAllHealthFacilities();
-        call.enqueue(new Callback<HealthFacilityResponse>() {
+        Call<HealthFacilitiesResponse> call = RetrofitClient.getPublicAppointmentService().getAllHealthFacilities();
+        call.enqueue(new Callback<HealthFacilitiesResponse>() {
             @Override
-            public void onResponse(@NonNull Call<HealthFacilityResponse> call, @NonNull Response<HealthFacilityResponse> response) {
+            public void onResponse(@NonNull Call<HealthFacilitiesResponse> call, @NonNull Response<HealthFacilitiesResponse> response) {
                 if (response.body() != null && response.body().isSuccess()) {
-                    List<HealthFacility> healthFacilities = response.body().getAllHealthFacilities();
+                    List<HealthFacility> healthFacilities = response.body().getHealthFacilities();
                     SelectHealthFacilityAdapter adapter = new SelectHealthFacilityAdapter(healthFacilities, SelectHealthFacilityActivity.this, getApplicationContext());
                     binding.rvHealthFacility.setAdapter(adapter);
                     binding.rvHealthFacility.setVisibility(View.VISIBLE);
@@ -47,7 +47,7 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
             }
 
             @Override
-            public void onFailure(@NonNull Call<HealthFacilityResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<HealthFacilitiesResponse> call, @NonNull Throwable t) {
                 displayError();
             }
         });

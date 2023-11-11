@@ -13,6 +13,7 @@ import com.example.clinic_appointment.databinding.ActivitySelectItemBinding;
 import com.example.clinic_appointment.listeners.HealthFacilityListener;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
+import com.example.clinic_appointment.models.HealthFacility.HealthFacilitiesResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacilityResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
@@ -57,12 +58,12 @@ public class SelectItemActivity extends AppCompatActivity implements HealthFacil
         binding.tvAllMatch.setText(getString(R.string.from_all_hospital_and_clinic));
         binding.tvResult.setText(getString(R.string.popular_hospital_and_clinic));
         binding.etSearchInput.setHint(R.string.search_hint_select_hospital);
-        Call<HealthFacilityResponse> call = RetrofitClient.getPublicAppointmentService().getAllHealthFacilities();
-        call.enqueue(new Callback<HealthFacilityResponse>() {
+        Call<HealthFacilitiesResponse> call = RetrofitClient.getPublicAppointmentService().getAllHealthFacilities();
+        call.enqueue(new Callback<HealthFacilitiesResponse>() {
             @Override
-            public void onResponse(@NonNull Call<HealthFacilityResponse> call, @NonNull Response<HealthFacilityResponse> response) {
+            public void onResponse(@NonNull Call<HealthFacilitiesResponse> call, @NonNull Response<HealthFacilitiesResponse> response) {
                 if (response.body() != null && response.body().isSuccess()) {
-                    List<HealthFacility> healthFacilities = response.body().getAllHealthFacilities();
+                    List<HealthFacility> healthFacilities = response.body().getHealthFacilities();
                     SelectHealthFacilityAdapter adapter = new SelectHealthFacilityAdapter(healthFacilities, SelectItemActivity.this, getApplicationContext());
                     binding.rvResult.setAdapter(adapter);
                     binding.rvResult.setVisibility(View.VISIBLE);
@@ -71,7 +72,7 @@ public class SelectItemActivity extends AppCompatActivity implements HealthFacil
             }
 
             @Override
-            public void onFailure(@NonNull Call<HealthFacilityResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<HealthFacilitiesResponse> call, @NonNull Throwable t) {
                 displayError();
             }
         });

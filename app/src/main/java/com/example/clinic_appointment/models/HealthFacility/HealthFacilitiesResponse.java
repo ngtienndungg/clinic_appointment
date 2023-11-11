@@ -2,11 +2,13 @@ package com.example.clinic_appointment.models.HealthFacility;
 
 import com.google.gson.annotations.SerializedName;
 
-public class HealthFacilityResponse {
+import java.util.List;
+
+public class HealthFacilitiesResponse {
     @SerializedName("success")
     private boolean isSuccess;
     @SerializedName("data")
-    private HealthFacility healthFacility;
+    private List<HealthFacility> healthFacilities;
 
     public boolean isSuccess() {
         return isSuccess;
@@ -16,11 +18,11 @@ public class HealthFacilityResponse {
         isSuccess = success;
     }
 
-    public HealthFacility getHealthFacility() {
-        return healthFacility;
+    public List<HealthFacility> getHealthFacilities() {
+        return healthFacilities;
     }
 
-    public void setHealthFacility(HealthFacility healthFacility) {
-        this.healthFacility = healthFacility;
+    public void setHealthFacilities(List<HealthFacility> healthFacilities) {
+        this.healthFacilities = healthFacilities;
     }
 }
