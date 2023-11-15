@@ -18,8 +18,8 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
-    private ActivityRegisterBinding binding;
     private final int PASSWORD_LEAST_LENGTH = 6;
+    private ActivityRegisterBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

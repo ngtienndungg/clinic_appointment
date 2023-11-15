@@ -5,6 +5,6 @@
     android:layout_margin="@dimen/_1sdp"
     android:background="@color/colorCalendarDayBackground"
     android:fontFamily="@font/quicksand_bold"
-    android:textColor="@color/colorCalendarDayText"
     android:gravity="center"
+    android:textColor="@color/colorCalendarDayText"
     android:textSize="@dimen/_13ssp" />

@@ -10,6 +10,7 @@ import com.kizitonwose.calendar.view.ViewContainer;
 
 public class DayViewContainer extends ViewContainer {
     public TextView textView;
+
     public DayViewContainer(@NonNull View view) {
         super(view);
         this.textView = LayoutCalendarDayBinding.bind(view).calendarDayText;

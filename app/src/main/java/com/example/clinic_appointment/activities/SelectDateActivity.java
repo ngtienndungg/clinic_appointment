@@ -71,6 +71,7 @@ public class SelectDateActivity extends AppCompatActivity {
         }
         binding.cvCalendar.setup(currentMonth, endMonth, daysOfWeek.get(0));
         binding.cvCalendar.scrollToMonth(currentMonth);
+
     }
 
     private void eventHandling() {

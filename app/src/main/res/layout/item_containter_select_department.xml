@@ -10,9 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_3sdp"
         android:fontFamily="@font/quicksand_medium"
         android:includeFontPadding="false"
-        android:layout_marginStart="@dimen/_3sdp"
         android:textColor="@color/colorRegisterFieldLabel"
         android:textSize="@dimen/_13ssp" />
 

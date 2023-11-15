@@ -35,6 +35,7 @@ public interface AppointmentService {
 
     @GET("clinic")
     Call<HealthFacilitiesResponse> getAllHealthFacilities();
+
     @GET("clinic/{id}")
     Call<HealthFacilityResponse> getHealthFacilityById(@Path("id") String clinicId);
 
@@ -44,4 +45,7 @@ public interface AppointmentService {
     @GET("doctor")
     Call<DoctorResponse> getDoctorByDepartmentAndHealthFacility(@Query("specialtyID") String departmentId,
                                                                 @Query("clinicID") String clinicId);
+
+    @GET("schedule/doctor/{id}")
+    Call<DoctorResponse> getDoctorByDepartmentAndHealthFacility(@Query("id") String doctorId);
 }
