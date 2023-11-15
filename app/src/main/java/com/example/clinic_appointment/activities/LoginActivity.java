@@ -86,4 +86,14 @@ public class LoginActivity extends AppCompatActivity {
         }
         return super.dispatchTouchEvent(ev);
     }
+
+    @Override
+    protected void onStart() {
+        if (!Objects.equals(sharedPrefs.getData(Constants.KEY_ACCESS_TOKEN, String.class), "")) {
+            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+        super.onStart();
+    }
 }
