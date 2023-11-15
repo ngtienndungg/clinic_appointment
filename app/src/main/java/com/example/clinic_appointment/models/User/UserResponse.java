@@ -2,7 +2,9 @@ package com.example.clinic_appointment.models.User;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UserResponse {
+import java.io.Serializable;
+
+public class UserResponse implements Serializable {
     @SerializedName("success")
     private boolean isSuccess;
     @SerializedName("data")

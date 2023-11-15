@@ -2,9 +2,10 @@ package com.example.clinic_appointment.models.Schedule;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ScheduleResponse {
+public class ScheduleResponse implements Serializable {
     @SerializedName("success")
     private boolean isSuccess;
     @SerializedName("data")

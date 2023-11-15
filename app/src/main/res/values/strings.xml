@@ -84,4 +84,9 @@
     <string name="today">Hôm nay</string>
     <string name="available">Còn trống</string>
     <string name="full_slot">Kín lịch</string>
+    <string name="select_appointment_time">Chọn thời gian khám</string>
+    <string name="appointment_time_information">Thông tin thời gian khám</string>
+    <string name="seven_utc">Tất cả khung thời gian khám bệnh hiện tại được hiển thị theo múi giờ Việt Nam GMT +7</string>
+    <string name="still_available">Còn trống</string>
+    <string name="full_time_slot">Kín khung giờ</string>
 </resources>

@@ -1,23 +1,34 @@
 package com.example.clinic_appointment.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.example.clinic_appointment.R;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.clinic_appointment.databinding.ActivitySelectTimeBinding;
+import com.example.clinic_appointment.models.Schedule.Schedule;
+import com.example.clinic_appointment.utilities.Constants;
 
 public class SelectTimeActivity extends AppCompatActivity {
+    private ActivitySelectTimeBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_time);
+        binding = ActivitySelectTimeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        initiate();
+    }
+
+    private void initiate() {
+        Schedule schedule = (Schedule) getIntent().getSerializableExtra(Constants.KEY_SELECTED_DATE);
+        Log.d("IntentTest", schedule.getDate().toString());
     }
 
     @Override

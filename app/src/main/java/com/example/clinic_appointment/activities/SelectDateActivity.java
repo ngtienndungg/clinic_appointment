@@ -109,9 +109,9 @@ public class SelectDateActivity extends AppCompatActivity {
                             } else {
                                 dayViewContainer.textView.setBackgroundResource(R.color.colorAvailableDate);
                                 dayViewContainer.textView.setOnClickListener(v -> {
-                                    Intent intent = new Intent();
+                                    Intent intent = new Intent(getApplicationContext(), SelectTimeActivity.class);
                                     intent.putExtra(Constants.KEY_SELECTED_DATE, schedule);
-
+                                    startActivity(intent);
                                 });
                             }
                         }

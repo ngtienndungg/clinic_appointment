@@ -2,12 +2,12 @@ package com.example.clinic_appointment.models.HealthFacility;
 
 import com.example.clinic_appointment.models.Address.Address;
 import com.example.clinic_appointment.models.Department.Department;
-import com.example.clinic_appointment.utilities.Searchable;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class HealthFacility extends Searchable {
+public class HealthFacility implements Serializable {
     @SerializedName("_id")
     private String id;
     @SerializedName("name")

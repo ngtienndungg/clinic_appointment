@@ -1,9 +1,10 @@
 package com.example.clinic_appointment.models.Department;
 
-import com.example.clinic_appointment.utilities.Searchable;
 import com.google.gson.annotations.SerializedName;
 
-public class Department extends Searchable {
+import java.io.Serializable;
+
+public class Department implements Serializable {
     @SerializedName("_id")
     private String id;
     @SerializedName("name")

@@ -2,7 +2,9 @@ package com.example.clinic_appointment.models.AppointmentTime;
 
 import com.google.gson.annotations.SerializedName;
 
-public class AppointmentTime {
+import java.io.Serializable;
+
+public class AppointmentTime implements Serializable {
     @SerializedName("time")
     private String timeNumber;
     @SerializedName("full")
