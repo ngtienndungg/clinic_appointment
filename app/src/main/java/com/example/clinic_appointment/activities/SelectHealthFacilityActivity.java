@@ -1,8 +1,13 @@
 package com.example.clinic_appointment.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +35,7 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
         binding = ActivitySelectHealthFacilityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initiate();
+        eventHandling();
     }
 
     private void initiate() {
@@ -58,10 +64,31 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
         binding.rlError.setVisibility(View.VISIBLE);
     }
 
+    private void eventHandling() {
+        binding.ivBack.setOnClickListener(v -> onBackPressed());
+    }
+
     @Override
     public void onClick(HealthFacility healthFacility) {
         Intent intent = new Intent(this, SelectDepartmentActivity.class);
         intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev);
     }
 }

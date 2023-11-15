@@ -2,6 +2,7 @@ package com.example.clinic_appointment.activities;
 
 import static com.kizitonwose.calendar.core.ExtensionsKt.daysOfWeek;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,6 +108,11 @@ public class SelectDateActivity extends AppCompatActivity {
                                 dayViewContainer.textView.setBackgroundResource(R.color.colorFullSlotDate);
                             } else {
                                 dayViewContainer.textView.setBackgroundResource(R.color.colorAvailableDate);
+                                dayViewContainer.textView.setOnClickListener(v -> {
+                                    Intent intent = new Intent();
+                                    intent.putExtra(Constants.KEY_SELECTED_DATE, schedule);
+
+                                });
                             }
                         }
                     }
