@@ -12,20 +12,37 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivitySelectDateBinding;
+import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
+import com.example.clinic_appointment.models.Doctor.Doctor;
+import com.example.clinic_appointment.models.Schedule.Schedule;
+import com.example.clinic_appointment.models.Schedule.ScheduleResponse;
+import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.CalendarView.DayViewContainer;
+import com.example.clinic_appointment.utilities.Constants;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.kizitonwose.calendar.core.CalendarDay;
 import com.kizitonwose.calendar.core.DayPosition;
 import com.kizitonwose.calendar.view.MonthDayBinder;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.YearMonth;
+import java.time.ZoneId;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SelectDateActivity extends AppCompatActivity {
     private ActivitySelectDateBinding binding;
+    private List<Schedule> availableSchedules;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +54,33 @@ public class SelectDateActivity extends AppCompatActivity {
     }
 
     void initiate() {
+        Doctor doctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
+        Call<ScheduleResponse> call = RetrofitClient.getAuthenticatedAppointmentService()
+                .getDoctorSchedule(Objects.requireNonNull(doctor).getDoctorInformation().getId());
+        availableSchedules = new ArrayList<>();
+        call.enqueue(new Callback<ScheduleResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<ScheduleResponse> call, @NonNull Response<ScheduleResponse> response) {
+                if (response.body() != null && response.code() == 200) {
+                    availableSchedules.addAll(response.body().getSchedules());
+                    setupCalendar();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ScheduleResponse> call, @NonNull Throwable t) {
+                Snackbar.make(binding.getRoot(), getString(R.string.something_wrong_happened), BaseTransientBottomBar.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private LocalDate getLocalDate(Date date) {
+        return date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+    private void setupCalendar() {
         binding.cvCalendar.setDayBinder(new MonthDayBinder<DayViewContainer>() {
             @NonNull
             @Override
@@ -47,6 +91,25 @@ public class SelectDateActivity extends AppCompatActivity {
             @Override
             public void bind(@NonNull DayViewContainer dayViewContainer, CalendarDay calendarDay) {
                 if (calendarDay.getPosition() == DayPosition.MonthDate) {
+                    if (calendarDay.getDate().equals(LocalDate.now())) {
+                        dayViewContainer.textView.setBackgroundResource(R.color.colorTodayDate);
+                    }
+                    for (Schedule schedule : availableSchedules) {
+                        if (calendarDay.getDate().equals(getLocalDate(schedule.getDate()))) {
+                            boolean isFull = true;
+                            for (AppointmentTime appointmentTime : schedule.getAppointmentTimes()) {
+                                if (!appointmentTime.isFull()) {
+                                    isFull = false;
+                                    break;
+                                }
+                            }
+                            if (isFull) {
+                                dayViewContainer.textView.setBackgroundResource(R.color.colorFullSlotDate);
+                            } else {
+                                dayViewContainer.textView.setBackgroundResource(R.color.colorAvailableDate);
+                            }
+                        }
+                    }
                     dayViewContainer.getView().setVisibility(View.VISIBLE);
                     dayViewContainer.textView.setText(String.valueOf(calendarDay.getDate().getDayOfMonth()));
                 } else {
@@ -71,7 +134,6 @@ public class SelectDateActivity extends AppCompatActivity {
         }
         binding.cvCalendar.setup(currentMonth, endMonth, daysOfWeek.get(0));
         binding.cvCalendar.scrollToMonth(currentMonth);
-
     }
 
     private void eventHandling() {

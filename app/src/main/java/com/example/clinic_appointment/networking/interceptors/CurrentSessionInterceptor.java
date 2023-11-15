@@ -1,7 +1,5 @@
 package com.example.clinic_appointment.networking.interceptors;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
@@ -14,7 +12,6 @@ import java.io.IOException;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -28,18 +25,13 @@ public class CurrentSessionInterceptor implements Interceptor {
     @NonNull
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
-        String accessToken = sharedPrefs.getData(Constants.KEY_ACCESS_TOKEN, String.class);
-        Request originalRequest = chain.request();
         if (isAccessTokenExpired()) {
             getNewAccessToken();
-            Request newRequest = originalRequest.newBuilder()
-                    .header(Constants.HEADER_AUTHORIZATION, accessToken)
-                    .build();
-            return chain.proceed(newRequest);
-        } else {
-            Log.d("AccessTokenTest", "Access Token is still being valid");
         }
-        return chain.proceed(originalRequest);
+        String accessToken = sharedPrefs.getData(Constants.KEY_ACCESS_TOKEN, String.class);
+        return chain.proceed(chain.request().newBuilder()
+                .header(Constants.HEADER_AUTHORIZATION, accessToken)
+                .build());
     }
 
     private boolean isAccessTokenExpired() throws IOException {
@@ -75,15 +67,13 @@ public class CurrentSessionInterceptor implements Interceptor {
                 if (response.isSuccessful() && response.body() != null) {
                     JsonObject jsonResponse = response.body();
                     String newAccessToken = jsonResponse.get(Constants.KEY_NEW_ACCESS_TOKEN).getAsString();
-                    Log.d("AccessTokenTest", "NewAccessToken: " + newAccessToken);
-                } else {
-                    Log.d("AccessTokenTest", "Error when get NewAccessToken");
+                    sharedPrefs.putData(Constants.KEY_ACCESS_TOKEN, newAccessToken);
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
-                Log.d("AccessTokenTest", "Error message: " + t.getMessage());
+
             }
         });
     }

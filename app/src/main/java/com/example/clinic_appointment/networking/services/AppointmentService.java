@@ -4,6 +4,7 @@ import com.example.clinic_appointment.models.Department.DepartmentResponse;
 import com.example.clinic_appointment.models.Doctor.DoctorResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacilitiesResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacilityResponse;
+import com.example.clinic_appointment.models.Schedule.ScheduleResponse;
 import com.example.clinic_appointment.models.User.UserResponse;
 import com.google.gson.JsonObject;
 
@@ -47,5 +48,5 @@ public interface AppointmentService {
                                                                 @Query("clinicID") String clinicId);
 
     @GET("schedule/doctor/{id}")
-    Call<DoctorResponse> getDoctorByDepartmentAndHealthFacility(@Query("id") String doctorId);
+    Call<ScheduleResponse> getDoctorSchedule(@Path("id") String doctorId);
 }

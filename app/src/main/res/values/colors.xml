@@ -22,8 +22,8 @@
     <color name="colorCalendarDayText">#747C89</color>
     <color name="colorScheduleNoteBackground">#F0F9FF</color>
     <color name="colorAvailableDate">#B8E5FC</color>
-    <color name="colorFullSlotDate">#E3E3E3</color>
-    <color name="colorTodayDate">#0C8ED9</color>
+    <color name="colorFullSlotDate">#CCCCCC</color>
+    <color name="colorTodayDate">#3BBDFF</color>
     <color name="colorAction">#1478A8</color>
     <color name="colorRipple">#DFEAF2</color>
     <color name="colorFindBackground">#E6EAED</color>
