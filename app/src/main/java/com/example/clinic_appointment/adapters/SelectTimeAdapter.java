@@ -6,7 +6,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.clinic_appointment.databinding.ItemContainerAppointmentTimeBinding;
+import com.example.clinic_appointment.databinding.ItemContainerAppointmentTimeAvailableBinding;
+import com.example.clinic_appointment.databinding.ItemContainerAppointmentTimeFullBinding;
 import com.example.clinic_appointment.listeners.AppointmentTimeListener;
 import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
 
@@ -14,7 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SelectTimeAdapter extends RecyclerView.Adapter<SelectTimeAdapter.ItemViewHolder> {
+public class SelectTimeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    public static final int VIEW_TYPE_AVAILABLE = 1;
+    public static final int VIEW_TYPE_FULL = 0;
     private final List<AppointmentTime> appointmentTimes;
     private final AppointmentTimeListener listener;
     public static Map<String, String> timeMap;
@@ -27,18 +30,39 @@ public class SelectTimeAdapter extends RecyclerView.Adapter<SelectTimeAdapter.It
 
     @NonNull
     @Override
-    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new SelectTimeAdapter.ItemViewHolder(ItemContainerAppointmentTimeBinding.inflate(
-                LayoutInflater.from(parent.getContext()),
-                parent,
-                false
-        ));
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == VIEW_TYPE_AVAILABLE) {
+            return new AvailableViewHolder(ItemContainerAppointmentTimeAvailableBinding.inflate(
+                    LayoutInflater.from(parent.getContext()),
+                    parent,
+                    false
+            ));
+        } else {
+            return new FullViewHolder(ItemContainerAppointmentTimeFullBinding.inflate(
+                    LayoutInflater.from(parent.getContext()),
+                    parent,
+                    false
+            ));
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        holder.setData(appointmentTimes.get(position));
-        holder.binding.getRoot().setOnClickListener(v -> listener.onClick(appointmentTimes.get(holder.getBindingAdapterPosition())));
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if (getItemViewType(position) == VIEW_TYPE_AVAILABLE) {
+            ((AvailableViewHolder) holder).setData(appointmentTimes.get(position));
+            ((AvailableViewHolder) holder).binding.getRoot().setOnClickListener(v -> listener.onClick(appointmentTimes.get(holder.getBindingAdapterPosition())));
+        } else {
+            ((FullViewHolder) holder).setData(appointmentTimes.get(position));
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (!appointmentTimes.get(position).isFull()) {
+            return VIEW_TYPE_AVAILABLE;
+        } else {
+            return VIEW_TYPE_FULL;
+        }
     }
 
     private void mapInitiation() {
@@ -63,10 +87,28 @@ public class SelectTimeAdapter extends RecyclerView.Adapter<SelectTimeAdapter.It
         return appointmentTimes.size();
     }
 
-    public static class ItemViewHolder extends RecyclerView.ViewHolder {
-        private final ItemContainerAppointmentTimeBinding binding;
+    public static class AvailableViewHolder extends RecyclerView.ViewHolder {
+        private final ItemContainerAppointmentTimeAvailableBinding binding;
 
-        public ItemViewHolder(ItemContainerAppointmentTimeBinding binding) {
+        public AvailableViewHolder(ItemContainerAppointmentTimeAvailableBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        private void setData(AppointmentTime appointmentTime) {
+            for (Map.Entry<String, String> entry : timeMap.entrySet()) {
+                if (appointmentTime.getTimeNumber().equals(entry.getKey())) {
+                    binding.tvTime.setText(entry.getValue());
+                    break;
+                }
+            }
+        }
+    }
+
+    public static class FullViewHolder extends RecyclerView.ViewHolder {
+        private final ItemContainerAppointmentTimeFullBinding binding;
+
+        public FullViewHolder(ItemContainerAppointmentTimeFullBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
