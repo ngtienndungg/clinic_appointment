@@ -14,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivitySelectDateBinding;
 import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
+import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Doctor.Doctor;
+import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.Schedule.Schedule;
 import com.example.clinic_appointment.models.Schedule.ScheduleResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
@@ -110,7 +112,13 @@ public class SelectDateActivity extends AppCompatActivity {
                                 dayViewContainer.textView.setBackgroundResource(R.color.colorAvailableDate);
                                 dayViewContainer.textView.setOnClickListener(v -> {
                                     Intent intent = new Intent(getApplicationContext(), SelectTimeActivity.class);
+                                    Doctor selectedDoctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
+                                    Department selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
+                                    HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
                                     intent.putExtra(Constants.KEY_SELECTED_DATE, schedule);
+                                    intent.putExtra(Constants.KEY_DOCTOR, selectedDoctor);
+                                    intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
+                                    intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
                                     startActivity(intent);
                                 });
                             }

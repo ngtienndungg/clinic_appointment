@@ -30,6 +30,7 @@ import retrofit2.Response;
 
 public class SelectDoctorActivity extends AppCompatActivity implements DoctorListener {
     private ActivitySelectDoctorBinding binding;
+    private Department selectedDepartment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +42,9 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
     }
 
     private void initiate() {
-        Department department = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
+        selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
         HealthFacility healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-        Call<DoctorResponse> call = RetrofitClient.getPublicAppointmentService().getDoctorByDepartmentAndHealthFacility(department.getId(), healthFacility.getId());
+        Call<DoctorResponse> call = RetrofitClient.getPublicAppointmentService().getDoctorByDepartmentAndHealthFacility(selectedDepartment.getId(), healthFacility.getId());
         call.enqueue(new Callback<DoctorResponse>() {
             @Override
             public void onResponse(@NonNull Call<DoctorResponse> call, @NonNull Response<DoctorResponse> response) {
@@ -75,8 +76,11 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
 
     @Override
     public void onClick(Doctor doctor) {
+        HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
         Intent intent = new Intent(this, SelectDateActivity.class);
         intent.putExtra(Constants.KEY_DOCTOR, doctor);
+        intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
+        intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
         startActivity(intent);
     }
 

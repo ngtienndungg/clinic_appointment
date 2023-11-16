@@ -18,9 +18,9 @@ import java.util.Map;
 public class SelectTimeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final int VIEW_TYPE_AVAILABLE = 1;
     public static final int VIEW_TYPE_FULL = 0;
+    public static Map<String, String> timeMap;
     private final List<AppointmentTime> appointmentTimes;
     private final AppointmentTimeListener listener;
-    public static Map<String, String> timeMap;
 
     public SelectTimeAdapter(List<AppointmentTime> appointmentTimes, AppointmentTimeListener listener) {
         this.appointmentTimes = appointmentTimes;
