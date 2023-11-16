@@ -33,7 +33,7 @@ public class SelectDoctorAdapter extends RecyclerView.Adapter<SelectDoctorAdapte
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         holder.setData(doctors.get(position));
-        holder.binding.getRoot().setOnClickListener(v -> listener.onClick(doctors.get(holder.getAdapterPosition())));
+        holder.binding.getRoot().setOnClickListener(v -> listener.onClick(doctors.get(holder.getBindingAdapterPosition())));
     }
 
     @Override

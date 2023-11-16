@@ -3,19 +3,25 @@ package com.example.clinic_appointment.activities;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.example.clinic_appointment.adapters.SelectTimeAdapter;
 import com.example.clinic_appointment.databinding.ActivitySelectTimeBinding;
+import com.example.clinic_appointment.listeners.AppointmentTimeListener;
+import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
 import com.example.clinic_appointment.models.Schedule.Schedule;
 import com.example.clinic_appointment.utilities.Constants;
 
-public class SelectTimeActivity extends AppCompatActivity {
+import java.util.List;
+import java.util.Objects;
+
+public class SelectTimeActivity extends AppCompatActivity implements AppointmentTimeListener {
     private ActivitySelectTimeBinding binding;
 
     @Override
@@ -27,8 +33,14 @@ public class SelectTimeActivity extends AppCompatActivity {
     }
 
     private void initiate() {
+        List<AppointmentTime> appointmentTimes;
         Schedule schedule = (Schedule) getIntent().getSerializableExtra(Constants.KEY_SELECTED_DATE);
-        Log.d("IntentTest", schedule.getDate().toString());
+        appointmentTimes = Objects.requireNonNull(schedule).getAppointmentTimes();
+        SelectTimeAdapter adapter = new SelectTimeAdapter(appointmentTimes, this);
+        int numberOfColumns = 3;
+        binding.rvAppointmentTimes.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
+        binding.rvAppointmentTimes.setAdapter(adapter);
+        binding.rvAppointmentTimes.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -46,5 +58,10 @@ public class SelectTimeActivity extends AppCompatActivity {
             }
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public void onClick(AppointmentTime appointmentTime) {
+
     }
 }

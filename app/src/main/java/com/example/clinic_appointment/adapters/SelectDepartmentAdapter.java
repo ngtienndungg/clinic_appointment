@@ -33,7 +33,7 @@ public class SelectDepartmentAdapter extends RecyclerView.Adapter<SelectDepartme
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         holder.setData(departments.get(position));
-        holder.binding.getRoot().setOnClickListener(v -> listener.onClick(departments.get(holder.getAdapterPosition())));
+        holder.binding.getRoot().setOnClickListener(v -> listener.onClick(departments.get(holder.getBindingAdapterPosition())));
     }
 
     @Override
