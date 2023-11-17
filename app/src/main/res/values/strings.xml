@@ -89,4 +89,16 @@
     <string name="seven_utc">Tất cả khung thời gian khám bệnh hiện tại được hiển thị theo múi giờ Việt Nam GMT +7</string>
     <string name="still_available">Còn trống</string>
     <string name="full_time_slot">Kín khung giờ</string>
+    <string name="confirming_information">Xác nhận thông tin</string>
+    <string name="confirm_and_make_appointment">Xác nhận và đặt khám</string>
+    <string name="patient_full_name">Họ và tên</string>
+    <string name="patient_id">Mã số bệnh nhân</string>
+    <string name="passport">CMND/Passport</string>
+    <string name="health_insurance_code">Mã bảo hiểm y tế</string>
+    <string name="appointment_date">Ngày đặt khám</string>
+    <string name="appointment_time">Giờ đặt khám</string>
+    <string name="doctor">Bác sĩ</string>
+    <string name="health_facility">Cơ sở y tế</string>
+    <string name="service_price">Chi phí khám</string>
+    <string name="please_check_again_appointment_information">Vui lòng kiểm tra lại các thông tin về lịch khám trước khi chọn xác nhận và đặt khám</string>
 </resources>
