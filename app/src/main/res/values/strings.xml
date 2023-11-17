@@ -95,8 +95,8 @@
     <string name="patient_id">Mã số bệnh nhân</string>
     <string name="passport">CMND/Passport</string>
     <string name="health_insurance_code">Mã bảo hiểm y tế</string>
-    <string name="appointment_date">Ngày đặt khám</string>
-    <string name="appointment_time">Giờ đặt khám</string>
+    <string name="appointment_date">Ngày khám</string>
+    <string name="appointment_time">Giờ khám</string>
     <string name="doctor">Bác sĩ</string>
     <string name="health_facility">Cơ sở y tế</string>
     <string name="service_price">Chi phí khám</string>

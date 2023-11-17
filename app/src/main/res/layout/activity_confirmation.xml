@@ -74,7 +74,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/tvConfirm"
         android:layout_below="@id/llNote"
-        android:paddingHorizontal="@dimen/_8sdp"
+        android:paddingHorizontal="@dimen/_12sdp"
         android:paddingVertical="@dimen/_2sdp">
 
         <LinearLayout
@@ -87,17 +87,18 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="12.5"
+                android:layout_weight="13"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
                     android:text="@string/health_facility"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -107,11 +108,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
                     android:text="@string/department"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -121,11 +122,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
                     android:text="@string/doctor"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -135,11 +136,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
                     android:text="@string/appointment_date"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -149,11 +150,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
                     android:text="@string/appointment_time"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -163,28 +164,29 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
                     android:text="@string/service_price"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="7.5"
+                android:layout_weight="7"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvHealthFacility"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -195,10 +197,10 @@
                     android:id="@+id/tvDepartment"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -209,10 +211,10 @@
                     android:id="@+id/tvDoctor"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -223,10 +225,10 @@
                     android:id="@+id/tvDate"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -237,10 +239,10 @@
                     android:id="@+id/tvTime"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -251,10 +253,10 @@
                     android:id="@+id/tvPrice"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_semi_bold"
+                    android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
 
             </LinearLayout>
 

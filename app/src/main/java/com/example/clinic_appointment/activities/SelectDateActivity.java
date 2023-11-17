@@ -115,7 +115,7 @@ public class SelectDateActivity extends AppCompatActivity {
                                     Doctor selectedDoctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
                                     Department selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
                                     HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-                                    intent.putExtra(Constants.KEY_SELECTED_DATE, schedule);
+                                    intent.putExtra(Constants.KEY_DATE, schedule);
                                     intent.putExtra(Constants.KEY_DOCTOR, selectedDoctor);
                                     intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
                                     intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);

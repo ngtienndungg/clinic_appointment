@@ -1,5 +1,7 @@
 package com.example.clinic_appointment.utilities;
 
+import retrofit2.http.PUT;
+
 public class Constants {
     public static final String KEY_ACCESS_TOKEN = "accessToken";
     public static final String KEY_REFRESH_TOKEN = "refreshToken";
@@ -15,7 +17,8 @@ public class Constants {
     public static final String KEY_HEALTH_FACILITY = "healthFacility";
     public static final String KEY_DEPARTMENT = "department";
     public static final String KEY_DOCTOR = "doctor";
-    public static final String KEY_SELECTED_DATE = "selectedDate";
+    public static final String KEY_DATE = "date";
+    public static final String KEY_TIME = "time";
     public static final String KEY_SELECTED_ITEM = "selectedItem";
     public static final String KEY_ITEM_TYPE = "itemType";
     public static final String RETURN_TYPE = "returnType";
