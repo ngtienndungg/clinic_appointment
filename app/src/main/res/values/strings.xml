@@ -101,4 +101,10 @@
     <string name="health_facility">Cơ sở y tế</string>
     <string name="service_price">Chi phí khám</string>
     <string name="please_check_again_appointment_information">Vui lòng kiểm tra lại các thông tin về lịch khám trước khi chọn xác nhận và đặt khám</string>
+    <string name="select_payment_method">Chọn phương thức thanh toán</string>
+    <string name="qr_code_mobile_banking">Thanh toán QR Code/ Mobile banking</string>
+    <string name="payment_momo">Thanh toán bằng Momo</string>
+    <string name="payment_visa_mastercard_jcb">Thanh toán bằng Visa/Mastercard/JCB</string>
+    <string name="payment_domestic_atm_internet_banking">Thanh toán bằng thẻ ATM nội địa/ Internet banking</string>
+    <string name="payment_onsite">Thanh toán tại bệnh viện</string>
 </resources>

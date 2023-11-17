@@ -1,6 +1,7 @@
 package com.example.clinic_appointment.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         binding = ActivityConfirmationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initiate();
+        eventHandling();
     }
 
     @SuppressLint("SetTextI18n")
@@ -88,6 +90,9 @@ public class ConfirmationActivity extends AppCompatActivity {
                 binding.tvTime.setText("00:00 - 00:00");
                 break;
         }
+    }
 
+    private void eventHandling() {
+        binding.tvConfirm.setOnClickListener(v -> startActivity(new Intent(this, SelectPaymentMethodActivity.class)));
     }
 }
