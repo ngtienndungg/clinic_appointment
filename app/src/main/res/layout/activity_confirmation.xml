@@ -74,191 +74,235 @@
         android:layout_height="match_parent"
         android:layout_above="@id/tvConfirm"
         android:layout_below="@id/llNote"
-        android:paddingHorizontal="@dimen/_12sdp"
-        android:paddingVertical="@dimen/_2sdp">
+        android:paddingHorizontal="@dimen/_14sdp"
+        android:paddingVertical="@dimen/_12sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:weightSum="20">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="13"
-                android:orientation="vertical">
+                android:layout_height="@dimen/_50sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="20">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="13"
                     android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
                     android:text="@string/health_facility"
                     android:textColor="@color/colorConfirmationText"
                     android:textSize="@dimen/_12ssp" />
 
-                <com.google.android.material.divider.MaterialDivider
+                <TextView
+                    android:id="@+id/tvHealthFacility"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="20">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="13"
                     android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
                     android:text="@string/department"
                     android:textColor="@color/colorConfirmationText"
                     android:textSize="@dimen/_12ssp" />
 
-                <com.google.android.material.divider.MaterialDivider
+                <TextView
+                    android:id="@+id/tvDepartment"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="20">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="13"
                     android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
                     android:text="@string/doctor"
                     android:textColor="@color/colorConfirmationText"
                     android:textSize="@dimen/_12ssp" />
 
-                <com.google.android.material.divider.MaterialDivider
+                <TextView
+                    android:id="@+id/tvDoctor"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="20">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="13"
                     android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
                     android:text="@string/appointment_date"
                     android:textColor="@color/colorConfirmationText"
                     android:textSize="@dimen/_12ssp" />
 
-                <com.google.android.material.divider.MaterialDivider
+                <TextView
+                    android:id="@+id/tvDate"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="20">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="13"
                     android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
                     android:text="@string/appointment_time"
                     android:textColor="@color/colorConfirmationText"
                     android:textSize="@dimen/_12ssp" />
 
-                <com.google.android.material.divider.MaterialDivider
+                <TextView
+                    android:id="@+id/tvTime"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorConfirmationText"
+                    android:textSize="@dimen/_12ssp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="20">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="13"
                     android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
                     android:text="@string/service_price"
                     android:textColor="@color/colorConfirmationText"
                     android:textSize="@dimen/_12ssp" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="7"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tvHealthFacility"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/quicksand_medium"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/colorConfirmationText"
-                    android:textSize="@dimen/_12ssp" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
-
-                <TextView
-                    android:id="@+id/tvDepartment"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_medium"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/colorConfirmationText"
-                    android:textSize="@dimen/_12ssp" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
-
-                <TextView
-                    android:id="@+id/tvDoctor"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_medium"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/colorConfirmationText"
-                    android:textSize="@dimen/_12ssp" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
-
-                <TextView
-                    android:id="@+id/tvDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_medium"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/colorConfirmationText"
-                    android:textSize="@dimen/_12ssp" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
-
-                <TextView
-                    android:id="@+id/tvTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/quicksand_medium"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/colorConfirmationText"
-                    android:textSize="@dimen/_12ssp" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
-
                 <TextView
                     android:id="@+id/tvPrice"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
                     android:fontFamily="@font/quicksand_medium"
                     android:gravity="center_vertical"
                     android:textColor="@color/colorConfirmationText"
                     android:textSize="@dimen/_12ssp" />
 
             </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:importantForAccessibility="no"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/barcode_sample" />
+
+            <TextView
+                android:id="@+id/tvUid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_medium"
+                android:gravity="center_vertical"
+                android:textAllCaps="true"
+                android:textColor="@color/colorConfirmationText"
+                android:textSize="@dimen/_12ssp" />
 
         </LinearLayout>
 

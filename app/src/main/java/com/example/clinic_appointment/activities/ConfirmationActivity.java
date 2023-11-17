@@ -11,6 +11,7 @@ import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.Schedule.Schedule;
 import com.example.clinic_appointment.utilities.Constants;
+import com.example.clinic_appointment.utilities.SharedPrefs;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -38,6 +39,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         binding.tvHealthFacility.setText(Objects.requireNonNull(selectedHealthFacility).getName());
         binding.tvDepartment.setText(Objects.requireNonNull(selectedDepartment).getName());
         binding.tvDoctor.setText(Objects.requireNonNull(selectedDoctor).getDoctorInformation().getFullName());
+        binding.tvUid.setText(SharedPrefs.getInstance().getData(Constants.KEY_ACCESS_TOKEN, String.class));
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd - MM - yyyy", Locale.getDefault());
         String formattedDate = dateFormat.format(Objects.requireNonNull(selectedSchedule).getDate());
         binding.tvDate.setText(formattedDate);
