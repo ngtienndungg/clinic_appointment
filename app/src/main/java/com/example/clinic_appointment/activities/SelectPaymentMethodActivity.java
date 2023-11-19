@@ -38,5 +38,6 @@ public class SelectPaymentMethodActivity extends AppCompatActivity {
             intent.putExtra(Constants.KEY_TIME, selectedTime);
             startActivity(intent);
         });
+        binding.ivBack.setOnClickListener(v -> onBackPressed());
     }
 }

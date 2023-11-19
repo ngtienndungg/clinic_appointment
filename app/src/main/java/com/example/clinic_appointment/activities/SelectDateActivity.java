@@ -151,6 +151,7 @@ public class SelectDateActivity extends AppCompatActivity {
     }
 
     private void eventHandling() {
+        binding.ivBack.setOnClickListener(v -> onBackPressed());
         binding.cvCalendar.setMonthScrollListener(calendarMonth -> {
             String currentMonthYear = calendarMonth.getYearMonth().getMonth().getDisplayName(TextStyle.FULL_STANDALONE, Locale.getDefault()) + " - " + calendarMonth.getYearMonth().getYear();
             binding.tvMonth.setText(currentMonthYear);

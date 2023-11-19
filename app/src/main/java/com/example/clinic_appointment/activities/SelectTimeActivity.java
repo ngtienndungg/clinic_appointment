@@ -34,6 +34,7 @@ public class SelectTimeActivity extends AppCompatActivity implements Appointment
         binding = ActivitySelectTimeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initiate();
+        eventHandling();
     }
 
     private void initiate() {
@@ -62,6 +63,10 @@ public class SelectTimeActivity extends AppCompatActivity implements Appointment
             }
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    private void eventHandling() {
+        binding.ivBack.setOnClickListener(v -> onBackPressed());
     }
 
     @Override

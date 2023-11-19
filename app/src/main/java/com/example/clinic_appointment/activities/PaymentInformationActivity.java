@@ -61,6 +61,7 @@ public class PaymentInformationActivity extends AppCompatActivity {
     }
 
     private void eventHandling() {
+        binding.ivBack.setOnClickListener(v -> onBackPressed());
         binding.tvConfirmPayment.setOnClickListener(v -> {
             Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService().bookAppointmentByPatient(selectedSchedule.getScheduleId(), selectedTime);
             call.enqueue(new Callback<Void>() {
