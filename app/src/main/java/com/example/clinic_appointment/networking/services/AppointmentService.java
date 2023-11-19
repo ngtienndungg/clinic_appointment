@@ -51,5 +51,6 @@ public interface AppointmentService {
     Call<ScheduleResponse> getDoctorSchedule(@Path("id") String doctorId);
 
     @POST("booking/patient")
+    @FormUrlEncoded
     Call<Void> bookAppointmentByPatient(@Field("scheduleID") String scheduleID, @Field("time") String appointmentTime);
 }

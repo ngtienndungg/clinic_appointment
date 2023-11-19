@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import com.example.clinic_appointment.fragments.AccountFragment;
 import com.example.clinic_appointment.fragments.HomeFragment;
 import com.example.clinic_appointment.fragments.MyScheduleFragment;
 import com.example.clinic_appointment.fragments.ScheduleFragment;
+import com.example.clinic_appointment.utilities.Constants;
 
 public class DashboardActivity extends AppCompatActivity {
     private ActivityDashboardBinding binding;
@@ -35,6 +37,9 @@ public class DashboardActivity extends AppCompatActivity {
     private void initiate() {
         currentFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, currentFragment).commit();
+        if (getIntent().hasExtra(Constants.KEY_STATUS_CODE)) {
+            Toast.makeText(this, "Đặt lịch thành công", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @SuppressLint("NonConstantResourceId")

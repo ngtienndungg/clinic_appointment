@@ -25,4 +25,5 @@ public class Constants {
     public static final String TYPE_HOSPITAL = "typeHospital";
     public static final String TYPE_DEPARTMENT = "typeDepartment";
     public static final Integer RESULT_ALL_MATCH = 999;
+    public static final String KEY_STATUS_CODE = "statusCode";
 }
