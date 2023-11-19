@@ -90,7 +90,7 @@
     <string name="still_available">Còn trống</string>
     <string name="full_time_slot">Kín khung giờ</string>
     <string name="confirming_information">Xác nhận thông tin</string>
-    <string name="confirm_and_make_appointment">Xác nhận và đặt khám</string>
+    <string name="confirm_information">Xác nhận thông tin</string>
     <string name="patient_full_name">Họ và tên</string>
     <string name="patient_id">Mã số bệnh nhân</string>
     <string name="passport">CMND/Passport</string>
@@ -107,4 +107,11 @@
     <string name="payment_visa_mastercard_jcb">Thanh toán bằng Visa/Mastercard/JCB</string>
     <string name="payment_domestic_atm_internet_banking">Thanh toán bằng thẻ ATM nội địa/ Internet banking</string>
     <string name="payment_onsite">Thanh toán tại bệnh viện</string>
+    <string name="payment_information">Thông tin thanh toán</string>
+    <string name="please_check_all_information_before_do_payment">Vui lòng kiếm tra lại tất cả thông tin trước khi thực hiện các bước thanh toán</string>
+    <string name="patient_information">Thông tin bệnh nhân</string>
+    <string name="utility_price">Phí tiện ích + TGTT</string>
+    <string name="total_price">Tổng chi phí</string>
+    <string name="do_payment">Thực hiện thanh toán</string>
+    <string name="appointment_information">Thông tin đặt khám</string>
 </resources>

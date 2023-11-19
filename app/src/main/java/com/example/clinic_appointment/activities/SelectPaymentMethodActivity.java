@@ -1,16 +1,24 @@
 package com.example.clinic_appointment.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.clinic_appointment.R;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.clinic_appointment.databinding.ActivitySelectPaymentMethodBinding;
 
 public class SelectPaymentMethodActivity extends AppCompatActivity {
+    private ActivitySelectPaymentMethodBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_payment_method);
+        binding = ActivitySelectPaymentMethodBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        eventHandling();
+    }
+
+    private void eventHandling() {
+        binding.tvOnsite.setOnClickListener(v -> startActivity(new Intent(this, PaymentInformationActivity.class)));
     }
 }
