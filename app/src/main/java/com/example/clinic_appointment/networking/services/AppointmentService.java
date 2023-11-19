@@ -49,4 +49,7 @@ public interface AppointmentService {
 
     @GET("schedule/doctor/{id}")
     Call<ScheduleResponse> getDoctorSchedule(@Path("id") String doctorId);
+
+    @POST("booking/patient")
+    Call<Void> bookAppointmentByPatient(@Field("scheduleID") String scheduleID, @Field("time") String appointmentTime);
 }

@@ -2,6 +2,7 @@ package com.example.clinic_appointment.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +26,7 @@ public class PaymentInformationActivity extends AppCompatActivity {
         binding = ActivityPaymentInformationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initiate();
+        eventHandling();
     }
 
     @SuppressLint("SetTextI18n")
@@ -45,5 +47,14 @@ public class PaymentInformationActivity extends AppCompatActivity {
         binding.tvPatientPhoneNumber.setText(SharedPrefs.getInstance().getData(Constants.KEY_CURRENT_PHONE_NUMBER, String.class));
         binding.tvUtilityPrice.setText(selectedSchedule.getPrice() / 10 + " VND");
         binding.tvTotalPrice.setText(selectedSchedule.getPrice() + selectedSchedule.getPrice() / 10 + " VND");
+    }
+
+    private void eventHandling() {
+        binding.tvConfirmPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }
