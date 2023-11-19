@@ -12,14 +12,18 @@ import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.Schedule.Schedule;
 import com.example.clinic_appointment.utilities.Constants;
+import com.example.clinic_appointment.utilities.CustomConverter;
 import com.example.clinic_appointment.utilities.SharedPrefs;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.Objects;
 
 public class ConfirmationActivity extends AppCompatActivity {
     private ActivityConfirmationBinding binding;
+    private Doctor selectedDoctor;
+    private Department selectedDepartment;
+    private HealthFacility selectedHealthFacility;
+    private Schedule selectedSchedule;
+    private String timeNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,68 +36,30 @@ public class ConfirmationActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void initiate() {
-        Doctor selectedDoctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
-        Department selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
-        HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-        Schedule selectedSchedule = (Schedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
-        String timeNumber = getIntent().getStringExtra(Constants.KEY_TIME);
-
+        selectedDoctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
+        selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
+        selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
+        selectedSchedule = (Schedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
+        timeNumber = getIntent().getStringExtra(Constants.KEY_TIME);
         binding.tvHealthFacility.setText(Objects.requireNonNull(selectedHealthFacility).getName());
         binding.tvDepartment.setText(Objects.requireNonNull(selectedDepartment).getName());
         binding.tvDoctor.setText(Objects.requireNonNull(selectedDoctor).getDoctorInformation().getFullName());
         binding.tvUid.setText(SharedPrefs.getInstance().getData(Constants.KEY_ACCESS_TOKEN, String.class));
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd - MM - yyyy", Locale.getDefault());
-        String formattedDate = dateFormat.format(Objects.requireNonNull(selectedSchedule).getDate());
-        binding.tvDate.setText(formattedDate);
+        binding.tvDate.setText(CustomConverter.getFormattedDate(selectedSchedule.getDate()));
         binding.tvPrice.setText(Objects.requireNonNull(selectedSchedule).getPrice() + " VND");
-        switch (Objects.requireNonNull(timeNumber)) {
-            case "1":
-                binding.tvTime.setText("07:00 - 08:00");
-                break;
-            case "2":
-                binding.tvTime.setText("08:00 - 09:00");
-                break;
-            case "3":
-                binding.tvTime.setText("09:00 - 10:00");
-                break;
-            case "4":
-                binding.tvTime.setText("10:00 - 11:00");
-                break;
-            case "5":
-                binding.tvTime.setText("11:00 - 12:00");
-                break;
-            case "6":
-                binding.tvTime.setText("13:00 - 14:00");
-                break;
-            case "7":
-                binding.tvTime.setText("14:00 - 15:00");
-                break;
-            case "8":
-                binding.tvTime.setText("15:00 - 16:00");
-                break;
-            case "9":
-                binding.tvTime.setText("16:00 - 17:00");
-                break;
-            case "10":
-                binding.tvTime.setText("17:00 - 18:00");
-                break;
-            case "11":
-                binding.tvTime.setText("18:00 - 19:00");
-                break;
-            case "12":
-                binding.tvTime.setText("19:00 - 20:00");
-                break;
-            case "13":
-                binding.tvTime.setText("20:00 - 21:00");
-                break;
-            default:
-                binding.tvTime.setText("00:00 - 00:00");
-                break;
-        }
+        binding.tvTime.setText(CustomConverter.getStringAppointmentTime(timeNumber));
     }
 
     private void eventHandling() {
         binding.ivBack.setOnClickListener(v -> onBackPressed());
-        binding.tvConfirm.setOnClickListener(v -> startActivity(new Intent(this, SelectPaymentMethodActivity.class)));
+        binding.tvConfirm.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SelectPaymentMethodActivity.class);
+            intent.putExtra(Constants.KEY_DATE, selectedSchedule);
+            intent.putExtra(Constants.KEY_DOCTOR, selectedDoctor);
+            intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
+            intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
+            intent.putExtra(Constants.KEY_TIME, timeNumber);
+            startActivity(intent);
+        });
     }
 }

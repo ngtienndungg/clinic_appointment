@@ -10,8 +10,8 @@ import com.example.clinic_appointment.databinding.ItemContainerAppointmentTimeAv
 import com.example.clinic_appointment.databinding.ItemContainerAppointmentTimeFullBinding;
 import com.example.clinic_appointment.listeners.AppointmentTimeListener;
 import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
+import com.example.clinic_appointment.utilities.CustomConverter;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +25,6 @@ public class SelectTimeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public SelectTimeAdapter(List<AppointmentTime> appointmentTimes, AppointmentTimeListener listener) {
         this.appointmentTimes = appointmentTimes;
         this.listener = listener;
-        mapInitiation();
     }
 
     @NonNull
@@ -65,23 +64,6 @@ public class SelectTimeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
-    private void mapInitiation() {
-        timeMap = new HashMap<>();
-        timeMap.put("1", "07:00 - 08:00");
-        timeMap.put("2", "08:00 - 09:00");
-        timeMap.put("3", "09:00 - 10:00");
-        timeMap.put("4", "10:00 - 11:00");
-        timeMap.put("5", "11:00 - 12:00");
-        timeMap.put("6", "13:00 - 14:00");
-        timeMap.put("7", "14:00 - 15:00");
-        timeMap.put("8", "15:00 - 16:00");
-        timeMap.put("9", "16:00 - 17:00");
-        timeMap.put("10", "17:00 - 18:00");
-        timeMap.put("11", "18:00 - 19:00");
-        timeMap.put("12", "19:00 - 20:00");
-        timeMap.put("13", "20:00 - 21:00");
-    }
-
     @Override
     public int getItemCount() {
         return appointmentTimes.size();
@@ -96,12 +78,7 @@ public class SelectTimeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
 
         private void setData(AppointmentTime appointmentTime) {
-            for (Map.Entry<String, String> entry : timeMap.entrySet()) {
-                if (appointmentTime.getTimeNumber().equals(entry.getKey())) {
-                    binding.tvTime.setText(entry.getValue());
-                    break;
-                }
-            }
+            binding.tvTime.setText(CustomConverter.getStringAppointmentTime(appointmentTime.getTimeNumber()));
         }
     }
 
@@ -114,12 +91,7 @@ public class SelectTimeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
 
         private void setData(AppointmentTime appointmentTime) {
-            for (Map.Entry<String, String> entry : timeMap.entrySet()) {
-                if (appointmentTime.getTimeNumber().equals(entry.getKey())) {
-                    binding.tvTime.setText(entry.getValue());
-                    break;
-                }
-            }
+            binding.tvTime.setText(CustomConverter.getStringAppointmentTime(appointmentTime.getTimeNumber()));
         }
     }
 }

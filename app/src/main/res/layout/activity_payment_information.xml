@@ -114,7 +114,6 @@
                 android:fontFamily="@font/quicksand_medium"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
-                android:text="Nguyễn Tiến Dũng"
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
@@ -139,7 +138,6 @@
                 android:fontFamily="@font/quicksand_medium"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
-                android:text="tiendung@gmail.com"
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
@@ -164,7 +162,6 @@
                 android:fontFamily="@font/quicksand_medium"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
-                android:text="0982087932"
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
@@ -388,7 +385,6 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_16sdp"
             android:fontFamily="@font/quicksand_medium"
-            android:text="100,000 VND"
             android:textColor="@color/colorConfirmationText"
             android:textSize="@dimen/_14ssp" />
 
@@ -413,7 +409,6 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_16sdp"
             android:fontFamily="@font/quicksand_medium"
-            android:text="10,000 VND"
             android:textColor="@color/colorConfirmationText"
             android:textSize="@dimen/_14ssp" />
 
@@ -438,7 +433,6 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_16sdp"
             android:fontFamily="@font/quicksand_bold"
-            android:text="110,000 VND"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_14ssp" />
 
