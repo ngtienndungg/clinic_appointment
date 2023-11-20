@@ -25,6 +25,7 @@
     <color name="colorFullSlotDate">#CCCCCC</color>
     <color name="colorTodayDate">#3BBDFF</color>
     <color name="colorConfirmationText">#1B2727</color>
+    <color name="colorMyScheduleOptionText">#82898F</color>
     <color name="colorAction">#1478A8</color>
     <color name="colorRipple">#DFEAF2</color>
     <color name="colorFindBackground">#E6EAED</color>

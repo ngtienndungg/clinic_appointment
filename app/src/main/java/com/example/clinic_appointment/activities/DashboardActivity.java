@@ -18,7 +18,7 @@ import com.example.clinic_appointment.databinding.ActivityDashboardBinding;
 import com.example.clinic_appointment.fragments.AccountFragment;
 import com.example.clinic_appointment.fragments.HomeFragment;
 import com.example.clinic_appointment.fragments.MyScheduleFragment;
-import com.example.clinic_appointment.fragments.ScheduleFragment;
+import com.example.clinic_appointment.fragments.NotificationFragment;
 import com.example.clinic_appointment.utilities.Constants;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -50,8 +50,8 @@ public class DashboardActivity extends AppCompatActivity {
                 case R.id.menu_item_home:
                     newFragment = new HomeFragment();
                     break;
-                case R.id.menu_item_schedule:
-                    newFragment = new ScheduleFragment();
+                case R.id.menu_item_notification:
+                    newFragment = new NotificationFragment();
                     break;
                 case R.id.menu_item_my_schedule:
                     newFragment = new MyScheduleFragment();

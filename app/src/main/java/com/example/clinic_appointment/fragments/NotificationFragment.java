@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.clinic_appointment.databinding.FragmentScheduleBinding;
+import com.example.clinic_appointment.databinding.FragmentNotificationBinding;
 
-public class ScheduleFragment extends Fragment {
-    private FragmentScheduleBinding binding;
+public class NotificationFragment extends Fragment {
+    private FragmentNotificationBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class ScheduleFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentScheduleBinding.inflate(getLayoutInflater());
+        binding = FragmentNotificationBinding.inflate(getLayoutInflater());
         return binding.getRoot();
     }
 }

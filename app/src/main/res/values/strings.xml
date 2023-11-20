@@ -114,4 +114,10 @@
     <string name="total_price">Tổng chi phí</string>
     <string name="do_payment">Thực hiện thanh toán</string>
     <string name="appointment_information">Thông tin đặt khám</string>
+    <string name="notification">Thông báo</string>
+    <string name="wait_for_confirmation">Đang chờ xác nhận</string>
+    <string name="schedule_confirmed">Đã xác nhận</string>
+    <string name="checked_up">Đã khám</string>
+    <string name="cancelled">Đã huỷ</string>
+    <string name="entire">Tất cả</string>
 </resources>

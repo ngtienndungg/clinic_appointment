@@ -23,7 +23,7 @@
             android:layout_marginEnd="@dimen/_8sdp"
             android:background="@drawable/background_search"
             android:paddingHorizontal="@dimen/_6sdp"
-            app:layout_constraintEnd_toStartOf="@id/ivNotification"
+            app:layout_constraintEnd_toStartOf="@id/ivInfo"
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
@@ -44,13 +44,13 @@
                 android:layout_marginHorizontal="@dimen/_6sdp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/quicksand_semi_bold"
+                android:gravity="center_vertical"
                 android:hint="@string/search_hint_dashboard"
                 android:imeOptions="actionSearch"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
                 android:inputType="text"
                 android:maxLines="1"
-                android:gravity="center_vertical"
                 android:textColorHint="@color/colorRegisterFieldHint"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -59,17 +59,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageView
-            android:id="@+id/ivNotification"
-            android:layout_width="@dimen/_23sdp"
-            android:layout_height="@dimen/_23sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:src="@drawable/ic_notification"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ivInfo"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/ivInfo"
