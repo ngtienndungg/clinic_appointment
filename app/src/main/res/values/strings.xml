@@ -5,7 +5,7 @@
     <string name="password">Mật khẩu</string>
     <string name="invalid_email_password">Email hoặc mật khẩu không đúng.</string>
     <string name="something_wrong">Đã có lỗi xảy ra.</string>
-    <string name="search_hint_dashboard">Tìm kiếm phòng khám, bác sĩ..</string>
+    <string name="search_hint_dashboard">Tìm kiếm CSYT/bác sĩ/chuyên khoa</string>
     <string name="home">Trang chủ</string>
     <string name="scheduling">Đặt lịch</string>
     <string name="my_scheduling">Lịch của tôi</string>

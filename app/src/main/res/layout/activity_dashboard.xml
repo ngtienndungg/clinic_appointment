@@ -7,71 +7,6 @@
     android:background="@color/colorWhite"
     tools:context=".activities.DashboardActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ctlTopAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
-        android:background="@color/colorPrimary"
-        android:paddingHorizontal="@dimen/_10sdp"
-        android:paddingVertical="@dimen/_10sdp"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ctlSearch"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:background="@drawable/background_search"
-            android:paddingHorizontal="@dimen/_6sdp"
-            app:layout_constraintEnd_toStartOf="@id/ivInfo"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <ImageView
-                android:id="@+id/ivSearch"
-                android:layout_width="@dimen/_16sdp"
-                android:layout_height="@dimen/_16sdp"
-                android:layout_marginHorizontal="@dimen/_4sdp"
-                android:importantForAccessibility="no"
-                android:src="@drawable/ic_search"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/etSearchInput"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_6sdp"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/quicksand_semi_bold"
-                android:gravity="center_vertical"
-                android:hint="@string/search_hint_dashboard"
-                android:imeOptions="actionSearch"
-                android:importantForAutofill="no"
-                android:includeFontPadding="false"
-                android:inputType="text"
-                android:maxLines="1"
-                android:textColorHint="@color/colorRegisterFieldHint"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ivSearch"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageView
-            android:id="@+id/ivInfo"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:src="@drawable/ic_info"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <View
         android:id="@+id/supportView"
         android:layout_width="match_parent"
@@ -85,7 +20,7 @@
         android:layout_height="0dp"
         android:paddingBottom="@dimen/_2sdp"
         app:layout_constraintBottom_toTopOf="@id/bnvDashboard"
-        app:layout_constraintTop_toBottomOf="@id/ctlTopAppBar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnvDashboard"
