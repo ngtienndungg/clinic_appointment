@@ -10,9 +10,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     public static final String BASE_URL = "http://172.31.155.134:5000/api/";
+    public static final String PROVINCE_API_BASE_URL = "https://vapi.vnappmob.com/api/";
     static HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
     private static Retrofit authenticatedRetrofit = null;
     private static Retrofit publicRetrofit = null;
+    private static Retrofit addressRetrofit = null;
 
     public static AppointmentService getAuthenticatedAppointmentService() {
         OkHttpClient client = new OkHttpClient.Builder()
@@ -41,5 +43,19 @@ public class RetrofitClient {
                     .build();
         }
         return publicRetrofit.create(AppointmentService.class);
+    }
+
+    public static AppointmentService getProvinceApiService() {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .build();
+        if (addressRetrofit == null) {
+            addressRetrofit = new Retrofit.Builder()
+                    .baseUrl(PROVINCE_API_BASE_URL)
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return addressRetrofit.create(AppointmentService.class);
     }
 }

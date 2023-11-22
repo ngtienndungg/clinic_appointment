@@ -17,7 +17,7 @@ public class VietnamProvinceResponse implements Serializable {
         this.provinces = provinces;
     }
 
-    private static class VietnamProvince {
+    public static class VietnamProvince {
         @SerializedName("province_id")
         private String provinceId;
         @SerializedName("province_name")

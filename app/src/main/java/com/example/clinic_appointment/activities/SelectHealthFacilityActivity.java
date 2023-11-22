@@ -4,22 +4,35 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.clinic_appointment.R;
+import com.example.clinic_appointment.adapters.AddressAdapter;
 import com.example.clinic_appointment.adapters.SelectHealthFacilityAdapter;
 import com.example.clinic_appointment.databinding.ActivitySelectHealthFacilityBinding;
 import com.example.clinic_appointment.listeners.HealthFacilityListener;
+import com.example.clinic_appointment.listeners.ProvinceListener;
+import com.example.clinic_appointment.models.Address.VietnamProvinceResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacilitiesResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -28,6 +41,7 @@ import retrofit2.Response;
 
 public class SelectHealthFacilityActivity extends AppCompatActivity implements HealthFacilityListener {
     private ActivitySelectHealthFacilityBinding binding;
+    private static List<VietnamProvinceResponse.VietnamProvince> provinces = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +71,21 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
                 displayError();
             }
         });
+
+        Call<VietnamProvinceResponse> callProvince = RetrofitClient.getProvinceApiService().getEntireProvinces();
+        callProvince.enqueue(new Callback<VietnamProvinceResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<VietnamProvinceResponse> call, @NonNull Response<VietnamProvinceResponse> response) {
+                if (response.body() != null) {
+                    provinces = response.body().getProvinces();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<VietnamProvinceResponse> call, @NonNull Throwable t) {
+
+            }
+        });
     }
 
     private void displayError() {
@@ -66,13 +95,10 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
 
     private void eventHandling() {
         binding.ivBack.setOnClickListener(v -> onBackPressed());
-    }
-
-    @Override
-    public void onClick(HealthFacility healthFacility) {
-        Intent intent = new Intent(this, SelectDepartmentActivity.class);
-        intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);
-        startActivity(intent);
+        binding.etCity.setOnClickListener(v -> {
+            ModalBottomSheet modalBottomSheet = new ModalBottomSheet();
+            modalBottomSheet.show(getSupportFragmentManager(), "ModalBottomSheet");
+        });
     }
 
     @Override
@@ -90,5 +116,35 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
             }
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public void onClick(HealthFacility healthFacility) {
+        Intent intent = new Intent(this, SelectDepartmentActivity.class);
+        intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);
+        startActivity(intent);
+    }
+
+    public static class ModalBottomSheet extends BottomSheetDialogFragment implements ProvinceListener {
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            int PROVINCE_NUMBER = 63;
+            View view = inflater.inflate(R.layout.layout_provinces, container, false);
+            RecyclerView rvProvinces = view.findViewById(R.id.rvProvinces);
+            TextView tvError = view.findViewById(R.id.tvError);
+            if (provinces.size() < PROVINCE_NUMBER) {
+                tvError.setVisibility(View.VISIBLE);
+            } else {
+                rvProvinces.setAdapter(new AddressAdapter(provinces, this));
+                rvProvinces.setVisibility(View.VISIBLE);
+            }
+            return view;
+        }
+
+        @Override
+        public void onClick(VietnamProvinceResponse.VietnamProvince province) {
+
+        }
     }
 }

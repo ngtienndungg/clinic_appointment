@@ -124,4 +124,7 @@
     <string name="status">Trạng thái</string>
     <string name="appointment_code">Mã phiếu:&#160;</string>
     <string name="view_detail">Xem chi tiết</string>
+    <string name="city_list">Danh sách tỉnh/thành phố</string>
+    <string name="city_province_error">Danh sách tỉnh thành đang gặp lỗi</string>
+    <string name="something_wrong_please_reset">Đã có lỗi xảy ra. Vui lòng thử tải lại danh sách.</string>
 </resources>
