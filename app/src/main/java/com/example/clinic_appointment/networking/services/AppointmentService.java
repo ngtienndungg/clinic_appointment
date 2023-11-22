@@ -1,5 +1,6 @@
 package com.example.clinic_appointment.networking.services;
 
+import com.example.clinic_appointment.models.Appointment.AppointmentResponse;
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
 import com.example.clinic_appointment.models.Doctor.DoctorResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacilitiesResponse;
@@ -53,4 +54,7 @@ public interface AppointmentService {
     @POST("booking/patient")
     @FormUrlEncoded
     Call<Void> bookAppointmentByPatient(@Field("scheduleID") String scheduleID, @Field("time") String appointmentTime);
+
+    @GET("booking/patient")
+    Call<AppointmentResponse> getEntireAppointment();
 }

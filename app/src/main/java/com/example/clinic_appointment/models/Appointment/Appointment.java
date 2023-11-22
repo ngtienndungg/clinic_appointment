@@ -1,17 +1,20 @@
-package com.example.clinic_appointment.models.Booking;
+package com.example.clinic_appointment.models.Appointment;
 
+import com.example.clinic_appointment.models.Schedule.DetailSchedule;
 import com.example.clinic_appointment.models.Schedule.Schedule;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Booking implements Serializable {
+public class Appointment implements Serializable {
+    @SerializedName("_id")
+    private String id;
     @SerializedName("patientID")
     private String patientId;
     @SerializedName("status")
     private String status;
     @SerializedName("scheduleID")
-    private Schedule schedule;
+    private DetailSchedule schedule;
     @SerializedName("time")
     private String appointmentTime;
 
@@ -31,11 +34,11 @@ public class Booking implements Serializable {
         this.status = status;
     }
 
-    public Schedule getSchedule() {
+    public DetailSchedule getSchedule() {
         return schedule;
     }
 
-    public void setSchedule(Schedule schedule) {
+    public void setSchedule(DetailSchedule schedule) {
         this.schedule = schedule;
     }
 
@@ -45,5 +48,13 @@ public class Booking implements Serializable {
 
     public void setAppointmentTime(String appointmentTime) {
         this.appointmentTime = appointmentTime;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

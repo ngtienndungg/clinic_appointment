@@ -53,6 +53,7 @@
             android:paddingVertical="@dimen/_6sdp">
 
             <TextView
+                android:id="@+id/tvWaitingConfirmation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_my_schedule_option_unselected"
@@ -64,6 +65,7 @@
                 android:textSize="@dimen/_12ssp" />
 
             <TextView
+                android:id="@+id/tvConfirmed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -76,6 +78,7 @@
                 android:textSize="@dimen/_12ssp" />
 
             <TextView
+                android:id="@+id/tvChecked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -88,6 +91,7 @@
                 android:textSize="@dimen/_12ssp" />
 
             <TextView
+                android:id="@+id/tvCancelled"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -100,6 +104,7 @@
                 android:textSize="@dimen/_12ssp" />
 
             <TextView
+                android:id="@+id/tvEntire"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -114,5 +119,23 @@
         </LinearLayout>
 
     </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAppointments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/svOption"
+        android:background="@color/colorCalendarDayBackground"
+        android:paddingHorizontal="@dimen/_6sdp"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <ProgressBar
+        android:id="@+id/pbLoading"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/colorPrimary"
+        android:visibility="gone" />
 
 </RelativeLayout>

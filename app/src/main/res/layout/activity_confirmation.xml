@@ -75,7 +75,8 @@
         android:layout_above="@id/tvConfirm"
         android:layout_below="@id/llNote"
         android:paddingHorizontal="@dimen/_14sdp"
-        android:paddingVertical="@dimen/_8sdp">
+        android:paddingVertical="@dimen/_8sdp"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"

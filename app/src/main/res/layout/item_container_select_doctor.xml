@@ -28,7 +28,6 @@
         android:fontFamily="@font/quicksand_bold"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="BÁC SĨ DƯƠNG THỊ THU HÀ"
         android:textAllCaps="true"
         android:textColor="@color/colorDoctorName"
         android:textSize="@dimen/_11ssp" />
@@ -70,7 +69,7 @@
         android:fontFamily="@font/quicksand_medium"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="Nữ"
+        android:text="Nam"
         android:textColor="@color/colorDoctorInformation"
         android:textSize="@dimen/_11ssp" />
 
@@ -111,7 +110,6 @@
         android:fontFamily="@font/quicksand_semi_bold"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="Khám chức năng hô hấp"
         android:textColor="@color/colorDoctorInformation"
         android:textSize="@dimen/_11ssp" />
 

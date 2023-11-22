@@ -121,4 +121,7 @@
     <string name="cancelled">Đã huỷ</string>
     <string name="entire">Tất cả</string>
     <string name="personal_appointment_management">Lịch đặt khám cá nhân</string>
+    <string name="status">Trạng thái</string>
+    <string name="appointment_code">Mã phiếu:&#160;</string>
+    <string name="view_detail">Xem chi tiết</string>
 </resources>
