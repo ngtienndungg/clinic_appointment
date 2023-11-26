@@ -12,7 +12,7 @@ import com.example.clinic_appointment.databinding.ActivityPaymentInformationBind
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
-import com.example.clinic_appointment.models.Schedule.Schedule;
+import com.example.clinic_appointment.models.Schedule.DetailSchedule;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 import com.example.clinic_appointment.utilities.CustomConverter;
@@ -28,7 +28,7 @@ import retrofit2.Response;
 
 public class PaymentInformationActivity extends AppCompatActivity {
     private ActivityPaymentInformationBinding binding;
-    private Schedule selectedSchedule;
+    private DetailSchedule selectedSchedule;
     private String selectedTime;
 
     @Override
@@ -45,7 +45,7 @@ public class PaymentInformationActivity extends AppCompatActivity {
         Doctor selectedDoctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
         Department selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
         HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-        selectedSchedule = (Schedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
+        selectedSchedule = (DetailSchedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
         selectedTime = getIntent().getStringExtra(Constants.KEY_TIME);
         binding.tvHealthFacility.setText(Objects.requireNonNull(selectedHealthFacility).getName());
         binding.tvDepartment.setText(Objects.requireNonNull(selectedDepartment).getName());

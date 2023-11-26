@@ -76,7 +76,7 @@
     <string name="type_doctor_name_to_quick_find">Nhập tên bác sĩ để tìm nhanh</string>
     <string name="gender_label">Giới tính:</string>
     <string name="department_label">Chuyên khoa:</string>
-    <string name="appointment_calendar_this_week">Lịch khám tuần này:</string>
+    <string name="appointment_calendar_this_week">Lịch khám: </string>
     <string name="price_label">Giá khám:</string>
     <string name="choose_appointment_date">Chọn ngày đặt khám</string>
     <string name="currently_allow_schedule_before_x_day">Hiện tại bệnh viện chỉ hỗ trợ đặt lịch khám trước hẹn từ 1 đến 30 ngày.</string>
@@ -128,4 +128,13 @@
     <string name="city_province_error">Danh sách tỉnh thành đang gặp lỗi</string>
     <string name="something_wrong_please_reset">Đã có lỗi xảy ra. Vui lòng thử tải lại danh sách.</string>
     <string name="book_successfully">Đặt lịch thành công</string>
+    <string name="temporary_unlabeled">150,000đ</string>
+    <string name="this_doctor_dont_have_schedule">Bác sĩ này không có lịch khám</string>
+    <string name="search_and_make_appointment">Tra cứu và đặt lịch khám</string>
+    <string name="make_blood_test_appointment">Đặt lịch xét nghiệm máu</string>
+    <string name="comprehensive_health_package">Gói sức khoẻ toàn diện</string>
+    <string name="make_hospital_payment">Thanh toán viện phí</string>
+    <string name="search_examination_result">Tra cứu kết quả khám bệnh</string>
+    <string name="make_appointment_phone">Đặt khám 1900-1234</string>
+    <string name="look_for_more">Xem thêm</string>
 </resources>

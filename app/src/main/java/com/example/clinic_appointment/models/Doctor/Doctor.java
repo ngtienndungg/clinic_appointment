@@ -1,5 +1,7 @@
 package com.example.clinic_appointment.models.Doctor;
 
+import android.util.Log;
+
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.User.User;
 import com.google.gson.annotations.SerializedName;
@@ -30,30 +32,35 @@ public class Doctor implements Serializable {
             for (int dayOfWeek : doctorSchedules) {
                 switch (dayOfWeek) {
                     case 1:
-                        resultStringBuilder.append(" ,thứ hai");
+                        resultStringBuilder.append(", hai");
                         break;
                     case 2:
-                        resultStringBuilder.append(" ,thứ ba");
+                        resultStringBuilder.append(", ba");
                         break;
                     case 3:
-                        resultStringBuilder.append(" ,thứ tư");
+                        resultStringBuilder.append(", tư");
                         break;
                     case 4:
-                        resultStringBuilder.append(" ,thứ năm");
+                        resultStringBuilder.append(", năm");
                         break;
                     case 5:
-                        resultStringBuilder.append(" ,thứ sáu");
+                        resultStringBuilder.append(", sáu");
                         break;
                     case 6:
-                        resultStringBuilder.append(" thứ bảy");
+                        resultStringBuilder.append(", bảy");
                         break;
                     case 0:
-                        resultStringBuilder.append(" chủ nhật");
+                        resultStringBuilder.append(", chủ nhật");
                         break;
                 }
             }
-            String resultString = String.valueOf(resultStringBuilder.delete(0, 1));
-            return resultString.substring(0, 1).toUpperCase() + resultString.substring(1);
+            String resultString = String.valueOf(resultStringBuilder.delete(0, 2));
+            Log.d("TestString", resultString);
+            if (resultString.charAt(0) == 'c') {
+                return resultString.substring(0, 1).toUpperCase() + resultString.substring(1);
+            } else {
+                return "Thứ " + resultString.substring(0, 1).toUpperCase() + resultString.substring(1);
+            }
         }
     }
 

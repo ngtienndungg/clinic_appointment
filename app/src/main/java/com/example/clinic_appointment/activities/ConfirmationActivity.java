@@ -10,7 +10,7 @@ import com.example.clinic_appointment.databinding.ActivityConfirmationBinding;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
-import com.example.clinic_appointment.models.Schedule.Schedule;
+import com.example.clinic_appointment.models.Schedule.DetailSchedule;
 import com.example.clinic_appointment.utilities.Constants;
 import com.example.clinic_appointment.utilities.CustomConverter;
 import com.example.clinic_appointment.utilities.SharedPrefs;
@@ -22,7 +22,7 @@ public class ConfirmationActivity extends AppCompatActivity {
     private Doctor selectedDoctor;
     private Department selectedDepartment;
     private HealthFacility selectedHealthFacility;
-    private Schedule selectedSchedule;
+    private DetailSchedule selectedSchedule;
     private String timeNumber;
 
     @Override
@@ -39,7 +39,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         selectedDoctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
         selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
         selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-        selectedSchedule = (Schedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
+        selectedSchedule = (DetailSchedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
         timeNumber = getIntent().getStringExtra(Constants.KEY_TIME);
         binding.tvHealthFacility.setText(Objects.requireNonNull(selectedHealthFacility).getName());
         binding.tvDepartment.setText(Objects.requireNonNull(selectedDepartment).getName());

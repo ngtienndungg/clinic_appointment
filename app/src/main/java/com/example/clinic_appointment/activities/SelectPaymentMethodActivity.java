@@ -9,7 +9,7 @@ import com.example.clinic_appointment.databinding.ActivitySelectPaymentMethodBin
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
-import com.example.clinic_appointment.models.Schedule.Schedule;
+import com.example.clinic_appointment.models.Schedule.DetailSchedule;
 import com.example.clinic_appointment.utilities.Constants;
 
 public class SelectPaymentMethodActivity extends AppCompatActivity {
@@ -29,7 +29,7 @@ public class SelectPaymentMethodActivity extends AppCompatActivity {
             Doctor selectedDoctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
             Department selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
             HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-            Schedule selectedSchedule = (Schedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
+            DetailSchedule selectedSchedule = (DetailSchedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
             String selectedTime = getIntent().getStringExtra(Constants.KEY_TIME);
             intent.putExtra(Constants.KEY_DATE, selectedSchedule);
             intent.putExtra(Constants.KEY_DOCTOR, selectedDoctor);

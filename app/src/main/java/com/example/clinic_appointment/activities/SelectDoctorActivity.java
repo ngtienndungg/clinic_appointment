@@ -8,10 +8,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.adapters.SelectDoctorAdapter;
 import com.example.clinic_appointment.databinding.ActivitySelectDoctorBinding;
 import com.example.clinic_appointment.listeners.DoctorListener;
@@ -23,6 +25,7 @@ import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -76,12 +79,16 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
 
     @Override
     public void onClick(Doctor doctor) {
-        HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-        Intent intent = new Intent(this, SelectDateActivity.class);
-        intent.putExtra(Constants.KEY_DOCTOR, doctor);
-        intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
-        intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
-        startActivity(intent);
+        if (!Objects.equals(doctor.getScheduleString(), "Không có lịch khám")) {
+            HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
+            Intent intent = new Intent(this, SelectDateActivity.class);
+            intent.putExtra(Constants.KEY_DOCTOR, doctor);
+            intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
+            intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, getString(R.string.this_doctor_dont_have_schedule), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

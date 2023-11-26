@@ -19,7 +19,7 @@ import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
-import com.example.clinic_appointment.models.Schedule.Schedule;
+import com.example.clinic_appointment.models.Schedule.DetailSchedule;
 import com.example.clinic_appointment.utilities.Constants;
 
 import java.util.List;
@@ -39,7 +39,7 @@ public class SelectTimeActivity extends AppCompatActivity implements Appointment
 
     private void initiate() {
         List<AppointmentTime> appointmentTimes;
-        Schedule schedule = (Schedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
+        DetailSchedule schedule = (DetailSchedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
         appointmentTimes = Objects.requireNonNull(schedule).getAppointmentTimes();
         SelectTimeAdapter adapter = new SelectTimeAdapter(appointmentTimes, this);
         int numberOfColumns = 3;
@@ -75,7 +75,7 @@ public class SelectTimeActivity extends AppCompatActivity implements Appointment
         Doctor selectedDoctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
         Department selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
         HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-        Schedule selectedSchedule = (Schedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
+        DetailSchedule selectedSchedule = (DetailSchedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
         intent.putExtra(Constants.KEY_DATE, selectedSchedule);
         intent.putExtra(Constants.KEY_DOCTOR, selectedDoctor);
         intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
