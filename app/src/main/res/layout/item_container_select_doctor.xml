@@ -69,7 +69,6 @@
         android:fontFamily="@font/quicksand_medium"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="Nam"
         android:textColor="@color/colorDoctorInformation"
         android:textSize="@dimen/_11ssp" />
 
@@ -135,7 +134,7 @@
         android:fontFamily="@font/quicksand_medium"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="@string/appointment_calendar"
+        android:text="@string/appointment_calendar_this_week"
         android:textColor="@color/colorDoctorInformation"
         android:textSize="@dimen/_11ssp" />
 
@@ -150,7 +149,6 @@
         android:fontFamily="@font/quicksand_medium"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="Thứ hai, thứ ba, chủ nhật"
         android:textColor="@color/colorDoctorInformation"
         android:textSize="@dimen/_11ssp" />
 
@@ -191,7 +189,6 @@
         android:fontFamily="@font/quicksand_medium"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="150.000đ"
         android:textColor="@color/colorDoctorInformation"
         android:textSize="@dimen/_11ssp" />
 

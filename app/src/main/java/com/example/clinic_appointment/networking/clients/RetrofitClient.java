@@ -9,7 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    public static final String BASE_URL = "http://172.31.155.134:5000/api/";
+    public static final String BASE_URL = "http://192.168.9.114:5000/api/";
     public static final String PROVINCE_API_BASE_URL = "https://vapi.vnappmob.com/api/";
     static HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
     private static Retrofit authenticatedRetrofit = null;

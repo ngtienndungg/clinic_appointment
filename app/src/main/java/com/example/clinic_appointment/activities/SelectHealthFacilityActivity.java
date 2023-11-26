@@ -29,8 +29,6 @@ import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +38,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SelectHealthFacilityActivity extends AppCompatActivity implements HealthFacilityListener {
-    private ActivitySelectHealthFacilityBinding binding;
     private static List<VietnamProvinceResponse.VietnamProvince> provinces = new ArrayList<>();
+    private static List<HealthFacility> healthFacilities = new ArrayList<>();
+    private ActivitySelectHealthFacilityBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +57,7 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
             @Override
             public void onResponse(@NonNull Call<HealthFacilitiesResponse> call, @NonNull Response<HealthFacilitiesResponse> response) {
                 if (response.body() != null && response.body().isSuccess()) {
-                    List<HealthFacility> healthFacilities = response.body().getHealthFacilities();
+                    healthFacilities = response.body().getHealthFacilities();
                     SelectHealthFacilityAdapter adapter = new SelectHealthFacilityAdapter(healthFacilities, SelectHealthFacilityActivity.this, getApplicationContext());
                     binding.rvHealthFacility.setAdapter(adapter);
                     binding.rvHealthFacility.setVisibility(View.VISIBLE);
@@ -144,7 +143,12 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
 
         @Override
         public void onClick(VietnamProvinceResponse.VietnamProvince province) {
+            List<HealthFacility> filteredHealthFacility = new ArrayList<>();
+            for (HealthFacility healthFacility : healthFacilities) {
+                if (healthFacility.getAddress().getProvince().equals(province.getProvinceName())) {
 
+                }
+            }
         }
     }
 }

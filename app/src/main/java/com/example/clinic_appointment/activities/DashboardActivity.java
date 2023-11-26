@@ -38,7 +38,7 @@ public class DashboardActivity extends AppCompatActivity {
         currentFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, currentFragment).commit();
         if (getIntent().hasExtra(Constants.KEY_STATUS_CODE)) {
-            Toast.makeText(this, "Đặt lịch thành công", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.book_successfully), Toast.LENGTH_SHORT).show();
         }
     }
 

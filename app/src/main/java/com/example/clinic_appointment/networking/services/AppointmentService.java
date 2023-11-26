@@ -3,6 +3,7 @@ package com.example.clinic_appointment.networking.services;
 import com.example.clinic_appointment.models.Address.VietnamProvinceResponse;
 import com.example.clinic_appointment.models.Appointment.AppointmentResponse;
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
+import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.Doctor.DoctorResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacilitiesResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacilityResponse;
@@ -49,8 +50,12 @@ public interface AppointmentService {
     Call<DoctorResponse> getDoctorByDepartmentAndHealthFacility(@Query("specialtyID") String departmentId,
                                                                 @Query("clinicID") String clinicId);
 
-    @GET("schedule/doctor/{id}")
-    Call<ScheduleResponse> getDoctorSchedule(@Path("id") String doctorId);
+    @GET("schedule")
+    Call<ScheduleResponse> getSchedules(@Query("doctorID") String doctorId,
+                              @Query("startDate") long startDate,
+                              @Query("endDate") long endDate,
+                              @Query("departmentID") String departmentId,
+                              @Query("timeType.time") Integer time);
 
     @POST("booking/patient")
     @FormUrlEncoded

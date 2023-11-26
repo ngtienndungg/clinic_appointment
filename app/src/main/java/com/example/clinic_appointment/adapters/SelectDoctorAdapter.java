@@ -50,9 +50,16 @@ public class SelectDoctorAdapter extends RecyclerView.Adapter<SelectDoctorAdapte
         }
 
         public void setData(Doctor doctor) {
-            String fullDoctorName = "Bác sĩ " + doctor.getDoctorInformation().getFullName();
+            String fullDoctorName;
+            if (doctor.getAcademicLevel() == null || doctor.getAcademicLevel().length() == 0) {
+                fullDoctorName = "Bác sĩ ".toUpperCase() + doctor.getDoctorInformation().getFullName();
+            } else {
+                fullDoctorName = doctor.getAcademicLevel() + " " + doctor.getDoctorInformation().getFullName();
+            }
             binding.tvName.setText(fullDoctorName);
+            binding.tvGender.setText(doctor.getDoctorInformation().getGenderVietnamese());
             binding.tvDepartment.setText(doctor.getDepartmentInformation().getName());
+            binding.tvCalendar.setText(doctor.getScheduleString());
         }
     }
 }

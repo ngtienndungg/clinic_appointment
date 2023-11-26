@@ -4,6 +4,7 @@ import static com.kizitonwose.calendar.core.ExtensionsKt.daysOfWeek;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
+import com.example.clinic_appointment.models.Schedule.DetailSchedule;
 import com.example.clinic_appointment.models.Schedule.Schedule;
 import com.example.clinic_appointment.models.Schedule.ScheduleResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
@@ -45,7 +47,7 @@ import retrofit2.Response;
 
 public class SelectDateActivity extends AppCompatActivity {
     private ActivitySelectDateBinding binding;
-    private List<Schedule> availableSchedules;
+    private List<DetailSchedule> availableSchedules;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +60,16 @@ public class SelectDateActivity extends AppCompatActivity {
 
     void initiate() {
         Doctor doctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
+        long currentTimeMillis = System.currentTimeMillis();
+        long endTimeMillis = currentTimeMillis + (30L * 86400000);
         Call<ScheduleResponse> call = RetrofitClient.getAuthenticatedAppointmentService()
-                .getDoctorSchedule(Objects.requireNonNull(doctor).getDoctorInformation().getId());
+                .getSchedules(Objects.requireNonNull(doctor).getDoctorInformation().getId(), currentTimeMillis, endTimeMillis, null, null);
         availableSchedules = new ArrayList<>();
         call.enqueue(new Callback<ScheduleResponse>() {
             @Override
             public void onResponse(@NonNull Call<ScheduleResponse> call, @NonNull Response<ScheduleResponse> response) {
                 if (response.body() != null && response.code() == 200) {
-                    availableSchedules.addAll(response.body().getSchedules());
+                    availableSchedules = response.body().getSchedules();
                     setupCalendar();
                 }
             }
@@ -93,11 +97,15 @@ public class SelectDateActivity extends AppCompatActivity {
 
             @Override
             public void bind(@NonNull DayViewContainer dayViewContainer, CalendarDay calendarDay) {
+                Log.d("TestDate", calendarDay.getDate().toString());
+                dayViewContainer.textView.setTextColor(getColor(R.color.colorCalendarDayText));
+                dayViewContainer.textView.setBackgroundColor(getColor(R.color.colorCalendarDayBackground));
+                dayViewContainer.textView.setEnabled(false);
                 if (calendarDay.getPosition() == DayPosition.MonthDate) {
                     if (calendarDay.getDate().equals(LocalDate.now())) {
                         dayViewContainer.textView.setBackgroundResource(R.color.colorTodayDate);
                     }
-                    for (Schedule schedule : availableSchedules) {
+                    for (DetailSchedule schedule : availableSchedules) {
                         if (calendarDay.getDate().equals(getLocalDate(schedule.getDate()))) {
                             boolean isFull = true;
                             for (AppointmentTime appointmentTime : schedule.getAppointmentTimes()) {
@@ -109,6 +117,7 @@ public class SelectDateActivity extends AppCompatActivity {
                             if (isFull) {
                                 dayViewContainer.textView.setBackgroundResource(R.color.colorFullSlotDate);
                             } else {
+                                dayViewContainer.textView.setEnabled(true);
                                 dayViewContainer.textView.setBackgroundResource(R.color.colorAvailableDate);
                                 dayViewContainer.textView.setOnClickListener(v -> {
                                     Intent intent = new Intent(getApplicationContext(), SelectTimeActivity.class);

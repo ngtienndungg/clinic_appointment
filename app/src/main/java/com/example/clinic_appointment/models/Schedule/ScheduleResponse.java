@@ -9,7 +9,7 @@ public class ScheduleResponse implements Serializable {
     @SerializedName("success")
     private boolean isSuccess;
     @SerializedName("data")
-    private List<Schedule> schedules;
+    private List<DetailSchedule> schedules;
 
     public boolean isSuccess() {
         return isSuccess;
@@ -19,11 +19,11 @@ public class ScheduleResponse implements Serializable {
         isSuccess = success;
     }
 
-    public List<Schedule> getSchedules() {
+    public List<DetailSchedule> getSchedules() {
         return schedules;
     }
 
-    public void setSchedules(List<Schedule> schedules) {
+    public void setSchedules(List<DetailSchedule> schedules) {
         this.schedules = schedules;
     }
 }

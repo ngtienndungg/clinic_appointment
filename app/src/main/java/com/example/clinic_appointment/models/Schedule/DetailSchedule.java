@@ -2,7 +2,6 @@ package com.example.clinic_appointment.models.Schedule;
 
 import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
 import com.example.clinic_appointment.models.Doctor.DetailDoctor;
-import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;

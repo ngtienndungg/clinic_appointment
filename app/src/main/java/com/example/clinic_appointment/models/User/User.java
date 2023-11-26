@@ -1,8 +1,10 @@
 package com.example.clinic_appointment.models.User;
 
+import com.example.clinic_appointment.utilities.Constants;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class User implements Serializable {
     @SerializedName("_id")
@@ -19,6 +21,25 @@ public class User implements Serializable {
     private String address;
     @SerializedName("refreshToken")
     private String refreshToken;
+    @SerializedName("gender")
+    private String gender;
+
+    public String getGenderVietnamese() {
+        if (Objects.equals(gender, Constants.GENDER_FEMALE_ENG)) {
+            return "Nữ";
+        } else if (Objects.equals(gender, Constants.GENDER_MALE_ENG)) {
+            return "Nam";
+        }
+        return null;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getId() {
         return id;
