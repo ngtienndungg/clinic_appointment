@@ -14,13 +14,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.clinic_appointment.R;
+import com.example.clinic_appointment.adapters.ScheduleAdapter;
 import com.example.clinic_appointment.adapters.SelectDoctorAdapter;
 import com.example.clinic_appointment.databinding.ActivitySelectDoctorBinding;
 import com.example.clinic_appointment.listeners.DoctorListener;
+import com.example.clinic_appointment.listeners.ScheduleListener;
+import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.Doctor.DoctorResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
+import com.example.clinic_appointment.models.Schedule.DetailSchedule;
+import com.example.clinic_appointment.models.Schedule.ScheduleResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 
@@ -31,7 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SelectDoctorActivity extends AppCompatActivity implements DoctorListener {
+public class SelectDoctorActivity extends AppCompatActivity implements DoctorListener, ScheduleListener {
     private ActivitySelectDoctorBinding binding;
     private Department selectedDepartment;
 
@@ -45,27 +50,57 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
     }
 
     private void initiate() {
-        selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
-        HealthFacility healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-        Call<DoctorResponse> call = RetrofitClient.getPublicAppointmentService().getDoctorByDepartmentAndHealthFacility(selectedDepartment.getId(), healthFacility.getId());
-        call.enqueue(new Callback<DoctorResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<DoctorResponse> call, @NonNull Response<DoctorResponse> response) {
-                if (response.body() != null && response.body().isSuccess()) {
-                    List<Doctor> doctors = response.body().getDoctors();
-                    SelectDoctorAdapter adapter = new SelectDoctorAdapter(SelectDoctorActivity.this, doctors);
-                    binding.rvDoctor.setAdapter(adapter);
-                    binding.rvDoctor.setVisibility(View.VISIBLE);
-                    binding.pbLoading.setVisibility(View.GONE);
+        if (getIntent().getStringExtra(Constants.KEY_SOURCE_ACTIVITY) == null) {
+            selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
+            HealthFacility healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
+            Call<DoctorResponse> call = RetrofitClient.getPublicAppointmentService().getDoctorByDepartmentAndHealthFacility(selectedDepartment.getId(), healthFacility.getId());
+            call.enqueue(new Callback<DoctorResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<DoctorResponse> call, @NonNull Response<DoctorResponse> response) {
+                    if (response.body() != null && response.body().isSuccess()) {
+                        List<Doctor> doctors = response.body().getDoctors();
+                        SelectDoctorAdapter adapter = new SelectDoctorAdapter(SelectDoctorActivity.this, doctors);
+                        binding.rvDoctor.setAdapter(adapter);
+                        binding.rvDoctor.setVisibility(View.VISIBLE);
+                        binding.pbLoading.setVisibility(View.GONE);
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(@NonNull Call<DoctorResponse> call, @NonNull Throwable t) {
-                displayError();
-            }
-        });
+                @Override
+                public void onFailure(@NonNull Call<DoctorResponse> call, @NonNull Throwable t) {
+                    displayError();
+                }
+            });
+        } else {
+            AppointmentTime appointmentTime = (AppointmentTime) getIntent().getSerializableExtra(Constants.KEY_TIME);
+            HealthFacility healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
+            Department department = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
+            Call<ScheduleResponse> call = RetrofitClient.getPublicAppointmentService().getSchedules(
+                    getIntent().getLongExtra(Constants.KEY_START_DATE, -1),
+                    getIntent().getLongExtra(Constants.KEY_END_DATE, -1),
+                    (appointmentTime != null) ? appointmentTime.getTimeNumber() : null,
+                    (department) != null ? department.getName() : null,
+                    (healthFacility) != null ? healthFacility.getName() : null,
+                    null
+            );
+            call.enqueue(new Callback<ScheduleResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<ScheduleResponse> call, @NonNull Response<ScheduleResponse> response) {
+                    if (response.body() != null && response.body().isSuccess()) {
+                        List<DetailSchedule> schedules = response.body().getSchedules();
+                        ScheduleAdapter adapter = new ScheduleAdapter(SelectDoctorActivity.this, schedules);
+                        binding.rvDoctor.setAdapter(adapter);
+                        binding.rvDoctor.setVisibility(View.VISIBLE);
+                        binding.pbLoading.setVisibility(View.GONE);
+                    }
+                }
 
+                @Override
+                public void onFailure(@NonNull Call<ScheduleResponse> call, @NonNull Throwable t) {
+                    displayError();
+                }
+            });
+        }
     }
 
     private void displayError() {
@@ -106,5 +141,10 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
             }
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public void onClick(DetailSchedule detailSchedule) {
+
     }
 }

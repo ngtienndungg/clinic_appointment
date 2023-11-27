@@ -18,21 +18,27 @@ import androidx.core.util.Pair;
 
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivitySearchScheduleBinding;
+import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.utilities.Constants;
+import com.example.clinic_appointment.utilities.CustomConverter;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.MaterialDatePicker;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
 public class SearchScheduleActivity extends AppCompatActivity {
     private HealthFacility selectedHealthFacility;
     private Department selectedDepartment;
+    private AppointmentTime selectedAppointmentTime;
     private long dateFrom = 0;
     private long dateTo = 0;
     private ActivitySearchScheduleBinding binding;
@@ -47,6 +53,9 @@ public class SearchScheduleActivity extends AppCompatActivity {
                     } else if (Objects.requireNonNull(intent).getSerializableExtra(Constants.KEY_DEPARTMENT) != null) {
                         selectedDepartment = (Department) intent.getSerializableExtra(Constants.KEY_DEPARTMENT);
                         binding.etDepartment.setText(Objects.requireNonNull(selectedDepartment).getName());
+                    } else if (Objects.requireNonNull(intent).getSerializableExtra(Constants.KEY_TIME) != null) {
+                        selectedAppointmentTime = (AppointmentTime) intent.getSerializableExtra(Constants.KEY_TIME);
+                        binding.etTime.setText(CustomConverter.getStringAppointmentTime(Objects.requireNonNull(selectedAppointmentTime).getTimeNumber()));
                     }
                 } else if (resultCode.equals(Constants.RESULT_ALL_MATCH)) {
                     String returnType = Objects.requireNonNull(intent).getStringExtra(Constants.RETURN_TYPE);
@@ -71,6 +80,7 @@ public class SearchScheduleActivity extends AppCompatActivity {
         binding.ivBack.setOnClickListener(v -> onBackPressed());
         binding.etHealthFacility.setOnClickListener(v -> launchSelectActivity(SelectHealthFacilityActivity.class));
         binding.etDepartment.setOnClickListener(v -> launchSelectActivity(SelectDepartmentActivity.class));
+        binding.etTime.setOnClickListener(v -> launchSelectActivity(SelectTimeActivity.class));
         binding.etFromDate.setOnClickListener(v -> {
             Calendar currentDate = Calendar.getInstance();
             MaterialDatePicker<Pair<Long, Long>> materialDatePicker = MaterialDatePicker.Builder.dateRangePicker()
@@ -88,6 +98,16 @@ public class SearchScheduleActivity extends AppCompatActivity {
             });
             materialDatePicker.show(getSupportFragmentManager(), materialDatePicker.toString());
         });
+        binding.tvSearch.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SelectDoctorActivity.class);
+            intent.putExtra(Constants.KEY_START_DATE, dateFrom);
+            intent.putExtra(Constants.KEY_END_DATE, dateTo);
+            intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
+            intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
+            intent.putExtra(Constants.KEY_TIME, selectedAppointmentTime);
+            intent.putExtra(Constants.KEY_SOURCE_ACTIVITY, "SearchSchedule");
+            startActivity(intent);
+        });
     }
 
     private long getTwoMonthLater(Calendar calendar) {
@@ -103,6 +123,9 @@ public class SearchScheduleActivity extends AppCompatActivity {
     private void launchSelectActivity(Class<?> activityClass) {
         Intent intent = new Intent(this, activityClass);
         intent.putExtra(Constants.KEY_SOURCE_ACTIVITY, "SearchSchedule");
+        if (activityClass == SelectTimeActivity.class) {
+            intent.putExtra(Constants.KEY_DATE, (Serializable) generateEntireAppointmentArray());
+        }
         mStartForResult.launch(intent);
     }
 
@@ -121,5 +144,17 @@ public class SearchScheduleActivity extends AppCompatActivity {
             }
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    private List<AppointmentTime> generateEntireAppointmentArray() {
+        List<AppointmentTime> resultList = new ArrayList<>();
+        for (int i = 1; i <= 13; i++) {
+            AppointmentTime appointmentTime = new AppointmentTime();
+            appointmentTime.setTimeNumber(String.valueOf(i));
+            appointmentTime.setFull(false);
+            appointmentTime.setMaxAvailability(3);
+            resultList.add(appointmentTime);
+        }
+        return resultList;
     }
 }

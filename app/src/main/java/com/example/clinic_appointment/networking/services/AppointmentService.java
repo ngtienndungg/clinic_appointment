@@ -41,6 +41,7 @@ public interface AppointmentService {
 
     @GET("clinic/{id}")
     Call<HealthFacilityResponse> getHealthFacilityById(@Path("id") String clinicId);
+
     @GET("specialty")
     Call<DepartmentResponse> getEntireDepartment();
 
@@ -52,11 +53,12 @@ public interface AppointmentService {
                                                                 @Query("clinicID") String clinicId);
 
     @GET("schedule")
-    Call<ScheduleResponse> getSchedules(@Query("doctorID") String doctorId,
-                                        @Query("startDate") long startDate,
+    Call<ScheduleResponse> getSchedules(@Query("startDate") long startDate,
                                         @Query("endDate") long endDate,
-                                        @Query("departmentID") String departmentId,
-                                        @Query("timeType.time") Integer time);
+                                        @Query("timeType.time") String time,
+                                        @Query(encoded = true, value = "nameSpecialty") String departmentName,
+                                        @Query(encoded = true, value = "nameClinic") String clinicName,
+                                        @Query("doctorID") String doctorId);
 
     @POST("booking/patient")
     @FormUrlEncoded

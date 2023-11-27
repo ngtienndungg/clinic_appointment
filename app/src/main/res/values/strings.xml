@@ -21,7 +21,6 @@
     <string name="department">Chuyên khoa</string>
     <string name="department_name">Tên chuyên khoa</string>
     <string name="search">Tìm kiếm</string>
-    <string name="note_find_doctor">Điền tối thiểu một trong ba trường để có thể tìm kiếm</string>
     <string name="close">Đóng</string>
     <string name="search_hint_select_hospital">Nhập tên bệnh viện hoặc phòng khám</string>
     <string name="search_hint_select_department">Nhập tên chuyên khoa cần tìm kiếm</string>

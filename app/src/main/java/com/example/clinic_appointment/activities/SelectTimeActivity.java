@@ -39,14 +39,21 @@ public class SelectTimeActivity extends AppCompatActivity implements Appointment
 
     private void initiate() {
         List<AppointmentTime> appointmentTimes;
-        DetailSchedule schedule = (DetailSchedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
-        appointmentTimes = Objects.requireNonNull(schedule).getAppointmentTimes();
+        if (getIntent().getStringExtra(Constants.KEY_SOURCE_ACTIVITY) == null) {
+            DetailSchedule schedule = (DetailSchedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
+            appointmentTimes = Objects.requireNonNull(schedule).getAppointmentTimes();
+        } else {
+            appointmentTimes = (List<AppointmentTime>) getIntent().getSerializableExtra(Constants.KEY_DATE);
+            binding.rlColorIndicator.setVisibility(View.GONE);
+            binding.tvInformation.setVisibility(View.GONE);
+        }
         SelectTimeAdapter adapter = new SelectTimeAdapter(appointmentTimes, this);
         int numberOfColumns = 3;
         binding.rvAppointmentTimes.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
         binding.rvAppointmentTimes.setAdapter(adapter);
         binding.rvAppointmentTimes.setVisibility(View.VISIBLE);
     }
+
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -71,16 +78,23 @@ public class SelectTimeActivity extends AppCompatActivity implements Appointment
 
     @Override
     public void onClick(AppointmentTime appointmentTime) {
-        Intent intent = new Intent(this, ConfirmationActivity.class);
-        Doctor selectedDoctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
-        Department selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
-        HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-        DetailSchedule selectedSchedule = (DetailSchedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
-        intent.putExtra(Constants.KEY_DATE, selectedSchedule);
-        intent.putExtra(Constants.KEY_DOCTOR, selectedDoctor);
-        intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
-        intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
-        intent.putExtra(Constants.KEY_TIME, appointmentTime.getTimeNumber());
-        startActivity(intent);
+        if (getIntent().getStringExtra(Constants.KEY_SOURCE_ACTIVITY) == null) {
+            Intent intent = new Intent(this, ConfirmationActivity.class);
+            Doctor selectedDoctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
+            Department selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
+            HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
+            DetailSchedule selectedSchedule = (DetailSchedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
+            intent.putExtra(Constants.KEY_DATE, selectedSchedule);
+            intent.putExtra(Constants.KEY_DOCTOR, selectedDoctor);
+            intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
+            intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
+            intent.putExtra(Constants.KEY_TIME, appointmentTime.getTimeNumber());
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent();
+            intent.putExtra(Constants.KEY_TIME, appointmentTime);
+            setResult(RESULT_OK, intent);
+            onBackPressed();
+        }
     }
 }

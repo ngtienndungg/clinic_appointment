@@ -20,6 +20,8 @@ public class Constants {
     public static final String GENDER_MALE_ENG = "MALE";
     public static final String GENDER_FEMALE_ENG = "FEMALE";
     public static final String KEY_SOURCE_ACTIVITY = "sourceActivity";
+    public static final String KEY_START_DATE = "startDate";
+    public static final String KEY_END_DATE = "endDate";
     public static final String KEY_SELECTED_ITEM = "selectedItem";
     public static final String KEY_ITEM_TYPE = "itemType";
     public static final String RETURN_TYPE = "returnType";

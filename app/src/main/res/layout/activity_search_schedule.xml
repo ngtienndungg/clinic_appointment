@@ -245,17 +245,8 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/tvNote"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="@string/note_find_doctor"
-                    android:textColor="@color/colorNote"
-                    android:textSize="@dimen/_10sdp"
-                    app:layout_constraintTop_toBottomOf="@id/tilDepartment" />
-
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/tvSearch"
                     style="?attr/textAppearanceBodyMedium"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
@@ -268,7 +259,7 @@
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/tvNote" />
+                    app:layout_constraintTop_toBottomOf="@id/tilDepartment" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

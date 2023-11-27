@@ -18,6 +18,16 @@ public class DetailDoctor implements Serializable {
 
     @SerializedName("description")
     private String description;
+    @SerializedName("position")
+    private String academicLevel;
+
+    public String getAcademicLevel() {
+        return academicLevel;
+    }
+
+    public void setAcademicLevel(String academicLevel) {
+        this.academicLevel = academicLevel;
+    }
 
     public User getDoctorInformation() {
         return doctorInformation;
