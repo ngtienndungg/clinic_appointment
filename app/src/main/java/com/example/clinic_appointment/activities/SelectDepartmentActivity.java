@@ -16,6 +16,7 @@ import com.example.clinic_appointment.adapters.SelectDepartmentAdapter;
 import com.example.clinic_appointment.databinding.ActivitySelectDepartmentBinding;
 import com.example.clinic_appointment.listeners.DepartmentListener;
 import com.example.clinic_appointment.models.Department.Department;
+import com.example.clinic_appointment.models.Department.DepartmentResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacilityResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
@@ -42,26 +43,47 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
     }
 
     private void initiate() {
-        selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-        Call<HealthFacilityResponse> call = RetrofitClient.getPublicAppointmentService().getHealthFacilityById(selectedHealthFacility.getId());
-        call.enqueue(new Callback<HealthFacilityResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<HealthFacilityResponse> call, @NonNull Response<HealthFacilityResponse> response) {
-                if (response.body() != null && response.body().isSuccess()) {
-                    HealthFacility healthFacility = response.body().getHealthFacility();
-                    List<Department> departments = healthFacility.getDepartments();
-                    SelectDepartmentAdapter adapter = new SelectDepartmentAdapter(SelectDepartmentActivity.this, departments);
-                    binding.rvDepartment.setAdapter(adapter);
-                    binding.rvDepartment.setVisibility(View.VISIBLE);
-                    binding.pbLoading.setVisibility(View.GONE);
+        if (getIntent().getStringExtra(Constants.KEY_SOURCE_ACTIVITY) == null) {
+            selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
+            Call<HealthFacilityResponse> call = RetrofitClient.getPublicAppointmentService().getHealthFacilityById(selectedHealthFacility.getId());
+            call.enqueue(new Callback<HealthFacilityResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<HealthFacilityResponse> call, @NonNull Response<HealthFacilityResponse> response) {
+                    if (response.body() != null && response.body().isSuccess()) {
+                        HealthFacility healthFacility = response.body().getHealthFacility();
+                        List<Department> departments = healthFacility.getDepartments();
+                        SelectDepartmentAdapter adapter = new SelectDepartmentAdapter(SelectDepartmentActivity.this, departments);
+                        binding.rvDepartment.setAdapter(adapter);
+                        binding.rvDepartment.setVisibility(View.VISIBLE);
+                        binding.pbLoading.setVisibility(View.GONE);
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(@NonNull Call<HealthFacilityResponse> call, @NonNull Throwable t) {
-                displayError();
-            }
-        });
+                @Override
+                public void onFailure(@NonNull Call<HealthFacilityResponse> call, @NonNull Throwable t) {
+                    displayError();
+                }
+            });
+        } else {
+            Call<DepartmentResponse> call = RetrofitClient.getPublicAppointmentService().getEntireDepartment();
+            call.enqueue(new Callback<DepartmentResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<DepartmentResponse> call, @NonNull Response<DepartmentResponse> response) {
+                    if (response.body() != null && response.body().isSuccess()) {
+                        List<Department> departments = response.body().getDepartments();
+                        SelectDepartmentAdapter adapter = new SelectDepartmentAdapter(SelectDepartmentActivity.this, departments);
+                        binding.rvDepartment.setAdapter(adapter);
+                        binding.rvDepartment.setVisibility(View.VISIBLE);
+                        binding.pbLoading.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<DepartmentResponse> call, @NonNull Throwable t) {
+                    displayError();
+                }
+            });
+        }
     }
 
     private void displayError() {
@@ -75,10 +97,17 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
 
     @Override
     public void onClick(Department department) {
-        Intent intent = new Intent(this, SelectDoctorActivity.class);
-        intent.putExtra(Constants.KEY_DEPARTMENT, department);
-        intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
-        startActivity(intent);
+        if (getIntent().getStringExtra(Constants.KEY_SOURCE_ACTIVITY) == null) {
+            Intent intent = new Intent(this, SelectDoctorActivity.class);
+            intent.putExtra(Constants.KEY_DEPARTMENT, department);
+            intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent();
+            intent.putExtra(Constants.KEY_DEPARTMENT, department);
+            setResult(RESULT_OK, intent);
+            onBackPressed();
+        }
     }
 
     @Override

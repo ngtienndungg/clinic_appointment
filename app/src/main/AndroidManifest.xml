@@ -51,7 +51,7 @@
             android:name=".activities.FindHospitalActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.FindDoctorActivity"
+            android:name=".activities.SearchScheduleActivity"
             android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"

@@ -119,9 +119,16 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
 
     @Override
     public void onClick(HealthFacility healthFacility) {
-        Intent intent = new Intent(this, SelectDepartmentActivity.class);
-        intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);
-        startActivity(intent);
+        if (getIntent().getStringExtra(Constants.KEY_SOURCE_ACTIVITY) == null) {
+            Intent intent = new Intent(this, SelectDepartmentActivity.class);
+            intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent();
+            intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);
+            setResult(RESULT_OK, intent);
+            onBackPressed();
+        }
     }
 
     public static class ModalBottomSheet extends BottomSheetDialogFragment implements ProvinceListener {

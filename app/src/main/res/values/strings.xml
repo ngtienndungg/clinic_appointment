@@ -62,7 +62,7 @@
     <string name="forgot_password">Quên mật khẩu?</string>
     <string name="icon_launcher">Icon launcher</string>
     <string name="welcome_banner">Xin chào,</string>
-    <string name="make_appointment_at_health_facilities">Đặt lịch tại cơ sở y tế</string>
+    <string name="make_appointment_at_health_facilities">Đặt khám tại cơ sở y tế</string>
     <string name="make_appointment_with_doctor">Đặt khám bác sĩ</string>
     <string name="remote_medical_consultation">Tư vấn khám bệnh từ xa</string>
     <string name="help">Hỗ trợ</string>
@@ -130,11 +130,16 @@
     <string name="book_successfully">Đặt lịch thành công</string>
     <string name="temporary_unlabeled">150,000đ</string>
     <string name="this_doctor_dont_have_schedule">Bác sĩ này không có lịch khám</string>
-    <string name="search_and_make_appointment">Tra cứu và đặt lịch khám</string>
-    <string name="make_blood_test_appointment">Đặt lịch xét nghiệm máu</string>
+    <string name="search_appointment">Tra cứu lịch khám</string>
+    <string name="make_blood_test_appointment">Đặt lịch xét nghiệm</string>
     <string name="comprehensive_health_package">Gói sức khoẻ toàn diện</string>
     <string name="make_hospital_payment">Thanh toán viện phí</string>
-    <string name="search_examination_result">Tra cứu kết quả khám bệnh</string>
+    <string name="search_examination_result">Tra cứu kết quả</string>
     <string name="make_appointment_phone">Đặt khám 1900-1234</string>
     <string name="look_for_more">Xem thêm</string>
+    <string name="from_date">Từ ngày</string>
+    <string name="please_select_date">Vui lòng chọn ngày</string>
+    <string name="to_date">Đến ngày</string>
+    <string name="time_range">Khung giờ</string>
+    <string name="all_time_range">Tất cả khung giờ</string>
 </resources>

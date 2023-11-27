@@ -203,7 +203,7 @@
                         android:gravity="center"
                         android:includeFontPadding="false"
                         android:paddingHorizontal="@dimen/_10sdp"
-                        android:text="@string/search_and_make_appointment"
+                        android:text="@string/search_appointment"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
@@ -273,7 +273,7 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="@dimen/_4sdp"
-                    tools:ignore="UseCompoundDrawables" >
+                    tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -302,7 +302,7 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="@dimen/_4sdp"
-                    tools:ignore="UseCompoundDrawables" >
+                    tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -329,7 +329,7 @@
                     android:layout_height="@dimen/homeItemHeight"
                     android:gravity="center"
                     android:orientation="vertical"
-                    tools:ignore="UseCompoundDrawables" >
+                    tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -358,7 +358,7 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="@dimen/_4sdp"
-                    tools:ignore="UseCompoundDrawables" >
+                    tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -386,7 +386,7 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="@dimen/_4sdp"
-                    tools:ignore="UseCompoundDrawables" >
+                    tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:layout_width="match_parent"

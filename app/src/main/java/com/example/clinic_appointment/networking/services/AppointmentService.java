@@ -41,6 +41,8 @@ public interface AppointmentService {
 
     @GET("clinic/{id}")
     Call<HealthFacilityResponse> getHealthFacilityById(@Path("id") String clinicId);
+    @GET("specialty")
+    Call<DepartmentResponse> getEntireDepartment();
 
     @GET("specialty")
     Call<DepartmentResponse> getFilteredDepartment();

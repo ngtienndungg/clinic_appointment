@@ -31,7 +31,7 @@
     <color name="colorFindBackground">#E6EAED</color>
     <color name="colorSecondaryText">#7A8286</color>
     <color name="colorDoctorInformation">#223539</color>
-    <color name="colorFindText">#5D6166</color>
+    <color name="colorFindText">#62666B</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">
         @color/colorStrokeBox
     </color>
