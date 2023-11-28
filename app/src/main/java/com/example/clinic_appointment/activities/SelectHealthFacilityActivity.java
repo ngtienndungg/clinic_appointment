@@ -1,5 +1,6 @@
 package com.example.clinic_appointment.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -32,6 +33,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,7 +41,8 @@ import retrofit2.Response;
 
 public class SelectHealthFacilityActivity extends AppCompatActivity implements HealthFacilityListener {
     private static List<VietnamProvinceResponse.VietnamProvince> provinces = new ArrayList<>();
-    private static List<HealthFacility> healthFacilities = new ArrayList<>();
+    private static List<HealthFacility> originalHealthFacilities = new ArrayList<>();
+    private static List<HealthFacility> dynamicHealthFacilities;
     private ActivitySelectHealthFacilityBinding binding;
 
     @Override
@@ -57,8 +60,9 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
             @Override
             public void onResponse(@NonNull Call<HealthFacilitiesResponse> call, @NonNull Response<HealthFacilitiesResponse> response) {
                 if (response.body() != null && response.body().isSuccess()) {
-                    healthFacilities = response.body().getHealthFacilities();
-                    SelectHealthFacilityAdapter adapter = new SelectHealthFacilityAdapter(healthFacilities, SelectHealthFacilityActivity.this, getApplicationContext());
+                    originalHealthFacilities = response.body().getHealthFacilities();
+                    dynamicHealthFacilities = new ArrayList<>(originalHealthFacilities);
+                    SelectHealthFacilityAdapter adapter = new SelectHealthFacilityAdapter(dynamicHealthFacilities, SelectHealthFacilityActivity.this, getApplicationContext());
                     binding.rvHealthFacility.setAdapter(adapter);
                     binding.rvHealthFacility.setVisibility(View.VISIBLE);
                     binding.pbLoading.setVisibility(View.GONE);
@@ -89,13 +93,14 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
 
     private void displayError() {
         binding.pbLoading.setVisibility(View.GONE);
-        binding.rlError.setVisibility(View.VISIBLE);
+        binding.llError.setVisibility(View.VISIBLE);
     }
 
     private void eventHandling() {
         binding.ivBack.setOnClickListener(v -> onBackPressed());
         binding.etCity.setOnClickListener(v -> {
             ModalBottomSheet modalBottomSheet = new ModalBottomSheet();
+            modalBottomSheet.setListener(this);
             modalBottomSheet.show(getSupportFragmentManager(), "ModalBottomSheet");
         });
     }
@@ -131,7 +136,24 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    public void onProvinceSelect() {
+        if (dynamicHealthFacilities.size() > 0) {
+            binding.tvNotFound.setVisibility(View.GONE);
+            Objects.requireNonNull(binding.rvHealthFacility.getAdapter()).notifyDataSetChanged();
+        } else {
+            binding.tvNotFound.setVisibility(View.VISIBLE);
+        }
+    }
+
     public static class ModalBottomSheet extends BottomSheetDialogFragment implements ProvinceListener {
+        private HealthFacilityListener listener;
+
+        public void setListener(HealthFacilityListener listener) {
+            this.listener = listener;
+        }
+
         @Nullable
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -150,12 +172,14 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
 
         @Override
         public void onClick(VietnamProvinceResponse.VietnamProvince province) {
-            List<HealthFacility> filteredHealthFacility = new ArrayList<>();
-            for (HealthFacility healthFacility : healthFacilities) {
+            dynamicHealthFacilities.clear();
+            for (HealthFacility healthFacility : originalHealthFacilities) {
                 if (healthFacility.getAddress().getProvince().equals(province.getProvinceName())) {
-
+                    dynamicHealthFacilities.add(healthFacility);
                 }
             }
+            listener.onProvinceSelect();
+            dismiss();
         }
     }
 }
