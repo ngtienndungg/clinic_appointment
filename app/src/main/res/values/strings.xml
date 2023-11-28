@@ -141,4 +141,14 @@
     <string name="to_date">Đến ngày</string>
     <string name="time_range">Khung giờ</string>
     <string name="all_time_range">Tất cả khung giờ</string>
+    <string name="policy_and_term">Điều khoản và quy định</string>
+    <string name="term_of_use">Điều khoản sử dụng</string>
+    <string name="privacy_policy">Chính sách bảo mật</string>
+    <string name="term_of_service">Điều khoản dịch vụ</string>
+    <string name="switchboard">Tổng đài CSKH - 19001234</string>
+    <string name="rate_app">Đánh giá ứng dụng</string>
+    <string name="share_app">Chia sẻ ứng dụng</string>
+    <string name="usual_question">Câu hỏi thường gặp</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="logout">Đăng xuất</string>
 </resources>

@@ -1,9 +1,13 @@
 package com.example.clinic_appointment.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -22,7 +26,9 @@ import com.example.clinic_appointment.models.HealthFacility.HealthFacilityRespon
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +38,11 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
 
     private ActivitySelectDepartmentBinding binding;
     private HealthFacility selectedHealthFacility;
+    private static List<Department> originalDepartments = new ArrayList<>();
+    private static List<Department> dynamicDepartments;
+    private SelectDepartmentAdapter adapter;
+    private final Handler handler = new Handler();
+    private final long SEARCH_DELAY_MILLIS = 300;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +61,9 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
                 @Override
                 public void onResponse(@NonNull Call<HealthFacilityResponse> call, @NonNull Response<HealthFacilityResponse> response) {
                     if (response.body() != null && response.body().isSuccess() && response.body().getHealthFacility().getDepartments().size() > 0) {
-                        HealthFacility healthFacility = response.body().getHealthFacility();
-                        List<Department> departments = healthFacility.getDepartments();
-                        SelectDepartmentAdapter adapter = new SelectDepartmentAdapter(SelectDepartmentActivity.this, departments);
+                        originalDepartments = response.body().getHealthFacility().getDepartments();
+                        dynamicDepartments = new ArrayList<>(originalDepartments);
+                        adapter = new SelectDepartmentAdapter(SelectDepartmentActivity.this, dynamicDepartments);
                         binding.rvDepartment.setAdapter(adapter);
                         binding.rvDepartment.setVisibility(View.VISIBLE);
                         binding.pbLoading.setVisibility(View.GONE);
@@ -72,8 +83,9 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
                 @Override
                 public void onResponse(@NonNull Call<DepartmentResponse> call, @NonNull Response<DepartmentResponse> response) {
                     if (response.body() != null && response.body().isSuccess() && response.body().getDepartments().size() > 0) {
-                        List<Department> departments = response.body().getDepartments();
-                        SelectDepartmentAdapter adapter = new SelectDepartmentAdapter(SelectDepartmentActivity.this, departments);
+                        originalDepartments = response.body().getDepartments();
+                        dynamicDepartments = new ArrayList<>(originalDepartments);
+                        adapter = new SelectDepartmentAdapter(SelectDepartmentActivity.this, dynamicDepartments);
                         binding.rvDepartment.setAdapter(adapter);
                         binding.rvDepartment.setVisibility(View.VISIBLE);
                         binding.pbLoading.setVisibility(View.GONE);
@@ -97,6 +109,43 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
 
     private void eventHandling() {
         binding.ivBack.setOnClickListener(v -> onBackPressed());
+        binding.etSearchName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                handler.removeCallbacksAndMessages(null);
+                handler.postDelayed(() -> search(editable.toString().trim()), SEARCH_DELAY_MILLIS);
+            }
+        });
+    }
+
+    private void search(String name) {
+        dynamicDepartments.clear();
+        for (Department department : originalDepartments) {
+            if (department.getName().toLowerCase().contains(name)) {
+                dynamicDepartments.add(department);
+            }
+        }
+        displayList();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void displayList() {
+        if (dynamicDepartments.size() > 0) {
+            binding.tvNotFound.setVisibility(View.GONE);
+            Objects.requireNonNull(binding.rvDepartment.getAdapter()).notifyDataSetChanged();
+        } else {
+            binding.tvNotFound.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

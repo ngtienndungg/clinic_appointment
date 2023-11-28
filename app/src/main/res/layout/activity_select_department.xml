@@ -64,7 +64,7 @@
                 tools:ignore="ContentDescription" />
 
             <EditText
-                android:id="@+id/etSearch"
+                android:id="@+id/etSearchName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/registerTextFieldHeight"
                 android:layout_marginStart="@dimen/_6sdp"

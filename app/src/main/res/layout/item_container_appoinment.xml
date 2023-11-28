@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_8sdp"
     android:background="@drawable/background_health_facility_item"
-    android:paddingHorizontal="@dimen/_12sdp"
-    android:paddingVertical="@dimen/_8sdp">
+    android:paddingVertical="@dimen/_8sdp"
+    android:paddingStart="@dimen/_10sdp"
+    tools:ignore="RtlSymmetry">
 
     <TextView
         android:id="@+id/tvCode"
@@ -14,13 +16,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginTop="@dimen/_4sdp"
         android:fontFamily="@font/quicksand_bold"
         android:includeFontPadding="false"
         android:text="@string/appointment_code"
         android:textAllCaps="true"
         android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/_12ssp" />
+        android:textSize="@dimen/_13ssp" />
 
     <TextView
         android:id="@+id/tvHealthFacility"
@@ -28,18 +30,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvCode"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_6sdp"
         android:fontFamily="@font/quicksand_semi_bold"
         android:includeFontPadding="false"
-        android:textColor="@color/colorBlack"
-        android:textSize="@dimen/_12ssp" />
+        android:textColor="@color/colorRegisterFieldLabel"
+        android:textSize="@dimen/_13ssp" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/mdDivider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
         android:layout_below="@id/tvHealthFacility"
-        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
 
     <LinearLayout
@@ -47,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/mdDivider"
-        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_6sdp"
         android:baselineAligned="false"
         android:orientation="vertical">
 
@@ -72,6 +74,7 @@
                 android:id="@+id/tvDepartment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_weight="7"
                 android:fontFamily="@font/quicksand_medium"
                 android:gravity="center_vertical|end"
@@ -83,7 +86,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:weightSum="20">
@@ -102,6 +105,7 @@
                 android:id="@+id/tvDoctor"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_weight="7"
                 android:fontFamily="@font/quicksand_medium"
                 android:gravity="center_vertical|end"
@@ -113,7 +117,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:weightSum="20">
@@ -132,6 +136,7 @@
                 android:id="@+id/tvDate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_weight="7"
                 android:fontFamily="@font/quicksand_medium"
                 android:gravity="center_vertical|end"
@@ -143,7 +148,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:weightSum="20">
@@ -162,6 +167,7 @@
                 android:id="@+id/tvTime"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_weight="7"
                 android:fontFamily="@font/quicksand_medium"
                 android:gravity="center_vertical|end"
@@ -173,7 +179,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:weightSum="20">
@@ -192,6 +198,7 @@
                 android:id="@+id/tvStatus"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_weight="7"
                 android:fontFamily="@font/quicksand_medium"
                 android:gravity="center_vertical|end"
@@ -207,7 +214,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/llInformation"
-        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:gravity="center_vertical|end"
         android:orientation="horizontal"
         android:weightSum="20">

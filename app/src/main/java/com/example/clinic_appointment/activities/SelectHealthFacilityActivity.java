@@ -48,7 +48,7 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
     private static List<HealthFacility> dynamicHealthFacilities;
     private ActivitySelectHealthFacilityBinding binding;
     private final Handler handler = new Handler();
-    private static final long SEARCH_DELAY_MILLIS = 300;
+    private final long SEARCH_DELAY_MILLIS = 300;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
