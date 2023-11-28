@@ -27,7 +27,7 @@
     <string name="popular_hospital_and_clinic">Bệnh viện và phòng khám phổ biến</string>
     <string name="from_all_hospital_and_clinic"><![CDATA[Từ tất cả bệnh viện & phòng khám]]></string>
     <string name="from_all_department">Từ tất cả chuyên khoa</string>
-    <string name="something_wrong_happened">Đã có lỗi xảy ra</string>
+    <string name="something_wrong_happened">Đã có lỗi xảy ra. Vui lòng kiểm tra kết nối</string>
     <string name="department_list">Danh sách chuyên khoa</string>
     <string name="create_account">Tạo tài khoản</string>
     <string name="please_fill_this_information">Vui lòng nhập đầy đủ thông tin bên dưới để tạo tài khoản</string>

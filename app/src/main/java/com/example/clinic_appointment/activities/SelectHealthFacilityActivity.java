@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,6 +47,8 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
     private static List<HealthFacility> originalHealthFacilities = new ArrayList<>();
     private static List<HealthFacility> dynamicHealthFacilities;
     private ActivitySelectHealthFacilityBinding binding;
+    private final Handler handler = new Handler();
+    private static final long SEARCH_DELAY_MILLIS = 300;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +108,33 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
             modalBottomSheet.setListener(this);
             modalBottomSheet.show(getSupportFragmentManager(), "ModalBottomSheet");
         });
+        binding.etSearchName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Do nothing
+            }
+
+            @Override
+            public void afterTextChanged(final Editable editable) {
+                handler.removeCallbacksAndMessages(null);
+                handler.postDelayed(() -> search(editable.toString().trim()), SEARCH_DELAY_MILLIS);
+            }
+        });
+    }
+
+    private void search(String name) {
+        dynamicHealthFacilities.clear();
+        for (HealthFacility healthFacility : originalHealthFacilities) {
+            if (healthFacility.getName().toLowerCase().contains(name)) {
+                dynamicHealthFacilities.add(healthFacility);
+            }
+        }
+        onProvinceSelect();
     }
 
     @Override

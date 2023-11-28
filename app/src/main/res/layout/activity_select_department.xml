@@ -105,35 +105,48 @@
         android:visibility="gone" />
 
     <RelativeLayout
-        android:id="@+id/rlError"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@id/rlSearchName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_24sdp"
-        android:gravity="center_vertical"
-        android:visibility="gone">
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:id="@+id/llError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:ignore="UseCompoundDrawables,UselessParent">
+
+            <ImageView
+                android:id="@+id/ivError"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_error" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:fontFamily="@font/quicksand_medium"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:text="@string/something_wrong_happened"
+                android:textColor="@color/colorTextViewResult"
+                android:textSize="@dimen/_11sdp" />
+
+        </LinearLayout>
 
         <ImageView
-            android:id="@+id/ivError"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:importantForAccessibility="no"
-            android:src="@drawable/ic_error" />
-
-        <TextView
+            android:id="@+id/tvNotFound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/ivError"
-            android:layout_alignBottom="@id/ivError"
-            android:layout_marginStart="@dimen/_6sdp"
-            android:layout_toEndOf="@id/ivError"
-            android:fontFamily="@font/quicksand_medium"
-            android:gravity="center_vertical"
-            android:includeFontPadding="false"
-            android:text="@string/something_wrong_happened"
-            android:textColor="@color/colorTextViewResult"
-            android:textSize="@dimen/_11sdp" />
+            android:layout_centerInParent="true"
+            android:importantForAccessibility="no"
+            android:src="@mipmap/ic_not_found"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

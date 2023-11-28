@@ -137,4 +137,9 @@ public class SelectItemActivity extends AppCompatActivity implements HealthFacil
     public void onClick(HealthFacility healthFacility) {
 
     }
+
+    @Override
+    public void onProvinceSelect() {
+
+    }
 }

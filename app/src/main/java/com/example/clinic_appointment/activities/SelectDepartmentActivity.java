@@ -49,13 +49,15 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
             call.enqueue(new Callback<HealthFacilityResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<HealthFacilityResponse> call, @NonNull Response<HealthFacilityResponse> response) {
-                    if (response.body() != null && response.body().isSuccess()) {
+                    if (response.body() != null && response.body().isSuccess() && response.body().getHealthFacility().getDepartments().size() > 0) {
                         HealthFacility healthFacility = response.body().getHealthFacility();
                         List<Department> departments = healthFacility.getDepartments();
                         SelectDepartmentAdapter adapter = new SelectDepartmentAdapter(SelectDepartmentActivity.this, departments);
                         binding.rvDepartment.setAdapter(adapter);
                         binding.rvDepartment.setVisibility(View.VISIBLE);
                         binding.pbLoading.setVisibility(View.GONE);
+                    } else {
+                        binding.tvNotFound.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -69,12 +71,14 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
             call.enqueue(new Callback<DepartmentResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<DepartmentResponse> call, @NonNull Response<DepartmentResponse> response) {
-                    if (response.body() != null && response.body().isSuccess()) {
+                    if (response.body() != null && response.body().isSuccess() && response.body().getDepartments().size() > 0) {
                         List<Department> departments = response.body().getDepartments();
                         SelectDepartmentAdapter adapter = new SelectDepartmentAdapter(SelectDepartmentActivity.this, departments);
                         binding.rvDepartment.setAdapter(adapter);
                         binding.rvDepartment.setVisibility(View.VISIBLE);
                         binding.pbLoading.setVisibility(View.GONE);
+                    } else {
+                        binding.tvNotFound.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -88,7 +92,7 @@ public class SelectDepartmentActivity extends AppCompatActivity implements Depar
 
     private void displayError() {
         binding.pbLoading.setVisibility(View.GONE);
-        binding.rlError.setVisibility(View.VISIBLE);
+        binding.llError.setVisibility(View.VISIBLE);
     }
 
     private void eventHandling() {

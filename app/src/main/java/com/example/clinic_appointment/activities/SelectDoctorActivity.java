@@ -57,12 +57,14 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
             call.enqueue(new Callback<DoctorResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<DoctorResponse> call, @NonNull Response<DoctorResponse> response) {
-                    if (response.body() != null && response.body().isSuccess()) {
+                    if (response.body() != null && response.body().isSuccess() && response.body().getDoctors().size() > 0) {
                         List<Doctor> doctors = response.body().getDoctors();
                         SelectDoctorAdapter adapter = new SelectDoctorAdapter(SelectDoctorActivity.this, doctors);
                         binding.rvDoctor.setAdapter(adapter);
                         binding.rvDoctor.setVisibility(View.VISIBLE);
                         binding.pbLoading.setVisibility(View.GONE);
+                    } else {
+                        binding.tvNotFound.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -86,12 +88,14 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
             call.enqueue(new Callback<ScheduleResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<ScheduleResponse> call, @NonNull Response<ScheduleResponse> response) {
-                    if (response.body() != null && response.body().isSuccess()) {
+                    if (response.body() != null && response.body().isSuccess() && response.body().getSchedules().size() > 0) {
                         List<DetailSchedule> schedules = response.body().getSchedules();
                         ScheduleAdapter adapter = new ScheduleAdapter(SelectDoctorActivity.this, schedules);
                         binding.rvDoctor.setAdapter(adapter);
                         binding.rvDoctor.setVisibility(View.VISIBLE);
                         binding.pbLoading.setVisibility(View.GONE);
+                    } else {
+                        binding.tvNotFound.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -105,7 +109,7 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
 
     private void displayError() {
         binding.pbLoading.setVisibility(View.GONE);
-        binding.rlError.setVisibility(View.VISIBLE);
+        binding.llError.setVisibility(View.VISIBLE);
     }
 
     private void eventHandling() {
