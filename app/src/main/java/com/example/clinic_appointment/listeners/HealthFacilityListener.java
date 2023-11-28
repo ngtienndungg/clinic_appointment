@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface HealthFacilityListener {
     void onClick(HealthFacility healthFacility);
-    void onProvinceSelect();
+    void onProvinceSelect(String provinceName);
 }

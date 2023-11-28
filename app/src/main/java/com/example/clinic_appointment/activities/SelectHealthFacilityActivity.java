@@ -86,6 +86,9 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
             public void onResponse(@NonNull Call<VietnamProvinceResponse> call, @NonNull Response<VietnamProvinceResponse> response) {
                 if (response.body() != null) {
                     provinces = response.body().getProvinces();
+                    VietnamProvinceResponse.VietnamProvince allMatch = new VietnamProvinceResponse.VietnamProvince();
+                    allMatch.setProvinceName(getString(R.string.all_province_city));
+                    provinces.add(0, allMatch);
                 }
             }
 
@@ -122,19 +125,30 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
             @Override
             public void afterTextChanged(final Editable editable) {
                 handler.removeCallbacksAndMessages(null);
-                handler.postDelayed(() -> search(editable.toString().trim()), SEARCH_DELAY_MILLIS);
+                handler.postDelayed(() -> search(editable.toString().trim(), binding.etCity.getText().toString().trim()), SEARCH_DELAY_MILLIS);
             }
         });
     }
 
-    private void search(String name) {
+    private void search(String healthFacilityName, String provinceName) {
         dynamicHealthFacilities.clear();
         for (HealthFacility healthFacility : originalHealthFacilities) {
-            if (healthFacility.getName().toLowerCase().contains(name)) {
+            if (healthFacility.getName().toLowerCase().contains(healthFacilityName)
+                    && healthFacility.getAddress().getProvince().contains(provinceName)) {
                 dynamicHealthFacilities.add(healthFacility);
             }
         }
-        onProvinceSelect();
+        displayList();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void displayList() {
+        if (dynamicHealthFacilities.size() > 0) {
+            binding.tvNotFound.setVisibility(View.GONE);
+            Objects.requireNonNull(binding.rvHealthFacility.getAdapter()).notifyDataSetChanged();
+        } else {
+            binding.tvNotFound.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -170,13 +184,10 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
-    public void onProvinceSelect() {
-        if (dynamicHealthFacilities.size() > 0) {
-            binding.tvNotFound.setVisibility(View.GONE);
-            Objects.requireNonNull(binding.rvHealthFacility.getAdapter()).notifyDataSetChanged();
-        } else {
-            binding.tvNotFound.setVisibility(View.VISIBLE);
-        }
+    public void onProvinceSelect(String provinceName) {
+        search(binding.etSearchName.getText().toString().trim(), provinceName);
+        binding.etCity.setText(provinceName);
+        displayList();
     }
 
     public static class ModalBottomSheet extends BottomSheetDialogFragment implements ProvinceListener {
@@ -189,7 +200,7 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
         @Nullable
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            int PROVINCE_NUMBER = 63;
+            int PROVINCE_NUMBER = 64;
             View view = inflater.inflate(R.layout.layout_provinces, container, false);
             RecyclerView rvProvinces = view.findViewById(R.id.rvProvinces);
             TextView tvError = view.findViewById(R.id.tvError);
@@ -204,13 +215,7 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
 
         @Override
         public void onClick(VietnamProvinceResponse.VietnamProvince province) {
-            dynamicHealthFacilities.clear();
-            for (HealthFacility healthFacility : originalHealthFacilities) {
-                if (healthFacility.getAddress().getProvince().equals(province.getProvinceName())) {
-                    dynamicHealthFacilities.add(healthFacility);
-                }
-            }
-            listener.onProvinceSelect();
+            listener.onProvinceSelect(province.getProvinceName().equals(getString(R.string.all_province_city)) ? "" : province.getProvinceName());
             dismiss();
         }
     }

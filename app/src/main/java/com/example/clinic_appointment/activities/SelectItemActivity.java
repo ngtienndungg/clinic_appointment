@@ -139,7 +139,7 @@ public class SelectItemActivity extends AppCompatActivity implements HealthFacil
     }
 
     @Override
-    public void onProvinceSelect() {
+    public void onProvinceSelect(String name) {
 
     }
 }
