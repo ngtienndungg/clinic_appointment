@@ -15,6 +15,7 @@ public class Constants {
     public static final String KEY_HEALTH_FACILITY = "healthFacility";
     public static final String KEY_DEPARTMENT = "department";
     public static final String KEY_DOCTOR = "doctor";
+    public static final String KEY_DETAIL_DOCTOR = "detailDoctor";
     public static final String KEY_DATE = "date";
     public static final String KEY_TIME = "time";
     public static final String GENDER_MALE_ENG = "MALE";

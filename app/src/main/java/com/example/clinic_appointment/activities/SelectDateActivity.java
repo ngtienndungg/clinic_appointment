@@ -15,6 +15,7 @@ import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivitySelectDateBinding;
 import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
 import com.example.clinic_appointment.models.Department.Department;
+import com.example.clinic_appointment.models.Doctor.DetailDoctor;
 import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.Schedule.DetailSchedule;
@@ -46,6 +47,7 @@ import retrofit2.Response;
 public class SelectDateActivity extends AppCompatActivity {
     private ActivitySelectDateBinding binding;
     private List<DetailSchedule> availableSchedules;
+    private Doctor doctor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,10 @@ public class SelectDateActivity extends AppCompatActivity {
     }
 
     void initiate() {
-        Doctor doctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
+        doctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
+        if (doctor == null) {
+            doctor = Doctor.getDoctor((DetailDoctor) Objects.requireNonNull(getIntent().getSerializableExtra(Constants.KEY_DETAIL_DOCTOR)));
+        }
         long currentTimeMillis = System.currentTimeMillis();
         long endTimeMillis = currentTimeMillis + (30L * 86400000);
         Call<ScheduleResponse> call = RetrofitClient.getAuthenticatedAppointmentService()
@@ -118,11 +123,10 @@ public class SelectDateActivity extends AppCompatActivity {
                                 dayViewContainer.textView.setBackgroundResource(R.color.colorAvailableDate);
                                 dayViewContainer.textView.setOnClickListener(v -> {
                                     Intent intent = new Intent(getApplicationContext(), SelectTimeActivity.class);
-                                    Doctor selectedDoctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
                                     Department selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
                                     HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
                                     intent.putExtra(Constants.KEY_DATE, schedule);
-                                    intent.putExtra(Constants.KEY_DOCTOR, selectedDoctor);
+                                    intent.putExtra(Constants.KEY_DOCTOR, doctor);
                                     intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
                                     intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
                                     startActivity(intent);

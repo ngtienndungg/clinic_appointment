@@ -64,6 +64,15 @@ public class Doctor implements Serializable {
         }
     }
 
+    public static Doctor getDoctor(DetailDoctor detailDoctor) {
+        Doctor doctor = new Doctor();
+        doctor.setDoctorInformation(detailDoctor.getDoctorInformation());
+        doctor.setClinicID(detailDoctor.getHealthFacility().getId());
+        doctor.setAcademicLevel(detailDoctor.getAcademicLevel());
+        doctor.setDescription(detailDoctor.getDescription());
+        return doctor;
+    }
+
 
     public String getAcademicLevel() {
         return academicLevel;

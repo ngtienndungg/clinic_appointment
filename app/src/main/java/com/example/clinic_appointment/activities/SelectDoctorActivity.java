@@ -113,20 +113,6 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
     }
 
     @Override
-    public void onClick(Doctor doctor) {
-        if (!Objects.equals(doctor.getScheduleString(), "Không có lịch khám")) {
-            HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-            Intent intent = new Intent(this, SelectDateActivity.class);
-            intent.putExtra(Constants.KEY_DOCTOR, doctor);
-            intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
-            intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, getString(R.string.this_doctor_dont_have_schedule), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
             View v = getCurrentFocus();
@@ -144,7 +130,25 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
     }
 
     @Override
-    public void onClick(DetailSchedule detailSchedule) {
+    public void onClick(Doctor doctor) {
+        if (!Objects.equals(doctor.getScheduleString(), "Không có lịch khám")) {
+            HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
+            Intent intent = new Intent(this, SelectDateActivity.class);
+            intent.putExtra(Constants.KEY_DOCTOR, doctor);
+            intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
+            intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, getString(R.string.this_doctor_dont_have_schedule), Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    @Override
+    public void onClick(DetailSchedule detailSchedule) {
+        Intent intent = new Intent(this, SelectDateActivity.class);
+        intent.putExtra(Constants.KEY_DETAIL_DOCTOR, detailSchedule.getDoctor());
+        intent.putExtra(Constants.KEY_DEPARTMENT, detailSchedule.getDoctor().getDepartmentInformation());
+        intent.putExtra(Constants.KEY_HEALTH_FACILITY, detailSchedule.getDoctor().getHealthFacility());
+        startActivity(intent);
     }
 }
