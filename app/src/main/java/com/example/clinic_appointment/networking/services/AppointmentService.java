@@ -33,7 +33,7 @@ public interface AppointmentService {
     @POST("user/register")
     Call<UserResponse> register(@Field("email") String email, @Field("password") String password,
                                 @Field("fullName") String fullName, @Field("mobile") String phoneNumber,
-                                @Field("address") String address, @Field("gender") boolean gender,
+                                @Field("address") String address, @Field("gender") String gender,
                                 @Field("dateOfBirth") String dateOfBirth);
 
     @GET("clinic")

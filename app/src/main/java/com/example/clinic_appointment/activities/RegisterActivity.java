@@ -1,6 +1,8 @@
 package com.example.clinic_appointment.activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -9,13 +11,20 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivityRegisterBinding;
+import com.example.clinic_appointment.models.User.UserResponse;
+import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
     private final int PASSWORD_LEAST_LENGTH = 6;
@@ -55,9 +64,26 @@ public class RegisterActivity extends AppCompatActivity {
         } else if (!password.equals(repeatPassword)) {
             makeSnackbar(getString(R.string.password_and_repeat_no_match));
         } else {
-            makeSnackbar("OK rồi");
+            ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
+            progressDialog.show();
+            Call<UserResponse> call = RetrofitClient.getPublicAppointmentService().register(email, password, fullName, phoneNumber, address, binding.rbFemale.isChecked() ? "FEMALE" : "MALE", dateOfBirth);
+            call.enqueue(new Callback<UserResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
+                    if (response.isSuccessful()) {
+                        progressDialog.dismiss();
+                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable t) {
+                    progressDialog.dismiss();
+                    makeSnackbar(getString(R.string.something_wrong_happened));
+                }
+            });
         }
-        // Call<UserResponse> call = RetrofitClient.getPublicAppointmentService().register()
     }
 
     private void makeSnackbar(String message) {
