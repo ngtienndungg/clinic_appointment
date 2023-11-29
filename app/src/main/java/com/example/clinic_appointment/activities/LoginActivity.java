@@ -1,6 +1,7 @@
 package com.example.clinic_appointment.activities;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -54,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         binding.tvCreateAccount.setOnClickListener(v -> mStartForResult.launch(new Intent(this, RegisterActivity.class)));
         binding.ivBack.setOnClickListener(v -> onBackPressed());
         binding.btLogin.setOnClickListener(v -> {
+            ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.show();
             Call<UserResponse> call = RetrofitClient.getPublicAppointmentService()
                     .login(binding.etEmail.getText().toString(), binding.etPassword.getText().toString());
             call.enqueue(new Callback<UserResponse>() {
@@ -66,9 +69,11 @@ public class LoginActivity extends AppCompatActivity {
                         sharedPrefs.putData(Constants.KEY_CURRENT_NAME, userResponse != null ? userResponse.getUser().getFullName() : null);
                         sharedPrefs.putData(Constants.KEY_CURRENT_PHONE_NUMBER, userResponse != null ? userResponse.getUser().getPhoneNumber() : null);
                         sharedPrefs.putData(Constants.KEY_CURRENT_EMAIL, userResponse != null ? userResponse.getUser().getEmail() : null);
+                        progressDialog.dismiss();
                         setResult(RESULT_OK);
                         onBackPressed();
                     } else {
+                        progressDialog.dismiss();
                         Snackbar.make(v, R.string.invalid_email_password, BaseTransientBottomBar.LENGTH_LONG).show();
                     }
                 }

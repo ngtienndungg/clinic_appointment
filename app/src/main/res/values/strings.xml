@@ -157,4 +157,6 @@
     <string name="medpro_welcome">MedPro xin chào,</string>
     <string name="click_here_to_login">Bấm vào đây để đăng nhập</string>
     <string name="register_successfully">Bạn đã đăng ký thành công. Hãy đăng nhập</string>
+    <string name="you_are_not_connected_to_internet">Bạn chưa kết nối Internet</string>
+    <string name="please_connect_to_the_internet">Vui lòng kết nối Internet</string>
 </resources>

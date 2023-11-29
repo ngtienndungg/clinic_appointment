@@ -84,7 +84,7 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
     private void getAppointments() {
         binding.rvAppointments.setVisibility(View.GONE);
         binding.pbLoading.setVisibility(View.VISIBLE);
-        Call<AppointmentResponse> call = RetrofitClient.getAuthenticatedAppointmentService().getEntireAppointment();
+        Call<AppointmentResponse> call = RetrofitClient.getAuthenticatedAppointmentService(requireContext()).getEntireAppointment();
         call.enqueue(new Callback<AppointmentResponse>() {
             @Override
             public void onResponse(@NonNull Call<AppointmentResponse> call, @NonNull Response<AppointmentResponse> response) {

@@ -1,6 +1,7 @@
 package com.example.clinic_appointment.fragments;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,8 +15,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.clinic_appointment.activities.LoginActivity;
 import com.example.clinic_appointment.databinding.FragmentAccountBinding;
+import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 import com.example.clinic_appointment.utilities.SharedPrefs;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AccountFragment extends Fragment {
     private final SharedPrefs sharedPrefs = SharedPrefs.getInstance();
@@ -27,7 +33,6 @@ public class AccountFragment extends Fragment {
                     handleIsLoginDisplaying(true);
                 }
             });
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,19 @@ public class AccountFragment extends Fragment {
 
     private void eventHandling() {
         binding.llLogout.setOnClickListener(v -> {
+            ProgressDialog progressDialog = new ProgressDialog(requireContext());
+            progressDialog.show();
+            RetrofitClient.getPublicAppointmentService().logout(SharedPrefs.getInstance().getData(Constants.KEY_REFRESH_TOKEN, String.class)).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                    progressDialog.dismiss();
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                    progressDialog.dismiss();
+                }
+            });
             sharedPrefs.clear();
             handleIsLoginDisplaying(false);
         });

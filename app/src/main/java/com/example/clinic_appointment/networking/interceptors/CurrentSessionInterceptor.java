@@ -1,7 +1,16 @@
 package com.example.clinic_appointment.networking.interceptors;
 
-import androidx.annotation.NonNull;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.view.LayoutInflater;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+
+import com.example.clinic_appointment.activities.LoginActivity;
+import com.example.clinic_appointment.databinding.DialogNotificationBinding;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.networking.services.AppointmentService;
 import com.example.clinic_appointment.utilities.Constants;
@@ -20,7 +29,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CurrentSessionInterceptor implements Interceptor {
-    SharedPrefs sharedPrefs = SharedPrefs.getInstance();
+    private Context context;
+    private AlertDialog alertDialog;
+    private SharedPrefs sharedPrefs = SharedPrefs.getInstance();
+
+    public CurrentSessionInterceptor(Context context) {
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -73,8 +88,30 @@ public class CurrentSessionInterceptor implements Interceptor {
 
             @Override
             public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
-
+                sharedPrefs.clear();
+                displayDialog();
             }
         });
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void displayDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        DialogNotificationBinding dialogNotificationBinding = DialogNotificationBinding.inflate(LayoutInflater.from(context));
+        builder.setView(dialogNotificationBinding.getRoot());
+        alertDialog = builder.create();
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        dialogNotificationBinding.tvTitle.setText("Phiên bản đã hết bạn");
+        dialogNotificationBinding.tvContent.setText("Vui lòng đăng nhập lại để sử dụng ứng dụng");
+        dialogNotificationBinding.tvAction.setText("Đăng nhập");
+        dialogNotificationBinding.tvAction.setOnClickListener(v -> context.startActivity(new Intent(context, LoginActivity.class)));
+        dialogNotificationBinding.ivClose.setOnClickListener(v ->
+        {
+            alertDialog.dismiss();
+            alertDialog = null;
+        });
+        alertDialog.show();
     }
 }

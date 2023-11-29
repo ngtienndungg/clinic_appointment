@@ -65,7 +65,7 @@ public class SelectDateActivity extends AppCompatActivity {
         }
         long currentTimeMillis = System.currentTimeMillis();
         long endTimeMillis = currentTimeMillis + (30L * 86400000);
-        Call<ScheduleResponse> call = RetrofitClient.getAuthenticatedAppointmentService()
+        Call<ScheduleResponse> call = RetrofitClient.getAuthenticatedAppointmentService(this)
                 .getSchedules(currentTimeMillis - 86400000, endTimeMillis, null, null, null, Objects.requireNonNull(doctor).getDoctorInformation().getId());
         availableSchedules = new ArrayList<>();
         call.enqueue(new Callback<ScheduleResponse>() {

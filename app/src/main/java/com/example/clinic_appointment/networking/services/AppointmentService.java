@@ -24,6 +24,9 @@ public interface AppointmentService {
     @FormUrlEncoded
     Call<UserResponse> login(@Field("email") String email, @Field("password") String password);
 
+    @POST("user/logout")
+    Call<Void> logout(@Header("Set-Cookie") String refreshToken);
+
     @POST("user/refreshtoken")
     Call<JsonObject> refreshToken(@Header("Set-Cookie") String refreshToken);
 

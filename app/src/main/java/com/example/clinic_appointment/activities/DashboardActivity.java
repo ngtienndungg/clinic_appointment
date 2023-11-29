@@ -3,6 +3,9 @@ package com.example.clinic_appointment.activities;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,11 +13,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivityDashboardBinding;
+import com.example.clinic_appointment.databinding.DialogNotificationBinding;
 import com.example.clinic_appointment.fragments.AccountFragment;
 import com.example.clinic_appointment.fragments.HomeFragment;
 import com.example.clinic_appointment.fragments.MyScheduleFragment;
@@ -24,6 +29,7 @@ import com.example.clinic_appointment.utilities.Constants;
 public class DashboardActivity extends AppCompatActivity {
     private ActivityDashboardBinding binding;
     private Fragment currentFragment;
+    private AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,5 +105,43 @@ public class DashboardActivity extends AppCompatActivity {
             }
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    protected void onResume() {
+        if (!isNetworkAvailable()) {
+            showNetworkUnavailableDialog();
+        }
+        super.onResume();
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+    }
+
+    private void showNetworkUnavailableDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        DialogNotificationBinding dialogNotificationBinding = DialogNotificationBinding.inflate(getLayoutInflater());
+        builder.setView(dialogNotificationBinding.getRoot());
+        alertDialog = builder.create();
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        dialogNotificationBinding.tvTitle.setText(getString(R.string.you_are_not_connected_to_internet));
+        dialogNotificationBinding.tvContent.setText(getString(R.string.please_connect_to_the_internet));
+        dialogNotificationBinding.tvAction.setText(getString(R.string.accept));
+        dialogNotificationBinding.tvAction.setOnClickListener(v -> dismissDialog());
+        dialogNotificationBinding.ivClose.setOnClickListener(v -> dismissDialog());
+        alertDialog.show();
+    }
+
+    private void dismissDialog() {
+        if (alertDialog != null) {
+            alertDialog.dismiss();
+            alertDialog = null;
+        }
     }
 }

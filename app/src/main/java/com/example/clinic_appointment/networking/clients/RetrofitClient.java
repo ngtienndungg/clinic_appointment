@@ -1,5 +1,7 @@
 package com.example.clinic_appointment.networking.clients;
 
+import android.content.Context;
+
 import com.example.clinic_appointment.networking.interceptors.CurrentSessionInterceptor;
 import com.example.clinic_appointment.networking.services.AppointmentService;
 
@@ -16,9 +18,9 @@ public class RetrofitClient {
     private static Retrofit publicRetrofit = null;
     private static Retrofit addressRetrofit = null;
 
-    public static AppointmentService getAuthenticatedAppointmentService() {
+    public static AppointmentService getAuthenticatedAppointmentService(Context context) {
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new CurrentSessionInterceptor())
+                .addInterceptor(new CurrentSessionInterceptor(context))
                 .addInterceptor(loggingInterceptor)
                 .build();
         if (authenticatedRetrofit == null) {
