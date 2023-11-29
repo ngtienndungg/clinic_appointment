@@ -36,13 +36,13 @@ import retrofit2.Response;
 
 public class SelectDepartmentActivity extends AppCompatActivity implements DepartmentListener {
 
-    private ActivitySelectDepartmentBinding binding;
-    private HealthFacility selectedHealthFacility;
     private static List<Department> originalDepartments = new ArrayList<>();
     private static List<Department> dynamicDepartments;
-    private SelectDepartmentAdapter adapter;
     private final Handler handler = new Handler();
     private final long SEARCH_DELAY_MILLIS = 300;
+    private ActivitySelectDepartmentBinding binding;
+    private HealthFacility selectedHealthFacility;
+    private SelectDepartmentAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

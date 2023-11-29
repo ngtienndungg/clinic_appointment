@@ -46,9 +46,9 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
     private static List<VietnamProvinceResponse.VietnamProvince> provinces = new ArrayList<>();
     private static List<HealthFacility> originalHealthFacilities = new ArrayList<>();
     private static List<HealthFacility> dynamicHealthFacilities;
-    private ActivitySelectHealthFacilityBinding binding;
     private final Handler handler = new Handler();
     private final long SEARCH_DELAY_MILLIS = 300;
+    private ActivitySelectHealthFacilityBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

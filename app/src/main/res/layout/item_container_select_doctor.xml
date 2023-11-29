@@ -188,8 +188,8 @@
         android:layout_toEndOf="@id/tvPriceLabel"
         android:fontFamily="@font/quicksand_medium"
         android:gravity="center"
-        android:text="@string/temporary_unlabeled"
         android:includeFontPadding="false"
+        android:text="@string/temporary_unlabeled"
         android:textColor="@color/colorDoctorInformation"
         android:textSize="@dimen/_11ssp" />
 

@@ -13,8 +13,7 @@
         <item name="materialCalendarStyle">@style/Custom_MaterialCalendar.Fullscreen</item>
     </style>
 
-    <style name="Custom_MaterialCalendar.Fullscreen"
-        parent="@style/Widget.MaterialComponents.MaterialCalendar.Fullscreen">
+    <style name="Custom_MaterialCalendar.Fullscreen" parent="@style/Widget.MaterialComponents.MaterialCalendar.Fullscreen">
         <item name="android:windowFullscreen">false</item>
     </style>
 

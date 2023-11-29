@@ -154,4 +154,7 @@
     <string name="account_information">Thông tin tài khoản</string>
     <string name="you_have_not_login_yet">Bạn chưa đăng nhập</string>
     <string name="this_function_need_to_login_to_use">Chức năng này cần đăng nhập để sử dụng</string>
+    <string name="medpro_welcome">MedPro xin chào,</string>
+    <string name="click_here_to_login">Bấm vào đây để đăng nhập</string>
+    <string name="register_successfully">Bạn đã đăng ký thành công. Hãy đăng nhập</string>
 </resources>

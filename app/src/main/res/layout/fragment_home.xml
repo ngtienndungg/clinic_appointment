@@ -41,16 +41,16 @@
                 android:layout_marginBottom="@dimen/_1sdp"
                 android:fontFamily="@font/quicksand_bold"
                 android:includeFontPadding="false"
-                android:text="MedPro xin chào,"
+                android:text="@string/medpro_welcome"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/_13ssp" />
 
             <TextView
+                android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/quicksand_bold"
                 android:includeFontPadding="false"
-                android:text="Nguyễn Tiến Dũng"
                 android:textAllCaps="true"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/_13ssp" />

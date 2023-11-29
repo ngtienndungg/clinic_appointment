@@ -142,4 +142,34 @@
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_12ssp" />
 
+    <TextView
+        android:id="@+id/tvCreateAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btLogin"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/registerFieldLabelMarginStart"
+        android:layout_marginTop="@dimen/registerFieldSpace"
+        android:fontFamily="@font/quicksand_bold"
+        android:includeFontPadding="false"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:text="@string/create_account"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_13ssp" />
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btLogin"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/registerFieldLabelMarginStart"
+        android:layout_marginTop="@dimen/registerFieldSpace"
+        android:fontFamily="@font/quicksand_bold"
+        android:includeFontPadding="false"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:text="@string/forgot_password"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_13ssp" />
+
 </RelativeLayout>

@@ -1,15 +1,18 @@
 package com.example.clinic_appointment.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +33,13 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     private final SharedPrefs sharedPrefs = SharedPrefs.getInstance();
+    private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                Integer resultCode = result.getResultCode();
+                if (resultCode == Activity.RESULT_OK) {
+                    Toast.makeText(this, getString(R.string.register_successfully), Toast.LENGTH_SHORT).show();
+                }
+            });
     private ActivityLoginBinding binding;
 
     @Override
@@ -41,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void eventHandling() {
+        binding.tvCreateAccount.setOnClickListener(v -> mStartForResult.launch(new Intent(this, RegisterActivity.class)));
         binding.ivBack.setOnClickListener(v -> onBackPressed());
         binding.btLogin.setOnClickListener(v -> {
             Call<UserResponse> call = RetrofitClient.getPublicAppointmentService()
@@ -55,9 +66,8 @@ public class LoginActivity extends AppCompatActivity {
                         sharedPrefs.putData(Constants.KEY_CURRENT_NAME, userResponse != null ? userResponse.getUser().getFullName() : null);
                         sharedPrefs.putData(Constants.KEY_CURRENT_PHONE_NUMBER, userResponse != null ? userResponse.getUser().getPhoneNumber() : null);
                         sharedPrefs.putData(Constants.KEY_CURRENT_EMAIL, userResponse != null ? userResponse.getUser().getEmail() : null);
-                        Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
+                        setResult(RESULT_OK);
+                        onBackPressed();
                     } else {
                         Snackbar.make(v, R.string.invalid_email_password, BaseTransientBottomBar.LENGTH_LONG).show();
                     }
@@ -86,15 +96,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         return super.dispatchTouchEvent(ev);
-    }
-
-    @Override
-    protected void onStart() {
-        if (!Objects.equals(sharedPrefs.getData(Constants.KEY_ACCESS_TOKEN, String.class), "")) {
-            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
-        super.onStart();
     }
 }

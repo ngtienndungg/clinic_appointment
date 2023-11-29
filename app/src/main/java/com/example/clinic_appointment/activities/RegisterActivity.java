@@ -2,7 +2,6 @@ package com.example.clinic_appointment.activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -72,8 +71,8 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
                     if (response.isSuccessful()) {
                         progressDialog.dismiss();
-                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                        finish();
+                        setResult(RESULT_OK);
+                        onBackPressed();
                     }
                 }
 

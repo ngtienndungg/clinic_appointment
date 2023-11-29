@@ -1,5 +1,6 @@
 package com.example.clinic_appointment.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -32,8 +35,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class SelectTimeActivity extends AppCompatActivity implements AppointmentTimeListener {
-    private ActivitySelectTimeBinding binding;
     private final SharedPrefs sharedPrefs = SharedPrefs.getInstance();
+    private ActivitySelectTimeBinding binding;
+    private AlertDialog unLoginDialog;
+    private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                Integer resultCode = result.getResultCode();
+                if (resultCode == Activity.RESULT_OK) {
+                    unLoginDialog.dismiss();
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,15 +125,19 @@ public class SelectTimeActivity extends AppCompatActivity implements Appointment
         AlertDialog.Builder builder = new AlertDialog.Builder(SelectTimeActivity.this);
         DialogNotificationBinding dialogNotificationBinding = DialogNotificationBinding.inflate(getLayoutInflater());
         builder.setView(dialogNotificationBinding.getRoot());
-        AlertDialog unLoginDialog = builder.create();
+        unLoginDialog = builder.create();
         if (unLoginDialog.getWindow() != null) {
             unLoginDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
         dialogNotificationBinding.tvTitle.setText(getString(R.string.you_have_not_login_yet));
         dialogNotificationBinding.tvContent.setText(getString(R.string.this_function_need_to_login_to_use));
         dialogNotificationBinding.tvAction.setText(getString(R.string.login));
-        dialogNotificationBinding.tvAction.setOnClickListener(v -> startActivity(new Intent(this, LoginActivity.class)));
-        dialogNotificationBinding.ivClose.setOnClickListener(v -> unLoginDialog.dismiss());
+        dialogNotificationBinding.tvAction.setOnClickListener(v -> mStartForResult.launch(new Intent(this, LoginActivity.class)));
+        dialogNotificationBinding.ivClose.setOnClickListener(v ->
+        {
+            unLoginDialog.dismiss();
+            unLoginDialog = null;
+        });
         unLoginDialog.show();
     }
 }
