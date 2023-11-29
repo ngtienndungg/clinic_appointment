@@ -152,4 +152,6 @@
     <string name="language">Ngôn ngữ</string>
     <string name="logout">Đăng xuất</string>
     <string name="account_information">Thông tin tài khoản</string>
+    <string name="you_have_not_login_yet">Bạn chưa đăng nhập</string>
+    <string name="this_function_need_to_login_to_use">Chức năng này cần đăng nhập để sử dụng</string>
 </resources>
