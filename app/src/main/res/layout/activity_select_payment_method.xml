@@ -45,7 +45,7 @@
         android:paddingHorizontal="@dimen/_12sdp">
 
         <TextView
-            android:id="@+id/tvMobileBanking"
+            android:id="@+id/tvZalopay"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
             android:layout_marginTop="@dimen/_8sdp"
@@ -53,7 +53,7 @@
             android:fontFamily="@font/quicksand_medium"
             android:gravity="center_vertical"
             android:paddingHorizontal="@dimen/_12sdp"
-            android:text="@string/qr_code_mobile_banking"
+            android:text="@string/payment_zalo_pay"
             android:textSize="@dimen/_13ssp" />
 
         <TextView

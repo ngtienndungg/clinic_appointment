@@ -11,7 +11,7 @@
     tools:ignore="RtlSymmetry">
 
     <TextView
-        android:id="@+id/tvCode"
+        android:id="@+id/tvCodeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -20,6 +20,18 @@
         android:fontFamily="@font/quicksand_bold"
         android:includeFontPadding="false"
         android:text="@string/appointment_code"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_13ssp" />
+
+    <TextView
+        android:id="@+id/tvCode"
+        android:layout_toEndOf="@id/tvCodeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:fontFamily="@font/quicksand_bold"
+        android:includeFontPadding="false"
         android:textAllCaps="true"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/_13ssp" />

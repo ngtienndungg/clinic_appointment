@@ -54,7 +54,7 @@ public class AppointmentManagementAdapter extends RecyclerView.Adapter<Appointme
         public void setData(Appointment appointment) {
             binding.tvHealthFacility.setText(appointment.getSchedule().getDoctor().getHealthFacility().getName());
             binding.tvDepartment.setText(appointment.getSchedule().getDoctor().getDepartmentInformation().getName());
-            binding.tvCode.setText(binding.tvCode.getText().toString().concat(appointment.getId().toUpperCase()));
+            binding.tvCode.setText(appointment.getId().toUpperCase());
             binding.tvDoctor.setText(appointment.getSchedule().getDoctor().getDoctorInformation().getFullName());
             binding.tvDate.setText(CustomConverter.getFormattedDate(appointment.getSchedule().getDate()));
             binding.tvTime.setText(CustomConverter.getStringAppointmentTime(appointment.getAppointmentTime()));

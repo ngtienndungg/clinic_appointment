@@ -21,7 +21,7 @@ import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.Schedule.DetailSchedule;
 import com.example.clinic_appointment.models.Schedule.ScheduleResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
-import com.example.clinic_appointment.utilities.CalendarView.DayViewContainer;
+import com.example.clinic_appointment.utilities.DayViewContainer;
 import com.example.clinic_appointment.utilities.Constants;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;

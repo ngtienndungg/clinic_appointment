@@ -3,28 +3,29 @@ package com.example.clinic_appointment.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivityPaymentInformationBinding;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.Schedule.DetailSchedule;
-import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 import com.example.clinic_appointment.utilities.CustomConverter;
 import com.example.clinic_appointment.utilities.SharedPrefs;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.clinic_appointment.zalopay.Api.CreateOrder;
+
+import org.json.JSONObject;
 
 import java.util.Objects;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import vn.zalopay.sdk.Environment;
+import vn.zalopay.sdk.ZaloPayError;
+import vn.zalopay.sdk.ZaloPaySDK;
+import vn.zalopay.sdk.listeners.PayOrderListener;
 
 public class PaymentInformationActivity extends AppCompatActivity {
     private ActivityPaymentInformationBinding binding;
@@ -34,6 +35,9 @@ public class PaymentInformationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        ZaloPaySDK.init(553, Environment.SANDBOX);
         binding = ActivityPaymentInformationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initiate();
@@ -47,6 +51,7 @@ public class PaymentInformationActivity extends AppCompatActivity {
         HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
         selectedSchedule = (DetailSchedule) getIntent().getSerializableExtra(Constants.KEY_DATE);
         selectedTime = getIntent().getStringExtra(Constants.KEY_TIME);
+        binding.tvPaymentMethod.setText(getIntent().getStringExtra(Constants.KEY_PAYMENT_METHOD));
         binding.tvHealthFacility.setText(Objects.requireNonNull(selectedHealthFacility).getName());
         binding.tvDepartment.setText(Objects.requireNonNull(selectedDepartment).getName());
         binding.tvDoctor.setText(Objects.requireNonNull(selectedDoctor).getDoctorInformation().getFullName());
@@ -63,7 +68,8 @@ public class PaymentInformationActivity extends AppCompatActivity {
     private void eventHandling() {
         binding.ivBack.setOnClickListener(v -> onBackPressed());
         binding.tvConfirmPayment.setOnClickListener(v -> {
-            Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(this).bookAppointmentByPatient(selectedSchedule.getScheduleId(), selectedTime);
+            Log.d("ClickTest", "Click");
+           /* Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(this).bookAppointmentByPatient(selectedSchedule.getScheduleId(), selectedTime);
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
@@ -77,7 +83,43 @@ public class PaymentInformationActivity extends AppCompatActivity {
                 public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                     Snackbar.make(binding.getRoot(), getString(R.string.something_wrong_happened), BaseTransientBottomBar.LENGTH_SHORT).show();
                 }
-            });
+            });*/
+            CreateOrder orderApi = new CreateOrder();
+            try {
+                JSONObject data = orderApi.createOrder("100000");
+                String code = data.getString("returncode");
+                Log.d("ClickTest", "Return code: " + data.getString("returncode"));
+                if (code.equals("1")) {
+                   String token = data.getString("zptranstoken");
+                    Log.d("ClickTest", token);
+                    ZaloPaySDK.getInstance().payOrder(PaymentInformationActivity.this, token, "demozpdk://app", new PayOrderListener() {
+                        @Override
+                        public void onPaymentSucceeded(String s, String s1, String s2) {
+                            Log.d("ClickTest", "Success");
+                        }
+
+                        @Override
+                        public void onPaymentCanceled(String s, String s1) {
+                            Log.d("ClickTest", "Can");
+                        }
+
+                        @Override
+                        public void onPaymentError(ZaloPayError zaloPayError, String s, String s1) {
+                            Log.d("ClickTest", "Pay Error" + zaloPayError.name());
+                        }
+                    });
+                }
+
+            } catch (Exception e) {
+                Log.d("ClickTest", "Return code: fail");
+                e.printStackTrace();
+            }
         });
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        ZaloPaySDK.getInstance().onResult(intent);
     }
 }

@@ -159,4 +159,5 @@
     <string name="register_successfully">Bạn đã đăng ký thành công. Hãy đăng nhập</string>
     <string name="you_are_not_connected_to_internet">Bạn chưa kết nối Internet</string>
     <string name="please_connect_to_the_internet">Vui lòng kết nối Internet</string>
+    <string name="payment_zalo_pay">Thanh toán bằng ZaloPay</string>
 </resources>

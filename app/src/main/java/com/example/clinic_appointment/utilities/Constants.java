@@ -18,6 +18,7 @@ public class Constants {
     public static final String KEY_DETAIL_DOCTOR = "detailDoctor";
     public static final String KEY_DATE = "date";
     public static final String KEY_TIME = "time";
+    public static final String KEY_PAYMENT_METHOD = "paymentMethod";
     public static final String GENDER_MALE_ENG = "MALE";
     public static final String GENDER_FEMALE_ENG = "FEMALE";
     public static final String KEY_SOURCE_ACTIVITY = "sourceActivity";

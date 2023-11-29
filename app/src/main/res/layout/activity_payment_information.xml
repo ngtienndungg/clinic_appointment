@@ -353,7 +353,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/quicksand_bold"
-            android:text="Thanh toán tại bệnh viện"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_16ssp" />
 

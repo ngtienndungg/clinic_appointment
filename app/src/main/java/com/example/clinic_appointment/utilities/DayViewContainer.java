@@ -1,4 +1,4 @@
-package com.example.clinic_appointment.utilities.CalendarView;
+package com.example.clinic_appointment.utilities;
 
 import android.view.View;
 import android.widget.TextView;
