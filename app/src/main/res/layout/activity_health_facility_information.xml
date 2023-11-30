@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/divider"
-        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_14sdp"
         android:paddingHorizontal="@dimen/_10sdp"
         android:scrollbars="none">
 
@@ -51,7 +51,7 @@
 
             <TextView
                 android:id="@+id/tvAddressLabel"
-                android:layout_width="@dimen/_85sdp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/quicksand_semi_bold"
                 android:text="@string/address_colon"
@@ -62,9 +62,8 @@
                 android:id="@+id/tvAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/tvAddressLabel"
-                android:layout_marginTop="@dimen/_6sdp"
-                android:layout_toEndOf="@id/tvAddressLabel"
+                android:layout_below="@id/tvAddressLabel"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:fontFamily="@font/quicksand_regular"
                 android:text="số 02, Lê Văn Việt, phường 2, quận Thủ Đức, thành phố Hồ Chí Minh"
                 android:textColor="@color/colorRegisterFieldLabel"
@@ -72,9 +71,9 @@
 
             <TextView
                 android:id="@+id/tvPhoneNumberLabel"
-                android:layout_width="@dimen/_85sdp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/tvPhoneNumber"
+                android:layout_below="@id/tvAddress"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/quicksand_semi_bold"
                 android:text="@string/hotline"
@@ -85,9 +84,8 @@
                 android:id="@+id/tvPhoneNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvAddress"
-                android:layout_marginTop="@dimen/_6sdp"
-                android:layout_toEndOf="@id/tvPhoneNumberLabel"
+                android:layout_below="@id/tvPhoneNumberLabel"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:fontFamily="@font/quicksand_regular"
                 android:text="1900-2424"
                 android:textColor="@color/colorRegisterFieldLabel"
@@ -95,9 +93,9 @@
 
             <TextView
                 android:id="@+id/tvTimeLabel"
-                android:layout_width="@dimen/_85sdp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvPhoneNumberLabel"
+                android:layout_below="@id/tvPhoneNumber"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/quicksand_semi_bold"
                 android:text="@string/working_time_colon"
@@ -108,10 +106,8 @@
                 android:id="@+id/tvTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/tvTimeLabel"
-                android:layout_alignBottom="@id/tvTimeLabel"
-                android:layout_marginTop="@dimen/_6sdp"
-                android:layout_toEndOf="@id/tvTimeLabel"
+                android:layout_below="@id/tvTimeLabel"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:fontFamily="@font/quicksand_regular"
                 android:text="Từ 07:00 đến 17:00 từ thứ hai đến thứ sáu"
                 android:textColor="@color/colorRegisterFieldLabel"
@@ -119,7 +115,7 @@
 
             <TextView
                 android:id="@+id/tvDescriptionLabel"
-                android:layout_width="@dimen/_85sdp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvTime"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -132,10 +128,8 @@
                 android:id="@+id/tvDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/tvDescriptionLabel"
-                android:layout_alignBottom="@id/tvDescriptionLabel"
+                android:layout_below="@id/tvDescriptionLabel"
                 android:layout_marginTop="@dimen/_6sdp"
-                android:layout_toEndOf="@id/tvDescriptionLabel"
                 android:fontFamily="@font/quicksand_regular"
                 android:text="Không chỉ là cơ sở y tế tiên phong trong điều trị và nghiên cứu khoa học, Bệnh viện Đại học Y dược TP. Hồ Chí Minh còn nổi tiếng ở đội ngũ chuyên gia, y bác sĩ đầu ngành có kinh nghiệm làm việc dày dặn. Chính vì vậy nơi đây trở thành địa chỉ đáng tin cậy hàng đầu của nhiều bệnh nhân trên địa bàn các tỉnh thành phía Nam và khu vực lân cận."
                 android:textColor="@color/colorRegisterFieldLabel"
@@ -231,6 +225,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvRating"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </RelativeLayout>

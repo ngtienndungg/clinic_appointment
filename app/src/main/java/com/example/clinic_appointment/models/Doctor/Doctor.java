@@ -1,7 +1,5 @@
 package com.example.clinic_appointment.models.Doctor;
 
-import android.util.Log;
-
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.Rating.Rating;
@@ -126,7 +124,6 @@ public class Doctor implements Serializable {
                 }
             }
             String resultString = String.valueOf(resultStringBuilder.delete(0, 2));
-            Log.d("TestString", resultString);
             if (resultString.charAt(0) == 'c') {
                 return resultString.substring(0, 1).toUpperCase() + resultString.substring(1);
             } else {

@@ -8,7 +8,7 @@ import java.util.Date;
 public class Rating {
     @SerializedName("star")
     private int star;
-    @SerializedName("postBy")
+    @SerializedName("postedBy")
     private User postedBy;
     @SerializedName("comment")
     private String comment;

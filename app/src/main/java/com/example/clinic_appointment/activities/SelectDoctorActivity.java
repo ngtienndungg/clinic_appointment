@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -22,7 +21,6 @@ import com.example.clinic_appointment.listeners.DoctorListener;
 import com.example.clinic_appointment.listeners.ScheduleListener;
 import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
 import com.example.clinic_appointment.models.Department.Department;
-import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.Doctor.DoctorResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
@@ -73,7 +71,6 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
                 @Override
                 public void onFailure(@NonNull Call<DoctorResponse> call, @NonNull Throwable t) {
                     displayError();
-                    Log.d("Error Check", t.getMessage());
                 }
             });
         } else {

@@ -6,22 +6,30 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivityPaymentInformationBinding;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.Schedule.DetailSchedule;
+import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 import com.example.clinic_appointment.utilities.CustomConverter;
 import com.example.clinic_appointment.utilities.SharedPrefs;
 import com.example.clinic_appointment.zalopay.Api.CreateOrder;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONObject;
 
 import java.util.Objects;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import vn.zalopay.sdk.Environment;
 import vn.zalopay.sdk.ZaloPayError;
 import vn.zalopay.sdk.ZaloPaySDK;
@@ -69,7 +77,7 @@ public class PaymentInformationActivity extends AppCompatActivity {
         binding.ivBack.setOnClickListener(v -> onBackPressed());
         binding.tvConfirmPayment.setOnClickListener(v -> {
             Log.d("ClickTest", "Click");
-           /* Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(this).bookAppointmentByPatient(selectedSchedule.getScheduleId(), selectedTime);
+           Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(this).bookAppointmentByPatient(selectedSchedule.getScheduleId(), selectedTime);
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
@@ -83,7 +91,7 @@ public class PaymentInformationActivity extends AppCompatActivity {
                 public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                     Snackbar.make(binding.getRoot(), getString(R.string.something_wrong_happened), BaseTransientBottomBar.LENGTH_SHORT).show();
                 }
-            });*/
+            });
             CreateOrder orderApi = new CreateOrder();
             try {
                 JSONObject data = orderApi.createOrder("100000");

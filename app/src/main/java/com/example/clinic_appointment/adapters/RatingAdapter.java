@@ -56,13 +56,11 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ItemViewHo
                     binding.ivStar5,
                     binding.ivStar4,
                     binding.ivStar3,
-                    binding.ivStar2
+                    binding.ivStar2,
+                    binding.ivStar1
             };
-            for (ImageView starImageView : starImageViews) {
-                starImageView.setVisibility(View.VISIBLE);
-            }
-            for (int i = starNumbers; i < starImageViews.length; i++) {
-                starImageViews[i].setVisibility(View.GONE);
+            for (int i = 0; i < starImageViews.length; i++) {
+                starImageViews[i].setVisibility(starNumbers >= (5 - i) ? View.VISIBLE : View.GONE);
             }
         }
     }

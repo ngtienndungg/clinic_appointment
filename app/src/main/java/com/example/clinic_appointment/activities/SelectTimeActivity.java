@@ -96,7 +96,6 @@ public class SelectTimeActivity extends AppCompatActivity implements Appointment
 
     @Override
     public void onClick(AppointmentTime appointmentTime) {
-        Log.d("AccessToken", sharedPrefs.getData(Constants.KEY_ACCESS_TOKEN, String.class));
         if (Objects.equals(sharedPrefs.getData(Constants.KEY_ACCESS_TOKEN, String.class), "")) {
             displayDialog();
         } else {
