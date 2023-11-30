@@ -58,8 +58,8 @@ public interface AppointmentService {
                                                                 @Query("clinicID") String clinicId);
 
     @GET("schedule")
-    Call<ScheduleResponse> getSchedules(@Query("startDate") long startDate,
-                                        @Query("endDate") long endDate,
+    Call<ScheduleResponse> getSchedules(@Query("startDate") Long startDate,
+                                        @Query("endDate") Long endDate,
                                         @Query("timeType.time") String time,
                                         @Query(encoded = true, value = "nameSpecialty") String departmentName,
                                         @Query(encoded = true, value = "nameClinic") String clinicName,

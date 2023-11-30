@@ -39,8 +39,8 @@ public class ScheduleLookupActivity extends AppCompatActivity {
     private HealthFacility selectedHealthFacility;
     private Department selectedDepartment;
     private AppointmentTime selectedAppointmentTime;
-    private long dateFrom = 0;
-    private long dateTo = 0;
+    private long dateFrom = -1;
+    private long dateTo = -1;
     private ActivityScheduleLookupBinding binding;
     private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {

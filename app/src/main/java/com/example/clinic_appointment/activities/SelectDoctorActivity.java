@@ -53,9 +53,11 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
 
     private void initiate() {
         if (getIntent().getStringExtra(Constants.KEY_SOURCE_ACTIVITY) == null) {
-            selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
+            if (getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT) != null) {
+                selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
+            }
             HealthFacility healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-            Call<DoctorResponse> call = RetrofitClient.getPublicAppointmentService().getDoctorByDepartmentAndHealthFacility(selectedDepartment.getId(), healthFacility.getId());
+            Call<DoctorResponse> call = RetrofitClient.getPublicAppointmentService().getDoctorByDepartmentAndHealthFacility(selectedDepartment != null ? selectedDepartment.getId() : null, healthFacility.getId());
             call.enqueue(new Callback<DoctorResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<DoctorResponse> call, @NonNull Response<DoctorResponse> response) {
@@ -75,13 +77,15 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
                     displayError();
                 }
             });
-        } else {
+        } else if (Objects.equals(getIntent().getStringExtra(Constants.KEY_SOURCE_ACTIVITY), "SearchSchedule")) {
             AppointmentTime appointmentTime = (AppointmentTime) getIntent().getSerializableExtra(Constants.KEY_TIME);
             HealthFacility healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
             Department department = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
+            long start = getIntent().getLongExtra(Constants.KEY_START_DATE, -1);
+            long end = getIntent().getLongExtra(Constants.KEY_END_DATE, -1);
             Call<ScheduleResponse> call = RetrofitClient.getPublicAppointmentService().getSchedules(
-                    getIntent().getLongExtra(Constants.KEY_START_DATE, -1),
-                    getIntent().getLongExtra(Constants.KEY_END_DATE, -1),
+                    start == -1 ? null : start,
+                    end == -1 ? null : end,
                     (appointmentTime != null) ? appointmentTime.getTimeNumber() : null,
                     (department) != null ? department.getName() : null,
                     (healthFacility) != null ? healthFacility.getName() : null,
@@ -143,7 +147,7 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
             HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
             Intent intent = new Intent(this, SelectDateActivity.class);
             intent.putExtra(Constants.KEY_DOCTOR, doctor);
-            intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
+            intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment != null ? selectedDepartment : doctor.getDepartmentInformation());
             intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
             startActivity(intent);
         } else {

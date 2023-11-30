@@ -1,7 +1,7 @@
 package com.example.clinic_appointment.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -28,6 +28,7 @@ import retrofit2.Response;
 
 public class HealthFacilityInformationActivity extends AppCompatActivity {
     private ActivityHealthFacilityInformationBinding binding;
+    private HealthFacility healthFacility;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,11 @@ public class HealthFacilityInformationActivity extends AppCompatActivity {
         binding = ActivityHealthFacilityInformationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initiate();
+        eventHandling();
     }
 
     private void initiate() {
-        HealthFacility healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
+        healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
         if (healthFacility != null) {
             binding.tvName.setText(healthFacility.getName());
             binding.tvDescription.setText(healthFacility.getDescription());
@@ -85,5 +87,18 @@ public class HealthFacilityInformationActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void eventHandling() {
+        binding.tvDepartmentList.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SelectDepartmentActivity.class);
+            intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);
+            startActivity(intent);
+        });
+        binding.tvDoctorList.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SelectDoctorActivity.class);
+            intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);
+            startActivity(intent);
+        });
     }
 }
