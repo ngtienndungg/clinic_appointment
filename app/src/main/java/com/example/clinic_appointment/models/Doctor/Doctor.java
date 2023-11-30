@@ -127,7 +127,7 @@ public class Doctor implements Serializable {
             if (resultString.charAt(0) == 'c') {
                 return resultString.substring(0, 1).toUpperCase() + resultString.substring(1);
             } else {
-                return "Thứ " + resultString.substring(0, 1).toUpperCase() + resultString.substring(1);
+                return "Thứ " + resultString;
             }
         }
     }

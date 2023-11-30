@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_8sdp"
-    android:background="@drawable/background_health_facility_item"
+    android:background="@drawable/background_appointment"
     android:paddingVertical="@dimen/_8sdp"
     android:paddingStart="@dimen/_10sdp"
+    android:paddingEnd="@dimen/_2sdp"
     tools:ignore="RtlSymmetry">
 
     <TextView

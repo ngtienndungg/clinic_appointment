@@ -207,10 +207,78 @@
                 android:textSize="@dimen/_14ssp" />
 
             <TextView
-                android:id="@+id/tvRating"
+                android:id="@+id/tvYourRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvDoctorList"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:text="@string/your_rating"
+                android:textColor="@color/colorRegisterFieldLabel"
+                android:textSize="@dimen/_14ssp" />
+
+            <LinearLayout
+                android:id="@+id/llYourStar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_alignTop="@id/tvYourRating"
+                android:layout_alignBottom="@id/tvYourRating"
+                android:layout_toEndOf="@id/tvYourRating"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_2sdp">
+
+                <ImageView
+                    android:id="@+id/ivStar1"
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_8sdp"
+                    android:contentDescription="@string/icon_star"
+                    android:src="@mipmap/ic_gold_star" />
+
+                <ImageView
+                    android:id="@+id/ivStar2"
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_8sdp"
+                    android:contentDescription="@string/icon_star"
+                    android:src="@mipmap/ic_gold_star" />
+
+                <ImageView
+                    android:id="@+id/ivStar3"
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_8sdp"
+                    android:contentDescription="@string/icon_star"
+                    android:src="@mipmap/ic_gold_star" />
+
+                <ImageView
+                    android:id="@+id/ivStar4"
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_8sdp"
+                    android:contentDescription="@string/icon_star"
+                    android:src="@mipmap/ic_gold_star" />
+
+                <ImageView
+                    android:id="@+id/ivStar5"
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_8sdp"
+                    android:contentDescription="@string/icon_star"
+                    android:src="@mipmap/ic_gold_star" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvYourComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvYourRating"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="@font/quicksand_medium"
+                android:textSize="@dimen/_11ssp" />
+
+            <TextView
+                android:id="@+id/tvRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvYourComment"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:fontFamily="@font/quicksand_semi_bold"
                 android:text="@string/rating_of_users"

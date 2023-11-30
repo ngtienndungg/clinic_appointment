@@ -171,4 +171,8 @@
     <string name="confirm">Đồng ý</string>
     <string name="cancel">Huỷ bỏ</string>
     <string name="detail_appointment">Chi tiết lịch đặt khám</string>
+    <string name="are_you_sure_to_book">Bạn có chắn chắn đặt lịch?</string>
+    <string name="ensure_exactly_information">Hãy đảm bảo thông tin đã chính xác khi bấm xác nhận</string>
+    <string name="cancel_appointment">Huỷ lịch</string>
+    <string name="your_rating">Đánh giá của bạn:&#160;</string>
 </resources>

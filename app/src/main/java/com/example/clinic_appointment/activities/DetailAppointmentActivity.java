@@ -1,7 +1,9 @@
 package com.example.clinic_appointment.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +28,7 @@ public class DetailAppointmentActivity extends AppCompatActivity {
         binding = ActivityDetailAppointmentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initiate();
+        eventHandling();
     }
 
     private void initiate() {
@@ -55,6 +58,12 @@ public class DetailAppointmentActivity extends AppCompatActivity {
             public void onFailure(@NonNull Call<DetailAppointmentResponse> call, @NonNull Throwable t) {
 
             }
+        });
+    }
+
+    private void eventHandling() {
+        binding.tvConfirm.setOnClickListener(v -> {
+
         });
     }
 }

@@ -29,8 +29,10 @@ import com.example.clinic_appointment.models.Schedule.ScheduleResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -89,7 +91,9 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
                 @Override
                 public void onResponse(@NonNull Call<ScheduleResponse> call, @NonNull Response<ScheduleResponse> response) {
                     if (response.body() != null && response.body().isSuccess() && response.body().getSchedules().size() > 0) {
+                        Set<String> uniqueIds = new HashSet<>();
                         List<DetailSchedule> schedules = response.body().getSchedules();
+                        schedules.removeIf(detailSchedule -> !uniqueIds.add(detailSchedule.getDoctor().getDoctorInformation().getId()));
                         ScheduleAdapter adapter = new ScheduleAdapter(SelectDoctorActivity.this, schedules);
                         binding.rvDoctor.setAdapter(adapter);
                         binding.rvDoctor.setVisibility(View.VISIBLE);

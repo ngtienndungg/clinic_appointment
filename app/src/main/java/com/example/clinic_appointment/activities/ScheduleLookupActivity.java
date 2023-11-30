@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.util.Pair;
 
 import com.example.clinic_appointment.R;
-import com.example.clinic_appointment.databinding.ActivitySearchScheduleBinding;
+import com.example.clinic_appointment.databinding.ActivityScheduleLookupBinding;
 import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
@@ -41,7 +41,7 @@ public class ScheduleLookupActivity extends AppCompatActivity {
     private AppointmentTime selectedAppointmentTime;
     private long dateFrom = 0;
     private long dateTo = 0;
-    private ActivitySearchScheduleBinding binding;
+    private ActivityScheduleLookupBinding binding;
     private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 Intent intent = result.getData();
@@ -70,7 +70,7 @@ public class ScheduleLookupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySearchScheduleBinding.inflate(getLayoutInflater());
+        binding = ActivityScheduleLookupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         eventHandling();
     }

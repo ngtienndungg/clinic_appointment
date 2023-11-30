@@ -80,21 +80,7 @@ public class PaymentInformationActivity extends AppCompatActivity {
     private void eventHandling() {
         binding.ivBack.setOnClickListener(v -> onBackPressed());
         binding.tvConfirmPayment.setOnClickListener(v -> {
-            Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(this).bookAppointmentByPatient(selectedSchedule.getScheduleId(), selectedTime);
-            call.enqueue(new Callback<Void>() {
-                @Override
-                public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                    Intent intent = new Intent(PaymentInformationActivity.this, DashboardActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra(Constants.KEY_STATUS_CODE, response.code());
-                    startActivity(intent);
-                }
-
-                @Override
-                public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                    Snackbar.make(binding.getRoot(), getString(R.string.something_wrong_happened), BaseTransientBottomBar.LENGTH_SHORT).show();
-                }
-            });
+            displayConfirmationDialog();
         });
     }
 
@@ -106,10 +92,16 @@ public class PaymentInformationActivity extends AppCompatActivity {
         if (alertDialog.getWindow() != null) {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
-        confirmationDialogBinding.tvTitle.setText(getString(R.string.you_are_not_connected_to_internet));
-        confirmationDialogBinding.tvContent.setText(getString(R.string.please_connect_to_the_internet));
+        confirmationDialogBinding.tvTitle.setText(getString(R.string.are_you_sure_to_book));
+        confirmationDialogBinding.tvContent.setText(R.string.ensure_exactly_information);
         confirmationDialogBinding.tvPositiveAction.setOnClickListener(v -> {
-            handleZalopay();
+            if (Objects.equals(getIntent().getStringExtra(Constants.KEY_PAYMENT_METHOD), getString(R.string.payment_zalo_pay))) {
+                handleZalopay();
+                alertDialog.dismiss();
+            } else {
+                saveAppointmentToServer();
+                alertDialog.dismiss();
+            }
         });
         confirmationDialogBinding.ivClose.setOnClickListener(v -> alertDialog.dismiss());
         confirmationDialogBinding.tvNegativeAction.setOnClickListener(v -> alertDialog.dismiss());
@@ -126,7 +118,7 @@ public class PaymentInformationActivity extends AppCompatActivity {
                 ZaloPaySDK.getInstance().payOrder(PaymentInformationActivity.this, token, "demozpdk://app", new PayOrderListener() {
                     @Override
                     public void onPaymentSucceeded(String s, String s1, String s2) {
-                        Log.d("ClickTest", "Success");
+                        saveAppointmentToServer();
                     }
 
                     @Override
@@ -145,6 +137,28 @@ public class PaymentInformationActivity extends AppCompatActivity {
             Log.d("ClickTest", "Return code: fail");
             e.printStackTrace();
         }
+    }
+
+    private void saveAppointmentToServer() {
+        Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(PaymentInformationActivity.this).bookAppointmentByPatient(selectedSchedule.getScheduleId(), selectedTime);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                if (response.code() == 200) {
+                    Intent intent = new Intent(PaymentInformationActivity.this, DashboardActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra(Constants.KEY_STATUS_CODE, response.code());
+                    startActivity(intent);
+                } else if (response.code() == 500) {
+                    Snackbar.make(binding.getRoot(), "Bạn đã đặt lịch này rồi. Vui lòng kiểm tra lại", BaseTransientBottomBar.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                Snackbar.make(binding.getRoot(), getString(R.string.something_wrong_happened), BaseTransientBottomBar.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

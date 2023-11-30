@@ -40,8 +40,8 @@
         android:id="@+id/svInformation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/tvConfirm"
         android:layout_below="@id/rlTopAppBar"
+        android:layout_alignParentBottom="true"
         android:paddingHorizontal="@dimen/_14sdp"
         android:paddingVertical="@dimen/_8sdp"
         android:scrollbars="none">
@@ -55,6 +55,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:fontFamily="@font/quicksand_bold"
                 android:text="@string/appointment_information"
                 android:textColor="@color/colorPrimary"
@@ -451,23 +452,21 @@
                 android:textColor="@color/colorConfirmationText"
                 android:textSize="@dimen/_12ssp" />
 
+            <TextView
+                android:id="@+id/tvConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@color/design_default_color_error"
+                android:fontFamily="@font/quicksand_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/cancel_appointment"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_12ssp" />
+
         </LinearLayout>
 
     </ScrollView>
-
-    <TextView
-        android:id="@+id/tvConfirm"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        android:fontFamily="@font/quicksand_bold"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:text="@string/confirm_information"
-        android:textAllCaps="true"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_12ssp"
-        android:visibility="gone" />
 
 </RelativeLayout>
