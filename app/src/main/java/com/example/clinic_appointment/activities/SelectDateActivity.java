@@ -15,7 +15,7 @@ import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivitySelectDateBinding;
 import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
 import com.example.clinic_appointment.models.Department.Department;
-import com.example.clinic_appointment.models.Doctor.DetailDoctor;
+import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.Schedule.DetailSchedule;
@@ -61,7 +61,7 @@ public class SelectDateActivity extends AppCompatActivity {
     void initiate() {
         doctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
         if (doctor == null) {
-            doctor = Doctor.getDoctor((DetailDoctor) Objects.requireNonNull(getIntent().getSerializableExtra(Constants.KEY_DETAIL_DOCTOR)));
+            doctor = ((Doctor) Objects.requireNonNull(getIntent().getSerializableExtra(Constants.KEY_DETAIL_DOCTOR)));
         }
         long currentTimeMillis = System.currentTimeMillis();
         long endTimeMillis = currentTimeMillis + (30L * 86400000);

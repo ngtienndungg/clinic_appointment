@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.activities.LoginActivity;
-import com.example.clinic_appointment.activities.SearchScheduleActivity;
+import com.example.clinic_appointment.activities.ScheduleLookupActivity;
 import com.example.clinic_appointment.activities.SelectHealthFacilityActivity;
 import com.example.clinic_appointment.databinding.DialogNotificationBinding;
 import com.example.clinic_appointment.databinding.FragmentHomeBinding;
@@ -64,7 +64,16 @@ public class HomeFragment extends Fragment {
 
     private void eventHandling() {
         binding.llMakeAppointmentAtHealthFacilities.setOnClickListener(v -> handleEvent(SelectHealthFacilityActivity.class));
-        binding.llSearchSchedule.setOnClickListener(v -> handleEvent(SearchScheduleActivity.class));
+        binding.llSearchSchedule.setOnClickListener(v -> handleEvent(ScheduleLookupActivity.class));
+        binding.llSearchExaminationResult.setOnClickListener(v -> {
+            if (isNetworkAvailable()) {
+                Intent intent = new Intent(requireActivity(), SelectHealthFacilityActivity.class);
+                intent.putExtra(Constants.KEY_ACTION, Constants.ACTION_LOOKUP);
+                startActivity(intent);
+            } else {
+                showNetworkUnavailableDialog();
+            }
+        });
     }
 
     private void handleEvent(Class<?> activityClass) {

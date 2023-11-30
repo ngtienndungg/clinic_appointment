@@ -171,9 +171,15 @@ public class SelectHealthFacilityActivity extends AppCompatActivity implements H
     @Override
     public void onClick(HealthFacility healthFacility) {
         if (getIntent().getStringExtra(Constants.KEY_SOURCE_ACTIVITY) == null) {
-            Intent intent = new Intent(this, SelectDepartmentActivity.class);
-            intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);
-            startActivity(intent);
+            if (getIntent().getStringExtra(Constants.KEY_ACTION) == null) {
+                Intent intent = new Intent(this, SelectDepartmentActivity.class);
+                intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this, HealthFacilityInformationActivity.class);
+                intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);
+                startActivity(intent);
+            }
         } else {
             Intent intent = new Intent();
             intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);

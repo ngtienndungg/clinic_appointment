@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.clinic_appointment.databinding.ItemContainerSelectDoctorBinding;
 import com.example.clinic_appointment.listeners.DoctorListener;
 import com.example.clinic_appointment.models.Doctor.Doctor;
+import com.example.clinic_appointment.models.Doctor.Doctor;
 
 import java.util.List;
 

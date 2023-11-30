@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clinic_appointment.databinding.ItemContainerSelectDoctorBinding;
 import com.example.clinic_appointment.listeners.ScheduleListener;
-import com.example.clinic_appointment.models.Doctor.DetailDoctor;
+import com.example.clinic_appointment.models.Doctor.Doctor;
 import com.example.clinic_appointment.models.Schedule.DetailSchedule;
 
 import java.util.List;
@@ -53,18 +53,18 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ItemVi
 
         @SuppressLint("SetTextI18n")
         public void setData(DetailSchedule detailSchedule) {
-            DetailDoctor detailDoctor = detailSchedule.getDoctor();
+            Doctor Doctor = detailSchedule.getDoctor();
             String fullDoctorName;
-            if (detailDoctor.getAcademicLevel() == null || detailDoctor.getAcademicLevel().length() == 0) {
+            if (Doctor.getAcademicLevel() == null || Doctor.getAcademicLevel().length() == 0) {
                 fullDoctorName = "Bác sĩ ".toUpperCase() + detailSchedule.getDoctor().getDoctorInformation().getFullName();
             } else {
-                fullDoctorName = detailDoctor.getAcademicLevel() + " " + detailDoctor.getDoctorInformation().getFullName();
+                fullDoctorName = Doctor.getAcademicLevel() + " " + Doctor.getDoctorInformation().getFullName();
             }
             binding.tvName.setText(fullDoctorName);
-            binding.tvGender.setText(detailDoctor.getDoctorInformation().getGenderVietnamese());
-            binding.tvDepartment.setText(detailDoctor.getDepartmentInformation().getName());
+            binding.tvGender.setText(Doctor.getDoctorInformation().getGenderVietnamese());
+            binding.tvDepartment.setText(Doctor.getDepartmentInformation().getName());
             binding.tvCalendarLabel.setText("Bệnh viện: ");
-            binding.tvCalendar.setText(detailDoctor.getHealthFacility().getName());
+            binding.tvCalendar.setText(Doctor.getHealthFacility().getName());
             binding.tvPrice.setText(detailSchedule.getPrice() + "đ");
         }
     }

@@ -160,4 +160,11 @@
     <string name="you_are_not_connected_to_internet">Bạn chưa kết nối Internet</string>
     <string name="please_connect_to_the_internet">Vui lòng kết nối Internet</string>
     <string name="payment_zalo_pay">Thanh toán bằng ZaloPay</string>
+    <string name="address_colon">Địa chỉ:&#160;</string>
+    <string name="description_colon">Mô tả:&#160;</string>
+    <string name="hotline">Đường dây nóng:&#160;</string>
+    <string name="working_time_colon">Thời gian làm việc:&#160;</string>
+    <string name="view_department_list">Xem danh sách chuyên khoa</string>
+    <string name="view_doctor_list">Xem danh sách bác sĩ</string>
+    <string name="rating_of_users">Đánh giá của người dùng:&#160;</string>
 </resources>

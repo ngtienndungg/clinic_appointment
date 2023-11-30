@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingVertical="@dimen/_8sdp"
+    tools:context=".activities.HealthFacilityInformationActivity">
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="@dimen/_75sdp"
+        android:layout_height="@dimen/_75sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivLogo"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:fontFamily="@font/quicksand_bold"
+        android:gravity="center"
+        android:text="Bệnh viện đại học Y dược Tp.HCM"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_15ssp" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_below="@id/tvName"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:dividerColor="@color/colorPrimary" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/divider"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvAddressLabel"
+                android:layout_width="@dimen/_85sdp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:text="@string/address_colon"
+                android:textColor="@color/colorRegisterFieldLabel"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/tvAddressLabel"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_toEndOf="@id/tvAddressLabel"
+                android:fontFamily="@font/quicksand_regular"
+                android:text="số 02, Lê Văn Việt, phường 2, quận Thủ Đức, thành phố Hồ Chí Minh"
+                android:textColor="@color/colorRegisterFieldLabel"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/tvPhoneNumberLabel"
+                android:layout_width="@dimen/_85sdp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/tvPhoneNumber"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:text="@string/hotline"
+                android:textColor="@color/colorRegisterFieldLabel"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/tvPhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvAddress"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_toEndOf="@id/tvPhoneNumberLabel"
+                android:fontFamily="@font/quicksand_regular"
+                android:text="1900-2424"
+                android:textColor="@color/colorRegisterFieldLabel"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/tvTimeLabel"
+                android:layout_width="@dimen/_85sdp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvPhoneNumberLabel"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:text="@string/working_time_colon"
+                android:textColor="@color/colorRegisterFieldLabel"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/tvTimeLabel"
+                android:layout_alignBottom="@id/tvTimeLabel"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_toEndOf="@id/tvTimeLabel"
+                android:fontFamily="@font/quicksand_regular"
+                android:text="Từ 07:00 đến 17:00 từ thứ hai đến thứ sáu"
+                android:textColor="@color/colorRegisterFieldLabel"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/tvDescriptionLabel"
+                android:layout_width="@dimen/_85sdp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTime"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:text="@string/description_colon"
+                android:textColor="@color/colorRegisterFieldLabel"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/tvDescriptionLabel"
+                android:layout_alignBottom="@id/tvDescriptionLabel"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_toEndOf="@id/tvDescriptionLabel"
+                android:fontFamily="@font/quicksand_regular"
+                android:text="Không chỉ là cơ sở y tế tiên phong trong điều trị và nghiên cứu khoa học, Bệnh viện Đại học Y dược TP. Hồ Chí Minh còn nổi tiếng ở đội ngũ chuyên gia, y bác sĩ đầu ngành có kinh nghiệm làm việc dày dặn. Chính vì vậy nơi đây trở thành địa chỉ đáng tin cậy hàng đầu của nhiều bệnh nhân trên địa bàn các tỉnh thành phía Nam và khu vực lân cận."
+                android:textColor="@color/colorRegisterFieldLabel"
+                android:textSize="@dimen/_14ssp" />
+
+            <HorizontalScrollView
+                android:id="@+id/svImage"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_140sdp"
+                android:layout_below="@id/tvDescription"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:scrollbars="none"
+                tools:ignore="UselessParent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_200sdp"
+                        android:layout_height="match_parent"
+                        android:importantForAccessibility="no"
+                        android:scaleType="fitStart"
+                        android:src="@mipmap/img_doctor_1" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_200sdp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:importantForAccessibility="no"
+                        android:scaleType="fitStart"
+                        android:src="@mipmap/img_doctor_2" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_200sdp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:importantForAccessibility="no"
+                        android:scaleType="fitStart"
+                        android:src="@mipmap/img_doctor_3" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_200sdp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:importantForAccessibility="no"
+                        android:scaleType="fitStart"
+                        android:src="@mipmap/img_doctor_4" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/tvDepartmentList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/svImage"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:text="@string/view_department_list"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/tvDoctorList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDepartmentList"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:text="@string/view_doctor_list"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/tvRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDoctorList"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:text="@string/rating_of_users"
+                android:textColor="@color/colorRegisterFieldLabel"
+                android:textSize="@dimen/_14ssp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRatings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvRating"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

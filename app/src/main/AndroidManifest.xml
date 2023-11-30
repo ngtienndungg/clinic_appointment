@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
 
     <application
@@ -19,6 +20,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.HealthFacilityInformationActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.ZalopayPaymentActivity"
             android:exported="false" />
@@ -69,7 +73,7 @@
             android:name=".activities.FindHospitalActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SearchScheduleActivity"
+            android:name=".activities.ScheduleLookupActivity"
             android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"
@@ -80,6 +84,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -3,10 +3,13 @@ package com.example.clinic_appointment.models.Doctor;
 import android.util.Log;
 
 import com.example.clinic_appointment.models.Department.Department;
+import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
+import com.example.clinic_appointment.models.Rating.Rating;
 import com.example.clinic_appointment.models.User.User;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Doctor implements Serializable {
     @SerializedName("_id")
@@ -15,7 +18,7 @@ public class Doctor implements Serializable {
     @SerializedName("specialtyID")
     private Department departmentInformation;
     @SerializedName("clinicID")
-    private String clinicID;
+    private HealthFacility healthFacility;
 
     @SerializedName("description")
     private String description;
@@ -23,14 +26,73 @@ public class Doctor implements Serializable {
     private String academicLevel;
     @SerializedName("schedules")
     private int[] doctorSchedules;
+    @SerializedName("ratings")
+    List<Rating> ratings;
+    @SerializedName("totalRatings")
+    private float averageRating;
 
-    public static Doctor getDoctor(DetailDoctor detailDoctor) {
-        Doctor doctor = new Doctor();
-        doctor.setDoctorInformation(detailDoctor.getDoctorInformation());
-        doctor.setClinicID(detailDoctor.getHealthFacility().getId());
-        doctor.setAcademicLevel(detailDoctor.getAcademicLevel());
-        doctor.setDescription(detailDoctor.getDescription());
-        return doctor;
+    public int[] getDoctorSchedules() {
+        return doctorSchedules;
+    }
+
+    public void setDoctorSchedules(int[] doctorSchedules) {
+        this.doctorSchedules = doctorSchedules;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public float getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(float averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public String getAcademicLevel() {
+        return academicLevel;
+    }
+
+    public void setAcademicLevel(String academicLevel) {
+        this.academicLevel = academicLevel;
+    }
+
+    public User getDoctorInformation() {
+        return doctorInformation;
+    }
+
+    public void setDoctorInformation(User doctorInformation) {
+        this.doctorInformation = doctorInformation;
+    }
+
+    public Department getDepartmentInformation() {
+        return departmentInformation;
+    }
+
+    public void setDepartmentInformation(Department departmentInformation) {
+        this.departmentInformation = departmentInformation;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public HealthFacility getHealthFacility() {
+        return healthFacility;
+    }
+
+    public void setHealthFacility(HealthFacility healthFacility) {
+        this.healthFacility = healthFacility;
     }
 
     public String getScheduleString() {
@@ -71,45 +133,5 @@ public class Doctor implements Serializable {
                 return "Thứ " + resultString.substring(0, 1).toUpperCase() + resultString.substring(1);
             }
         }
-    }
-
-    public String getAcademicLevel() {
-        return academicLevel;
-    }
-
-    public void setAcademicLevel(String academicLevel) {
-        this.academicLevel = academicLevel;
-    }
-
-    public User getDoctorInformation() {
-        return doctorInformation;
-    }
-
-    public void setDoctorInformation(User doctorInformation) {
-        this.doctorInformation = doctorInformation;
-    }
-
-    public Department getDepartmentInformation() {
-        return departmentInformation;
-    }
-
-    public void setDepartmentInformation(Department departmentInformation) {
-        this.departmentInformation = departmentInformation;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getClinicID() {
-        return clinicID;
-    }
-
-    public void setClinicID(String clinicID) {
-        this.clinicID = clinicID;
     }
 }

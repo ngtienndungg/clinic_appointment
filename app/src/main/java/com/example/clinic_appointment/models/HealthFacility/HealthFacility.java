@@ -2,6 +2,7 @@ package com.example.clinic_appointment.models.HealthFacility;
 
 import com.example.clinic_appointment.models.Address.Address;
 import com.example.clinic_appointment.models.Department.Department;
+import com.example.clinic_appointment.models.Rating.Rating;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -20,6 +21,26 @@ public class HealthFacility implements Serializable {
     private Address address;
     @SerializedName("specialtyID")
     private List<Department> departments;
+    @SerializedName("ratings")
+    List<Rating> ratings;
+    @SerializedName("totalRatings")
+    private float averageRating;
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public float getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(float averageRating) {
+        this.averageRating = averageRating;
+    }
 
     public String getId() {
         return id;
