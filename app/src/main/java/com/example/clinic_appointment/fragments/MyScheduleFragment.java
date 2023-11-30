@@ -1,6 +1,7 @@
 package com.example.clinic_appointment.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.clinic_appointment.R;
+import com.example.clinic_appointment.activities.DetailAppointmentActivity;
 import com.example.clinic_appointment.adapters.AppointmentManagementAdapter;
 import com.example.clinic_appointment.databinding.FragmentMyScheduleBinding;
 import com.example.clinic_appointment.listeners.AppointmentListener;
 import com.example.clinic_appointment.models.Appointment.Appointment;
 import com.example.clinic_appointment.models.Appointment.AppointmentResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
+import com.example.clinic_appointment.utilities.Constants;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -120,6 +123,8 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
 
     @Override
     public void onClick(Appointment appointment) {
-
+        Intent intent = new Intent(requireActivity(), DetailAppointmentActivity.class);
+        intent.putExtra(Constants.KEY_BOOKING_ID, appointment.getId());
+        startActivity(intent);
     }
 }

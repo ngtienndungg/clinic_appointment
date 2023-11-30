@@ -4,6 +4,7 @@ import static com.kizitonwose.calendar.core.ExtensionsKt.daysOfWeek;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -79,6 +80,7 @@ public class SelectDateActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<ScheduleResponse> call, @NonNull Throwable t) {
+                Log.d("FailCheck", t.getMessage());
                 Snackbar.make(binding.getRoot(), getString(R.string.something_wrong_happened), BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });

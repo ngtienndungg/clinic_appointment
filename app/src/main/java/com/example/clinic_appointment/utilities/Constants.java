@@ -21,6 +21,7 @@ public class Constants {
     public static final String KEY_PAYMENT_METHOD = "paymentMethod";
     public static final String KEY_ACTION = "action";
     public static final String ACTION_LOOKUP = "lookup";
+    public static final String KEY_BOOKING_ID = "bookingId";
     public static final String GENDER_MALE_ENG = "MALE";
     public static final String GENDER_FEMALE_ENG = "FEMALE";
     public static final String KEY_SOURCE_ACTIVITY = "sourceActivity";

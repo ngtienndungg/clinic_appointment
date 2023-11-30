@@ -167,4 +167,8 @@
     <string name="view_department_list">Xem danh sách chuyên khoa</string>
     <string name="view_doctor_list">Xem danh sách bác sĩ</string>
     <string name="rating_of_users">Đánh giá của người dùng:&#160;</string>
+    <string name="no_rating">(Không có đánh giá)</string>
+    <string name="confirm">Đồng ý</string>
+    <string name="cancel">Huỷ bỏ</string>
+    <string name="detail_appointment">Chi tiết lịch đặt khám</string>
 </resources>

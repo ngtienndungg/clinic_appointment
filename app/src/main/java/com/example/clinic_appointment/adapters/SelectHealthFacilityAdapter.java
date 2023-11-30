@@ -54,9 +54,8 @@ public class SelectHealthFacilityAdapter extends RecyclerView.Adapter<SelectHeal
         }
 
         public void setData(HealthFacility healthFacility, Context context) {
-            String detailedAddress = "Vĩ dộ 38, Kinh độ 48, Cơ sở 201 Hồng Bàng, Phường " + healthFacility.getAddress().getWard() + ", " + healthFacility.getAddress().getDistrict() + ", " + healthFacility.getAddress().getProvince();
             binding.tvName.setText(healthFacility.getName());
-            binding.tvAddress.setText(detailedAddress);
+            binding.tvAddress.setText(healthFacility.getAddressString());
             Glide.with(context).load(healthFacility.getImage()).centerCrop().into(binding.ivImage);
         }
     }

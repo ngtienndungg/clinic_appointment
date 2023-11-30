@@ -12,7 +12,7 @@
         android:layout_width="@dimen/_75sdp"
         android:layout_height="@dimen/_75sdp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_24sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:importantForAccessibility="no"
         android:scaleType="fitCenter" />
 
@@ -24,7 +24,6 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:fontFamily="@font/quicksand_bold"
         android:gravity="center"
-        android:text="Bệnh viện đại học Y dược Tp.HCM"
         android:textAllCaps="true"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/_15ssp" />
@@ -34,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
         android:layout_below="@id/tvName"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_18sdp"
         app:dividerColor="@color/colorPrimary" />
 
     <ScrollView
@@ -42,7 +41,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/divider"
         android:layout_marginTop="@dimen/_14sdp"
-        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_6sdp"
         android:scrollbars="none">
 
         <RelativeLayout
@@ -65,7 +64,6 @@
                 android:layout_below="@id/tvAddressLabel"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:fontFamily="@font/quicksand_regular"
-                android:text="số 02, Lê Văn Việt, phường 2, quận Thủ Đức, thành phố Hồ Chí Minh"
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
@@ -131,7 +129,6 @@
                 android:layout_below="@id/tvDescriptionLabel"
                 android:layout_marginTop="@dimen/_6sdp"
                 android:fontFamily="@font/quicksand_regular"
-                android:text="Không chỉ là cơ sở y tế tiên phong trong điều trị và nghiên cứu khoa học, Bệnh viện Đại học Y dược TP. Hồ Chí Minh còn nổi tiếng ở đội ngũ chuyên gia, y bác sĩ đầu ngành có kinh nghiệm làm việc dày dặn. Chính vì vậy nơi đây trở thành địa chỉ đáng tin cậy hàng đầu của nhiều bệnh nhân trên địa bàn các tỉnh thành phía Nam và khu vực lân cận."
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
@@ -220,12 +217,24 @@
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
+            <TextView
+                android:id="@+id/tvNoRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/tvRating"
+                android:layout_toEndOf="@id/tvRating"
+                android:fontFamily="@font/quicksand_regular"
+                android:text="@string/no_rating"
+                android:textColor="@color/colorRegisterFieldLabel"
+                android:textSize="@dimen/_12ssp"
+                android:visibility="gone" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvRatings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvRating"
-                android:paddingHorizontal="@dimen/_4sdp"
+                android:overScrollMode="never"
                 android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 

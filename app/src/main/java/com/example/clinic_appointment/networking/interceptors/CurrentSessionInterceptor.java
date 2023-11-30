@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.clinic_appointment.activities.LoginActivity;
-import com.example.clinic_appointment.databinding.DialogNotificationBinding;
+import com.example.clinic_appointment.databinding.LayoutDialogNotificationBinding;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.networking.services.AppointmentService;
 import com.example.clinic_appointment.utilities.Constants;
@@ -97,7 +97,7 @@ public class CurrentSessionInterceptor implements Interceptor {
     @SuppressLint("SetTextI18n")
     private void displayDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        DialogNotificationBinding dialogNotificationBinding = DialogNotificationBinding.inflate(LayoutInflater.from(context));
+        LayoutDialogNotificationBinding dialogNotificationBinding = LayoutDialogNotificationBinding.inflate(LayoutInflater.from(context));
         builder.setView(dialogNotificationBinding.getRoot());
         alertDialog = builder.create();
         if (alertDialog.getWindow() != null) {

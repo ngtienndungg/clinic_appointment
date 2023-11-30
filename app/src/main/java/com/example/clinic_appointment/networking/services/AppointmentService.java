@@ -2,6 +2,8 @@ package com.example.clinic_appointment.networking.services;
 
 import com.example.clinic_appointment.models.Address.VietnamProvinceResponse;
 import com.example.clinic_appointment.models.Appointment.AppointmentResponse;
+import com.example.clinic_appointment.models.Appointment.DetailAppointment;
+import com.example.clinic_appointment.models.Appointment.DetailAppointmentResponse;
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
 import com.example.clinic_appointment.models.Doctor.DoctorResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacilitiesResponse;
@@ -72,4 +74,7 @@ public interface AppointmentService {
 
     @GET("province")
     Call<VietnamProvinceResponse> getEntireProvinces();
+
+    @GET("booking/{id}")
+    Call<DetailAppointmentResponse> getAppointmentById(@Path("id") String appointmentId);
 }

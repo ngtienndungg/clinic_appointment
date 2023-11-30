@@ -25,7 +25,7 @@ public class Doctor implements Serializable {
     @SerializedName("schedules")
     private int[] doctorSchedules;
     @SerializedName("ratings")
-    List<Rating> ratings;
+    private List<Rating> ratings;
     @SerializedName("totalRatings")
     private float averageRating;
 

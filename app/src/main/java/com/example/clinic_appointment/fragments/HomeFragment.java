@@ -21,7 +21,7 @@ import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.activities.LoginActivity;
 import com.example.clinic_appointment.activities.ScheduleLookupActivity;
 import com.example.clinic_appointment.activities.SelectHealthFacilityActivity;
-import com.example.clinic_appointment.databinding.DialogNotificationBinding;
+import com.example.clinic_appointment.databinding.LayoutDialogNotificationBinding;
 import com.example.clinic_appointment.databinding.FragmentHomeBinding;
 import com.example.clinic_appointment.utilities.Constants;
 import com.example.clinic_appointment.utilities.SharedPrefs;
@@ -86,7 +86,7 @@ public class HomeFragment extends Fragment {
 
     private void showNetworkUnavailableDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-        DialogNotificationBinding dialogNotificationBinding = DialogNotificationBinding.inflate(getLayoutInflater());
+        LayoutDialogNotificationBinding dialogNotificationBinding = LayoutDialogNotificationBinding.inflate(getLayoutInflater());
         builder.setView(dialogNotificationBinding.getRoot());
         alertDialog = builder.create();
         if (alertDialog.getWindow() != null) {

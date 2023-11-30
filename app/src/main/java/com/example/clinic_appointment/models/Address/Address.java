@@ -11,6 +11,16 @@ public class Address implements Serializable {
     private String district;
     @SerializedName("ward")
     private String ward;
+    @SerializedName("detail")
+    private String detail;
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
 
     public String getProvince() {
         return province;

@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.adapters.SelectTimeAdapter;
 import com.example.clinic_appointment.databinding.ActivitySelectTimeBinding;
-import com.example.clinic_appointment.databinding.DialogNotificationBinding;
+import com.example.clinic_appointment.databinding.LayoutDialogNotificationBinding;
 import com.example.clinic_appointment.listeners.AppointmentTimeListener;
 import com.example.clinic_appointment.models.AppointmentTime.AppointmentTime;
 import com.example.clinic_appointment.models.Department.Department;
@@ -122,7 +122,7 @@ public class SelectTimeActivity extends AppCompatActivity implements Appointment
 
     private void displayDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(SelectTimeActivity.this);
-        DialogNotificationBinding dialogNotificationBinding = DialogNotificationBinding.inflate(getLayoutInflater());
+        LayoutDialogNotificationBinding dialogNotificationBinding = LayoutDialogNotificationBinding.inflate(getLayoutInflater());
         builder.setView(dialogNotificationBinding.getRoot());
         unLoginDialog = builder.create();
         if (unLoginDialog.getWindow() != null) {

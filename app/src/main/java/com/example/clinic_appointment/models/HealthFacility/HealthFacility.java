@@ -89,4 +89,8 @@ public class HealthFacility implements Serializable {
     public void setDepartments(List<Department> departments) {
         this.departments = departments;
     }
+
+    public String getAddressString() {
+        return address.getDetail() + ", " + address.getWard() + ", " + address.getDistrict() + ", " + address.getProvince();
+    }
 }

@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivityDashboardBinding;
-import com.example.clinic_appointment.databinding.DialogNotificationBinding;
+import com.example.clinic_appointment.databinding.LayoutDialogNotificationBinding;
 import com.example.clinic_appointment.fragments.AccountFragment;
 import com.example.clinic_appointment.fragments.HomeFragment;
 import com.example.clinic_appointment.fragments.MyScheduleFragment;
@@ -124,7 +124,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void showNetworkUnavailableDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        DialogNotificationBinding dialogNotificationBinding = DialogNotificationBinding.inflate(getLayoutInflater());
+        LayoutDialogNotificationBinding dialogNotificationBinding = LayoutDialogNotificationBinding.inflate(getLayoutInflater());
         builder.setView(dialogNotificationBinding.getRoot());
         alertDialog = builder.create();
         if (alertDialog.getWindow() != null) {
