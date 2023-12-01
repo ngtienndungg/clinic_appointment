@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
     private void eventHandling() {
         binding.llMakeAppointmentAtHealthFacilities.setOnClickListener(v -> handleEvent(SelectHealthFacilityActivity.class));
         binding.llSearchSchedule.setOnClickListener(v -> handleEvent(ScheduleLookupActivity.class));
-        binding.llSearchExaminationResult.setOnClickListener(v -> {
+        binding.llSearchHealthFacility.setOnClickListener(v -> {
             if (isNetworkAvailable()) {
                 Intent intent = new Intent(requireActivity(), SelectHealthFacilityActivity.class);
                 intent.putExtra(Constants.KEY_ACTION, Constants.ACTION_LOOKUP);

@@ -44,7 +44,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         binding.tvHealthFacility.setText(Objects.requireNonNull(selectedHealthFacility).getName());
         binding.tvDepartment.setText(Objects.requireNonNull(selectedDepartment).getName());
         binding.tvDoctor.setText(Objects.requireNonNull(selectedDoctor).getDoctorInformation().getFullName());
-        binding.tvUid.setText(SharedPrefs.getInstance().getData(Constants.KEY_ACCESS_TOKEN, String.class));
+        binding.tvUid.setText(SharedPrefs.getInstance().getData(Constants.KEY_CURRENT_UID,String.class));
         binding.tvDate.setText(CustomConverter.getFormattedDate(selectedSchedule.getDate()));
         binding.tvPrice.setText(Objects.requireNonNull(selectedSchedule).getPrice() + " VND");
         binding.tvTime.setText(CustomConverter.getStringAppointmentTime(timeNumber));

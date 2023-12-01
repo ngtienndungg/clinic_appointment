@@ -18,6 +18,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -77,4 +78,8 @@ public interface AppointmentService {
 
     @GET("booking/{id}")
     Call<DetailAppointmentResponse> getAppointmentById(@Path("id") String appointmentId);
+
+    @PUT("clinic/rating")
+    @FormUrlEncoded
+    Call<Void> rateClinic(@Field("star") int star, @Field("comment") String comment, @Field("clinicID") String clinicId);
 }

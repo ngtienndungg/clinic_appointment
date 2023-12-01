@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingVertical="@dimen/_8sdp"
+    android:paddingHorizontal="@dimen/_8sdp"
     tools:context=".activities.HealthFacilityInformationActivity">
 
     <ImageView
@@ -41,7 +42,6 @@
         android:layout_height="match_parent"
         android:layout_below="@id/divider"
         android:layout_marginTop="@dimen/_14sdp"
-        android:paddingHorizontal="@dimen/_6sdp"
         android:scrollbars="none">
 
         <RelativeLayout
@@ -67,11 +67,19 @@
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/mdA"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_below="@id/tvAddress"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:dividerColor="@color/colorStrokeBox" />
+
             <TextView
                 android:id="@+id/tvPhoneNumberLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvAddress"
+                android:layout_below="@id/mdA"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/quicksand_semi_bold"
                 android:text="@string/hotline"
@@ -89,11 +97,19 @@
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/mdB"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_below="@id/tvPhoneNumber"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:dividerColor="@color/colorStrokeBox" />
+
             <TextView
                 android:id="@+id/tvTimeLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvPhoneNumber"
+                android:layout_below="@id/mdB"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/quicksand_semi_bold"
                 android:text="@string/working_time_colon"
@@ -111,11 +127,19 @@
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/mdC"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_below="@id/tvTime"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:dividerColor="@color/colorStrokeBox" />
+
             <TextView
                 android:id="@+id/tvDescriptionLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvTime"
+                android:layout_below="@id/mdC"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/quicksand_semi_bold"
                 android:text="@string/description_colon"
@@ -132,11 +156,19 @@
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/mdD"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_below="@id/tvDescription"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:dividerColor="@color/colorStrokeBox" />
+
             <HorizontalScrollView
                 android:id="@+id/svImage"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_140sdp"
-                android:layout_below="@id/tvDescription"
+                android:layout_below="@id/mdD"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:scrollbars="none"
                 tools:ignore="UselessParent">
@@ -182,14 +214,23 @@
 
             </HorizontalScrollView>
 
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/mdE"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_below="@id/svImage"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:dividerColor="@color/colorStrokeBox" />
+
             <TextView
                 android:id="@+id/tvDepartmentList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/svImage"
+                android:layout_below="@id/mdE"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/quicksand_semi_bold"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:fontFamily="@font/quicksand_bold"
                 android:text="@string/view_department_list"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/_14ssp" />
@@ -201,17 +242,26 @@
                 android:layout_below="@id/tvDepartmentList"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/quicksand_semi_bold"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:fontFamily="@font/quicksand_bold"
                 android:text="@string/view_doctor_list"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/_14ssp" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/mdF"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_below="@id/tvDoctorList"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:dividerColor="@color/colorStrokeBox" />
 
             <TextView
                 android:id="@+id/tvYourRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvDoctorList"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_below="@id/mdF"
+                android:layout_marginTop="@dimen/_14sdp"
                 android:fontFamily="@font/quicksand_semi_bold"
                 android:text="@string/your_rating"
                 android:textColor="@color/colorRegisterFieldLabel"
@@ -221,12 +271,13 @@
                 android:id="@+id/llYourStar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_alignTop="@id/tvYourRating"
                 android:layout_alignBottom="@id/tvYourRating"
-                android:layout_toEndOf="@id/tvYourRating"
                 android:layout_marginStart="@dimen/_4sdp"
-                android:layout_marginTop="@dimen/_2sdp">
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_toEndOf="@id/tvYourRating"
+                android:gravity="center"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/ivStar1"
@@ -266,13 +317,32 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tvChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/llYourStar"
+                android:text="@string/rate"
+                android:layout_alignTop="@id/tvYourRating"
+                android:layout_alignBottom="@id/tvYourRating"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textSize="@dimen/_13ssp"
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_alignBaseline="@id/tvYourRating"
+                android:textColor="@color/colorSearchButton"
+                app:drawableEndCompat="@drawable/ic_edit"
+                android:drawablePadding="@dimen/_2sdp"
+                app:drawableTint="@color/colorFindText" />
+
+            <TextView
                 android:id="@+id/tvYourComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvYourRating"
                 android:layout_marginTop="@dimen/_2sdp"
+                android:visibility="gone"
                 android:fontFamily="@font/quicksand_medium"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_12ssp" />
 
             <TextView
                 android:id="@+id/tvRating"

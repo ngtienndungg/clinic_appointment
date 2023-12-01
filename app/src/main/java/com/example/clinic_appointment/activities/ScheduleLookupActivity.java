@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -82,9 +83,11 @@ public class ScheduleLookupActivity extends AppCompatActivity {
         binding.etDepartment.setOnClickListener(v -> launchSelectActivity(SelectDepartmentActivity.class));
         binding.etTime.setOnClickListener(v -> launchSelectActivity(SelectTimeActivity.class));
         binding.etFromDate.setOnClickListener(v -> {
+            Calendar today = Calendar.getInstance();
             Calendar currentDate = Calendar.getInstance();
             MaterialDatePicker<Pair<Long, Long>> materialDatePicker = MaterialDatePicker.Builder.dateRangePicker()
                     .setTitleText(getString(R.string.please_select_date))
+                    .setSelection(Pair.create(today.getTimeInMillis(), today.getTimeInMillis() + (30L * 86400000)))
                     .setCalendarConstraints(new CalendarConstraints.Builder()
                             .setStart(currentDate.getTimeInMillis())
                             .setEnd(getTwoMonthLater(currentDate))
@@ -99,14 +102,18 @@ public class ScheduleLookupActivity extends AppCompatActivity {
             materialDatePicker.show(getSupportFragmentManager(), materialDatePicker.toString());
         });
         binding.tvSearch.setOnClickListener(v -> {
-            Intent intent = new Intent(this, SelectDoctorActivity.class);
-            intent.putExtra(Constants.KEY_START_DATE, dateFrom);
-            intent.putExtra(Constants.KEY_END_DATE, dateTo);
-            intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
-            intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
-            intent.putExtra(Constants.KEY_TIME, selectedAppointmentTime);
-            intent.putExtra(Constants.KEY_SOURCE_ACTIVITY, "SearchSchedule");
-            startActivity(intent);
+            if (dateFrom == -1 || dateTo == -1) {
+                Toast.makeText(this, "Vui lòng chọn ngày khám", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(this, SelectDoctorActivity.class);
+                intent.putExtra(Constants.KEY_START_DATE, dateFrom);
+                intent.putExtra(Constants.KEY_END_DATE, dateTo);
+                intent.putExtra(Constants.KEY_HEALTH_FACILITY, selectedHealthFacility);
+                intent.putExtra(Constants.KEY_DEPARTMENT, selectedDepartment);
+                intent.putExtra(Constants.KEY_TIME, selectedAppointmentTime);
+                intent.putExtra(Constants.KEY_SOURCE_ACTIVITY, "SearchSchedule");
+                startActivity(intent);
+            }
         });
     }
 

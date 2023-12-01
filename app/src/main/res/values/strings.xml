@@ -127,7 +127,7 @@
     <string name="city_province_error">Danh sách tỉnh thành đang gặp lỗi</string>
     <string name="something_wrong_please_reset">Đã có lỗi xảy ra. Vui lòng thử tải lại danh sách.</string>
     <string name="book_successfully">Đặt lịch thành công</string>
-    <string name="temporary_unlabeled">150,000đ</string>
+    <string name="temporary_unlabeled">Chưa niêm yết</string>
     <string name="this_doctor_dont_have_schedule">Bác sĩ này không có lịch khám</string>
     <string name="search_appointment">Tra cứu lịch khám</string>
     <string name="make_blood_test_appointment">Đặt lịch xét nghiệm</string>
@@ -166,7 +166,7 @@
     <string name="working_time_colon">Thời gian làm việc:&#160;</string>
     <string name="view_department_list">Xem danh sách chuyên khoa</string>
     <string name="view_doctor_list">Xem danh sách bác sĩ</string>
-    <string name="rating_of_users">Đánh giá của người dùng:&#160;</string>
+    <string name="rating_of_users">Đánh giá từ người dùng:&#160;</string>
     <string name="no_rating">(Không có đánh giá)</string>
     <string name="confirm">Đồng ý</string>
     <string name="cancel">Huỷ bỏ</string>
@@ -175,4 +175,10 @@
     <string name="ensure_exactly_information">Hãy đảm bảo thông tin đã chính xác khi bấm xác nhận</string>
     <string name="cancel_appointment">Huỷ lịch</string>
     <string name="your_rating">Đánh giá của bạn:&#160;</string>
+    <string name="search_doctor">Tra cứu về bác sĩ</string>
+    <string name="search_schedule">Tra cứu lịch khám</string>
+    <string name="search_hospital">Tra cứu cơ sở y tế</string>
+    <string name="change_rating">Thay đổi</string>
+    <string name="rate">Đánh giá</string>
+    <string name="type_your_rate">Nhập đánh giá của bạn</string>
 </resources>

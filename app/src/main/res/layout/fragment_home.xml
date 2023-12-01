@@ -180,7 +180,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/llSearchSchedule"
+                    android:id="@+id/llSearchDoctor"
                     android:layout_width="@dimen/homeItemWidth"
                     android:layout_height="@dimen/homeItemHeight"
                     android:background="@drawable/background_home_item_top_bottom_center"
@@ -203,7 +203,7 @@
                         android:gravity="center"
                         android:includeFontPadding="false"
                         android:paddingHorizontal="@dimen/_10sdp"
-                        android:text="@string/search_appointment"
+                        android:text="@string/search_doctor"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
@@ -266,7 +266,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/llMakeBloodTestAppointment"
+                    android:id="@+id/llSearchHealthFacility"
                     android:layout_width="@dimen/homeItemWidth"
                     android:layout_height="@dimen/homeItemHeight"
                     android:background="@drawable/background_home_item_middle_center"
@@ -289,7 +289,7 @@
                         android:gravity="center"
                         android:includeFontPadding="false"
                         android:paddingHorizontal="@dimen/_10sdp"
-                        android:text="@string/make_blood_test_appointment"
+                        android:text="@string/search_hospital"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
@@ -324,7 +324,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/llSearchExaminationResult"
+                    android:id="@+id/llSearchSchedule"
                     android:layout_width="@dimen/homeItemWidth"
                     android:layout_height="@dimen/homeItemHeight"
                     android:gravity="center"
@@ -345,7 +345,7 @@
                         android:gravity="center"
                         android:includeFontPadding="false"
                         android:paddingHorizontal="@dimen/_10sdp"
-                        android:text="@string/search_examination_result"
+                        android:text="@string/search_schedule"
                         android:textSize="@dimen/_10ssp" />
 
                 </LinearLayout>
