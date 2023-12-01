@@ -56,6 +56,11 @@ public class HealthFacilityInformationActivity extends AppCompatActivity {
     }
 
     private void initiate() {
+        if (SharedPrefs.getInstance().getData(Constants.KEY_ACCESS_TOKEN, String.class).equals("")) {
+            binding.tvYourRating.setVisibility(View.GONE);
+            binding.tvYourComment.setVisibility(View.GONE);
+            binding.llYourStar.setVisibility(View.GONE);
+        }
         healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
         if (healthFacility != null) {
             binding.tvName.setText(healthFacility.getName());

@@ -148,6 +148,7 @@ public class PaymentInformationActivity extends AppCompatActivity {
                     Intent intent = new Intent(PaymentInformationActivity.this, DashboardActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra(Constants.KEY_STATUS_CODE, response.code());
+                    overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
                     startActivity(intent);
                 } else if (response.code() == 500) {
                     Snackbar.make(binding.getRoot(), "Bạn đã đặt lịch này rồi. Vui lòng kiểm tra lại", BaseTransientBottomBar.LENGTH_SHORT).show();

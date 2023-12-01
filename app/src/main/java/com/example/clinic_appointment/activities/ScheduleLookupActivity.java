@@ -83,11 +83,9 @@ public class ScheduleLookupActivity extends AppCompatActivity {
         binding.etDepartment.setOnClickListener(v -> launchSelectActivity(SelectDepartmentActivity.class));
         binding.etTime.setOnClickListener(v -> launchSelectActivity(SelectTimeActivity.class));
         binding.etFromDate.setOnClickListener(v -> {
-            Calendar today = Calendar.getInstance();
             Calendar currentDate = Calendar.getInstance();
             MaterialDatePicker<Pair<Long, Long>> materialDatePicker = MaterialDatePicker.Builder.dateRangePicker()
                     .setTitleText(getString(R.string.please_select_date))
-                    .setSelection(Pair.create(today.getTimeInMillis(), today.getTimeInMillis() + (30L * 86400000)))
                     .setCalendarConstraints(new CalendarConstraints.Builder()
                             .setStart(currentDate.getTimeInMillis())
                             .setEnd(getTwoMonthLater(currentDate))

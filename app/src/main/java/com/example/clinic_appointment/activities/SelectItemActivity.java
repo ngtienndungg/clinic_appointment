@@ -113,7 +113,7 @@ public class SelectItemActivity extends AppCompatActivity implements HealthFacil
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.slide_default, R.anim.slide_down);
+        overridePendingTransition(R.anim.slide_default, R.anim.slide_out_right);
     }
 
     public void onSelect(Searchable item) {

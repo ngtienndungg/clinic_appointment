@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -109,7 +110,7 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
 
                 @Override
                 public void onFailure(@NonNull Call<ScheduleResponse> call, @NonNull Throwable t) {
-                    displayError();
+                    binding.tvNotFound.setVisibility(View.VISIBLE);
                 }
             });
         }
