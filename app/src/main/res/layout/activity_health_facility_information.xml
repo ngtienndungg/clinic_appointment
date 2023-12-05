@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingVertical="@dimen/_8sdp"
     android:paddingHorizontal="@dimen/_8sdp"
+    android:paddingVertical="@dimen/_8sdp"
     tools:context=".activities.HealthFacilityInformationActivity">
 
     <ImageView
@@ -320,18 +320,18 @@
                 android:id="@+id/tvChange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/llYourStar"
-                android:text="@string/rate"
+                android:layout_alignBaseline="@id/tvYourRating"
                 android:layout_alignTop="@id/tvYourRating"
                 android:layout_alignBottom="@id/tvYourRating"
-                android:fontFamily="@font/quicksand_semi_bold"
-                android:textSize="@dimen/_13ssp"
-                android:layout_marginBottom="@dimen/_2sdp"
                 android:layout_marginStart="@dimen/_8sdp"
-                android:layout_alignBaseline="@id/tvYourRating"
-                android:textColor="@color/colorSearchButton"
-                app:drawableEndCompat="@drawable/ic_edit"
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:layout_toEndOf="@id/llYourStar"
                 android:drawablePadding="@dimen/_2sdp"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:text="@string/rate"
+                android:textColor="@color/colorSearchButton"
+                android:textSize="@dimen/_13ssp"
+                app:drawableEndCompat="@drawable/ic_edit"
                 app:drawableTint="@color/colorFindText" />
 
             <TextView
@@ -340,9 +340,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvYourRating"
                 android:layout_marginTop="@dimen/_2sdp"
-                android:visibility="gone"
                 android:fontFamily="@font/quicksand_medium"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="@dimen/_12ssp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvRating"

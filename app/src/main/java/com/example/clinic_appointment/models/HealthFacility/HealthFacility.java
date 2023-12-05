@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.List;
 
 public class HealthFacility implements Serializable {
+    @SerializedName("ratings")
+    List<Rating> ratings;
     @SerializedName("_id")
     private String id;
     @SerializedName("name")
@@ -21,8 +23,6 @@ public class HealthFacility implements Serializable {
     private Address address;
     @SerializedName("specialtyID")
     private List<Department> departments;
-    @SerializedName("ratings")
-    List<Rating> ratings;
     @SerializedName("totalRatings")
     private float averageRating;
 

@@ -1,14 +1,10 @@
 package com.example.clinic_appointment.activities;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.os.StrictMode;
-
 import com.example.clinic_appointment.R;
-
-import vn.zalopay.sdk.Environment;
-import vn.zalopay.sdk.ZaloPaySDK;
 
 public class ZalopayPaymentActivity extends AppCompatActivity {
 

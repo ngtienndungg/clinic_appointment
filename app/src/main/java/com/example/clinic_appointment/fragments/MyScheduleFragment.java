@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -40,19 +41,18 @@ import retrofit2.Response;
 public class MyScheduleFragment extends Fragment implements AppointmentListener {
     private FragmentMyScheduleBinding binding;
     private TextView currentOption = null;
-    private AlertDialog unLoginDialog;
-    private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                Integer resultCode = result.getResultCode();
-                if (resultCode == Activity.RESULT_OK) {
-                    unLoginDialog.dismiss();
-                }
-            });
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+    }    private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                Integer resultCode = result.getResultCode();
+                if (resultCode == Activity.RESULT_OK) {
+                    Toast.makeText(requireContext(), "Đã huỷ thành công", Toast.LENGTH_SHORT).show();
+                    initiate();
+                }
+            });
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -117,7 +117,7 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
                         } else if (currentOption == binding.tvConfirmed) {
                             getAppointmentByStatus(appointments, "Đã duyệt");
                         } else if (currentOption == binding.tvCancelled) {
-                            getAppointmentByStatus(appointments, "Đã huỷ");
+                            getAppointmentByStatus(appointments, "Đã hủy");
                         } else if (currentOption == binding.tvChecked) {
                             getAppointmentByStatus(appointments, "Đã khám");
                         }
@@ -144,6 +144,9 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
     @Override
     public void onClick(Appointment appointment) {
         Intent intent = new Intent(requireActivity(), DetailAppointmentActivity.class);
+        if (appointment.getStatus().equals("Đang xử lý")) {
+            intent.putExtra("Status", "0");
+        }
         intent.putExtra(Constants.KEY_BOOKING_ID, appointment.getId());
         startActivity(intent);
     }
@@ -152,7 +155,7 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         LayoutDialogNotificationBinding dialogNotificationBinding = LayoutDialogNotificationBinding.inflate(getLayoutInflater());
         builder.setView(dialogNotificationBinding.getRoot());
-        unLoginDialog = builder.create();
+        AlertDialog unLoginDialog = builder.create();
         if (unLoginDialog.getWindow() != null) {
             unLoginDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
@@ -163,4 +166,6 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
         dialogNotificationBinding.tvAction.setOnClickListener(v -> mStartForResult.launch(new Intent(requireActivity(), LoginActivity.class)));
         unLoginDialog.show();
     }
+
+
 }

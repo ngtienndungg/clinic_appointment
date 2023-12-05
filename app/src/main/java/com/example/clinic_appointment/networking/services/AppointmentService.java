@@ -2,7 +2,6 @@ package com.example.clinic_appointment.networking.services;
 
 import com.example.clinic_appointment.models.Address.VietnamProvinceResponse;
 import com.example.clinic_appointment.models.Appointment.AppointmentResponse;
-import com.example.clinic_appointment.models.Appointment.DetailAppointment;
 import com.example.clinic_appointment.models.Appointment.DetailAppointmentResponse;
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
 import com.example.clinic_appointment.models.Doctor.DoctorResponse;
@@ -37,6 +36,7 @@ public interface AppointmentService {
     Call<Void> getCurrent(@Header("Authorization") String accessToken);
 
     @POST("user/register")
+    @FormUrlEncoded
     Call<UserResponse> register(@Field("email") String email, @Field("password") String password,
                                 @Field("fullName") String fullName, @Field("mobile") String phoneNumber,
                                 @Field("address") String address, @Field("gender") String gender,
@@ -82,4 +82,7 @@ public interface AppointmentService {
     @PUT("clinic/rating")
     @FormUrlEncoded
     Call<Void> rateClinic(@Field("star") int star, @Field("comment") String comment, @Field("clinicID") String clinicId);
+
+    @PUT("booking/patient/{id}")
+    Call<Void> cancelAppointment(@Path("id") String appointmentId);
 }

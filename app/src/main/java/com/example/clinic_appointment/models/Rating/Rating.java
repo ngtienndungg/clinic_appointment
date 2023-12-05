@@ -3,8 +3,6 @@ package com.example.clinic_appointment.models.Rating;
 import com.example.clinic_appointment.models.User.User;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class Rating {
     @SerializedName("star")
     private int star;

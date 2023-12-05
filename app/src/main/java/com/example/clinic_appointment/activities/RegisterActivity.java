@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
@@ -69,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
             call.enqueue(new Callback<UserResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
+                    Log.d("OK", "OK");
                     if (response.isSuccessful()) {
                         progressDialog.dismiss();
                         setResult(RESULT_OK);

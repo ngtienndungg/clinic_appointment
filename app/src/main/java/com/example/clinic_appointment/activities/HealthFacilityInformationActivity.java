@@ -32,12 +32,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HealthFacilityInformationActivity extends AppCompatActivity {
+    ImageView[] starImageRootViews;
     private ActivityHealthFacilityInformationBinding binding;
     private HealthFacility healthFacility;
     private AlertDialog alertDialog;
     private int selectedStar = 5;
     private int starNumbers = 5;
-    ImageView[] starImageRootViews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +60,7 @@ public class HealthFacilityInformationActivity extends AppCompatActivity {
             binding.tvYourRating.setVisibility(View.GONE);
             binding.tvYourComment.setVisibility(View.GONE);
             binding.llYourStar.setVisibility(View.GONE);
+            binding.tvChange.setVisibility(View.GONE);
         }
         healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
         if (healthFacility != null) {

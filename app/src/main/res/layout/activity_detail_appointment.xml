@@ -463,7 +463,8 @@
                 android:text="@string/cancel_appointment"
                 android:textAllCaps="true"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="@dimen/_12ssp"
+                android:visibility="gone" />
 
         </LinearLayout>
 
