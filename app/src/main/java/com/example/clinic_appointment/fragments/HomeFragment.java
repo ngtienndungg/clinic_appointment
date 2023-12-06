@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +72,11 @@ public class HomeFragment extends Fragment {
             } else {
                 showNetworkUnavailableDialog();
             }
+        });
+        binding.llMakeAppointmentByPhone.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:19001234"));
+            startActivity(intent);
         });
     }
 
