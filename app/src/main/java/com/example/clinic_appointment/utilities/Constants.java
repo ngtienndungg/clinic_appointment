@@ -23,6 +23,8 @@ public class Constants {
     public static final String ACTION_LOOKUP = "lookup";
     public static final String KEY_BOOKING_ID = "bookingId";
     public static final String KEY_CURRENT_UID = "uid";
+    public static final String KEY_STATUS = "status";
+    public static final String STATUS_PROCESSING = "Đang xử lý";
     public static final String GENDER_MALE_ENG = "MALE";
     public static final String GENDER_FEMALE_ENG = "FEMALE";
     public static final String KEY_SOURCE_ACTIVITY = "sourceActivity";

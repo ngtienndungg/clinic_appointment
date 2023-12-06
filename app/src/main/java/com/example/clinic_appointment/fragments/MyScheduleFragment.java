@@ -65,7 +65,6 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
 
     private void initiate() {
         optionPerformClick(binding.tvWaitingConfirmation);
-        getAppointments();
     }
 
     private void optionPerformClick(TextView newSelection) {
@@ -144,8 +143,8 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
     @Override
     public void onClick(Appointment appointment) {
         Intent intent = new Intent(requireActivity(), DetailAppointmentActivity.class);
-        if (appointment.getStatus().equals("Đang xử lý")) {
-            intent.putExtra("Status", "0");
+        if (appointment.getStatus().equals(Constants.STATUS_PROCESSING)) {
+            intent.putExtra(Constants.KEY_STATUS, Constants.STATUS_PROCESSING);
         }
         intent.putExtra(Constants.KEY_BOOKING_ID, appointment.getId());
         startActivity(intent);

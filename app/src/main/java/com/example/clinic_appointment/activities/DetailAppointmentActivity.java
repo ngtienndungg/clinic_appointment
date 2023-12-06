@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivityDetailAppointmentBinding;
 import com.example.clinic_appointment.databinding.LayoutConfirmationDialogBinding;
 import com.example.clinic_appointment.models.Appointment.DetailAppointment;
@@ -37,7 +38,7 @@ public class DetailAppointmentActivity extends AppCompatActivity {
 
     private void initiate() {
         appointmentID = getIntent().getStringExtra(Constants.KEY_BOOKING_ID);
-        if (getIntent().getStringExtra("Status") != null) {
+        if (getIntent().getStringExtra(Constants.KEY_STATUS) != null) {
             binding.tvConfirm.setVisibility(View.VISIBLE);
         }
         Call<DetailAppointmentResponse> call = RetrofitClient.getPublicAppointmentService().getAppointmentById(appointmentID);
@@ -78,8 +79,8 @@ public class DetailAppointmentActivity extends AppCompatActivity {
             if (alertDialog.getWindow() != null) {
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
             }
-            confirmationDialogBinding.tvTitle.setText("Bạn có chắc chắn muốn huỷ lịch?");
-            confirmationDialogBinding.tvContent.setText("Vui lòng hãy chắc chắn rằng bạn muốn huỷ");
+            confirmationDialogBinding.tvTitle.setText(getString(R.string.are_you_sure_you_want_to_cancel));
+            confirmationDialogBinding.tvContent.setText(getString(R.string.please_make_sure_that_you_want_to_cancel));
             confirmationDialogBinding.tvPositiveAction.setOnClickListener(v1 -> {
                 Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(this).cancelAppointment(appointmentID);
                 call.enqueue(new Callback<Void>() {

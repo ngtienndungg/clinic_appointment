@@ -181,4 +181,6 @@
     <string name="change_rating">Thay đổi</string>
     <string name="rate">Đánh giá</string>
     <string name="type_your_rate">Nhập đánh giá của bạn</string>
+    <string name="are_you_sure_you_want_to_cancel">Bạn có chắc chắn muốn huỷ lịch?</string>
+    <string name="please_make_sure_that_you_want_to_cancel">Vui lòng hãy chắc chắn rằng bạn muốn huỷ</string>
 </resources>
