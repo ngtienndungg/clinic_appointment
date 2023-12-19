@@ -19,6 +19,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.clinic_appointment.R;
+import com.example.clinic_appointment.activities.DoctorLookupActivity;
 import com.example.clinic_appointment.activities.LoginActivity;
 import com.example.clinic_appointment.activities.ScheduleLookupActivity;
 import com.example.clinic_appointment.activities.SelectHealthFacilityActivity;
@@ -73,6 +74,7 @@ public class HomeFragment extends Fragment {
                 showNetworkUnavailableDialog();
             }
         });
+        binding.llSearchDoctor.setOnClickListener(v -> handleEvent(DoctorLookupActivity.class));
         binding.llMakeAppointmentByPhone.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:19001234"));

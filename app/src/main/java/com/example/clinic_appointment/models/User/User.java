@@ -15,6 +15,8 @@ public class User implements Serializable {
     private String fullName;
     @SerializedName("mobile")
     private String phoneNumber;
+    @SerializedName("avatar")
+    private String avatar;
     @SerializedName("role")
     private String userRole;
     @SerializedName("address")
@@ -23,6 +25,14 @@ public class User implements Serializable {
     private String refreshToken;
     @SerializedName("gender")
     private String gender;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getGenderVietnamese() {
         if (Objects.equals(gender, Constants.GENDER_FEMALE_ENG)) {

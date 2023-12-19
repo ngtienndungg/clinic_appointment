@@ -15,10 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.adapters.RatingAdapter;
-import com.example.clinic_appointment.databinding.ActivityHealthFacilityInformationBinding;
+import com.example.clinic_appointment.databinding.ActivityDoctorInformationBinding;
 import com.example.clinic_appointment.databinding.LayoutDialogRateBinding;
-import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
-import com.example.clinic_appointment.models.HealthFacility.HealthFacilityResponse;
+import com.example.clinic_appointment.models.Doctor.Doctor;
+import com.example.clinic_appointment.models.Doctor.DoctorSingleResponse;
 import com.example.clinic_appointment.models.Rating.Rating;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
@@ -32,10 +32,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HealthFacilityInformationActivity extends AppCompatActivity {
+public class DoctorInformationActivity extends AppCompatActivity {
     ImageView[] starImageRootViews;
-    private ActivityHealthFacilityInformationBinding binding;
-    private HealthFacility healthFacility;
+    private ActivityDoctorInformationBinding binding;
+    private Doctor doctor;
     private AlertDialog alertDialog;
     private int selectedStar = 5;
     private int starNumbers = 5;
@@ -43,7 +43,7 @@ public class HealthFacilityInformationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityHealthFacilityInformationBinding.inflate(getLayoutInflater());
+        binding = ActivityDoctorInformationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         starImageRootViews = new ImageView[]{
                 binding.ivStar5,
@@ -63,21 +63,21 @@ public class HealthFacilityInformationActivity extends AppCompatActivity {
             binding.llYourStar.setVisibility(View.GONE);
             binding.tvChange.setVisibility(View.GONE);
         }
-        healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-        if (healthFacility != null) {
-            binding.tvName.setText(healthFacility.getName());
-            binding.tvDescription.setText(Html.fromHtml(healthFacility.getDescription(), Html.FROM_HTML_MODE_COMPACT));
-            binding.tvAddress.setText(healthFacility.getAddressString());
-            Glide.with(this).load(healthFacility.getImage()).centerCrop().into(binding.ivLogo);
-            Call<HealthFacilityResponse> call = RetrofitClient.getPublicAppointmentService().getHealthFacilityById(healthFacility.getId());
-            call.enqueue(new Callback<HealthFacilityResponse>() {
+        doctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
+        if (doctor != null) {
+            binding.tvName.setText(doctor.getDoctorInformation().getFullName());
+            binding.tvDescription.setText(Html.fromHtml(doctor.getDescription(), Html.FROM_HTML_MODE_COMPACT));
+            binding.tvGender.setText(doctor.getDoctorInformation().getGenderVietnamese());
+            Glide.with(this).load(doctor.getDoctorInformation().getAvatar()).centerCrop().into(binding.ivImage);
+            Call<DoctorSingleResponse> call = RetrofitClient.getPublicAppointmentService().getDoctorById(doctor.getDoctorInformation().getId());
+            call.enqueue(new Callback<DoctorSingleResponse>() {
                 @Override
-                public void onResponse(@NonNull Call<HealthFacilityResponse> call, @NonNull Response<HealthFacilityResponse> response) {
+                public void onResponse(@NonNull Call<DoctorSingleResponse> call, @NonNull Response<DoctorSingleResponse> response) {
                     if (response.isSuccessful() && response.body() != null) {
-                        if (response.body().getHealthFacility().getRatings().size() == 0) {
+                        if (response.body().getDoctors().getRatings().size() == 0) {
                             binding.tvNoRating.setVisibility(View.VISIBLE);
                         } else {
-                            List<Rating> ratings = new ArrayList<>(response.body().getHealthFacility().getRatings());
+                            List<Rating> ratings = new ArrayList<>(response.body().getDoctors().getRatings());
                             for (Rating rating : ratings) {
                                 if (Objects.equals(rating.getPostedBy().getId(), SharedPrefs.getInstance().getData(Constants.KEY_CURRENT_UID, String.class))) {
                                     binding.tvYourComment.setVisibility(View.VISIBLE);
@@ -94,7 +94,7 @@ public class HealthFacilityInformationActivity extends AppCompatActivity {
                                 }
                             }
                             RatingAdapter ratingAdapter = new RatingAdapter(ratings);
-                            binding.tvRating.append("(" + response.body().getHealthFacility().getAverageRating() + ")");
+                            binding.tvRating.append("(" + response.body().getDoctors().getAverageRating() + ")");
                             binding.rvRatings.setAdapter(ratingAdapter);
                             binding.rvRatings.setVisibility(View.VISIBLE);
                         }
@@ -102,7 +102,7 @@ public class HealthFacilityInformationActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<HealthFacilityResponse> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<DoctorSingleResponse> call, @NonNull Throwable t) {
 
                 }
             });
@@ -110,18 +110,13 @@ public class HealthFacilityInformationActivity extends AppCompatActivity {
     }
 
     private void eventHandling() {
-        binding.tvDepartmentList.setOnClickListener(v -> {
-            Intent intent = new Intent(this, SelectDepartmentActivity.class);
-            intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);
-            startActivity(intent);
-        });
-        binding.tvDoctorList.setOnClickListener(v -> {
-            Intent intent = new Intent(this, SelectDoctorActivity.class);
-            intent.putExtra(Constants.KEY_HEALTH_FACILITY, healthFacility);
-            startActivity(intent);
-        });
         binding.tvChange.setOnClickListener(v -> {
             displayConfirmationDialog();
+        });
+        binding.tvClinicInformation.setOnClickListener(v -> {
+            Intent intent = new Intent(this, HealthFacilityInformationActivity.class);
+            intent.putExtra(Constants.KEY_HEALTH_FACILITY, doctor.getHealthFacility());
+            startActivity(intent);
         });
     }
 
@@ -156,10 +151,10 @@ public class HealthFacilityInformationActivity extends AppCompatActivity {
         }
         confirmationDialogBinding.tvTitle.setText(getString(R.string.rate));
         confirmationDialogBinding.tvPositiveAction.setOnClickListener(v -> {
-            Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(this).rateClinic(
+            Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(this).rateDoctor(
                     selectedStar,
                     confirmationDialogBinding.etComment.getText().toString(),
-                    healthFacility.getId());
+                    doctor.getDoctorInformation().getId());
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {

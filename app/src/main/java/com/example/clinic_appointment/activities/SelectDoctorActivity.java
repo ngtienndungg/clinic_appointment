@@ -57,7 +57,7 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
                 selectedDepartment = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
             }
             HealthFacility healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
-            Call<DoctorResponse> call = RetrofitClient.getPublicAppointmentService().getDoctorByDepartmentAndHealthFacility(selectedDepartment != null ? selectedDepartment.getId() : null, healthFacility.getId());
+            Call<DoctorResponse> call = RetrofitClient.getPublicAppointmentService().getDoctorByDepartmentAndHealthFacility(selectedDepartment != null ? selectedDepartment.getId() : null, Objects.requireNonNull(healthFacility).getId(), null);
             call.enqueue(new Callback<DoctorResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<DoctorResponse> call, @NonNull Response<DoctorResponse> response) {
@@ -113,6 +113,30 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
                     binding.tvNotFound.setVisibility(View.VISIBLE);
                 }
             });
+        } else if (Objects.equals(getIntent().getStringExtra(Constants.KEY_SOURCE_ACTIVITY), "SearchDoctor")) {
+            HealthFacility healthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
+            Department department = (Department) getIntent().getSerializableExtra(Constants.KEY_DEPARTMENT);
+            String name = getIntent().getStringExtra(Constants.KEY_NAME);
+            Call<DoctorResponse> call = RetrofitClient.getPublicAppointmentService().getDoctorByDepartmentAndHealthFacility(department != null ? department.getId() : null, healthFacility != null ? healthFacility.getId() : null, name);
+            call.enqueue(new Callback<DoctorResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<DoctorResponse> call, @NonNull Response<DoctorResponse> response) {
+                    if (response.body() != null && response.body().isSuccess() && response.body().getDoctors().size() > 0) {
+                        List<Doctor> doctors = response.body().getDoctors();
+                        SelectDoctorAdapter adapter = new SelectDoctorAdapter(SelectDoctorActivity.this, doctors);
+                        binding.rvDoctor.setAdapter(adapter);
+                        binding.rvDoctor.setVisibility(View.VISIBLE);
+                        binding.pbLoading.setVisibility(View.GONE);
+                    } else {
+                        binding.tvNotFound.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<DoctorResponse> call, @NonNull Throwable t) {
+                    displayError();
+                }
+            });
         }
     }
 
@@ -144,7 +168,11 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
 
     @Override
     public void onClick(Doctor doctor) {
-        if (!Objects.equals(doctor.getScheduleString(), "Không có lịch khám")) {
+        if (Objects.equals(getIntent().getStringExtra(Constants.KEY_SOURCE_ACTIVITY), "SearchDoctor")) {
+            Intent intent = new Intent(this, DoctorInformationActivity.class);
+            intent.putExtra(Constants.KEY_DOCTOR, doctor);
+            startActivity(intent);
+        } else if (!Objects.equals(doctor.getScheduleString(), "Không có lịch khám")) {
             HealthFacility selectedHealthFacility = (HealthFacility) getIntent().getSerializableExtra(Constants.KEY_HEALTH_FACILITY);
             Intent intent = new Intent(this, SelectDateActivity.class);
             intent.putExtra(Constants.KEY_DOCTOR, doctor);

@@ -162,6 +162,7 @@
     <string name="payment_zalo_pay">Thanh toán bằng ZaloPay</string>
     <string name="address_colon">Địa chỉ:&#160;</string>
     <string name="description_colon">Mô tả:&#160;</string>
+    <string name="description">Mô tả</string>
     <string name="hotline">Đường dây nóng:&#160;</string>
     <string name="working_time_colon">Thời gian làm việc:&#160;</string>
     <string name="view_department_list">Xem danh sách chuyên khoa</string>
@@ -188,4 +189,7 @@
     <string name="this_schedule_was_book">Bạn đã đặt lịch này rồi. Vui lòng kiểm tra lại</string>
     <string name="image">Hình ảnh</string>
     <string name="health_result">Kết quả khám</string>
+    <string name="academic_level">Học vị</string>
+    <string name="view_hospital_information">Xem thông tin bệnh viện</string>
+    <string name="view_doctor_schedule">Xem lịch khám của bác sĩ</string>
 </resources>

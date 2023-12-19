@@ -5,6 +5,7 @@ import com.example.clinic_appointment.models.Appointment.AppointmentResponse;
 import com.example.clinic_appointment.models.Appointment.DetailAppointmentResponse;
 import com.example.clinic_appointment.models.Department.DepartmentResponse;
 import com.example.clinic_appointment.models.Doctor.DoctorResponse;
+import com.example.clinic_appointment.models.Doctor.DoctorSingleResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacilitiesResponse;
 import com.example.clinic_appointment.models.HealthFacility.HealthFacilityResponse;
 import com.example.clinic_appointment.models.Schedule.ScheduleResponse;
@@ -49,6 +50,8 @@ public interface AppointmentService {
 
     @GET("clinic/{id}")
     Call<HealthFacilityResponse> getHealthFacilityById(@Path("id") String clinicId);
+    @GET("doctor/{id}")
+    Call<DoctorSingleResponse> getDoctorById(@Path("id") String clinicId);
 
     @GET("specialty")
     Call<DepartmentResponse> getEntireDepartment();
@@ -58,7 +61,8 @@ public interface AppointmentService {
 
     @GET("doctor")
     Call<DoctorResponse> getDoctorByDepartmentAndHealthFacility(@Query("specialtyID") String departmentId,
-                                                                @Query("clinicID") String clinicId);
+                                                                @Query("clinicID") String clinicId,
+                                                                @Query("fullName") String name);
 
     @GET("schedule")
     Call<ScheduleResponse> getSchedules(@Query("startDate") Long startDate,
@@ -84,6 +88,10 @@ public interface AppointmentService {
     @PUT("clinic/rating")
     @FormUrlEncoded
     Call<Void> rateClinic(@Field("star") int star, @Field("comment") String comment, @Field("clinicID") String clinicId);
+
+    @PUT("doctor/rating")
+    @FormUrlEncoded
+    Call<Void> rateDoctor(@Field("star") int star, @Field("comment") String comment, @Field("doctorID") String doctorId);
 
     @PUT("booking/patient/{id}")
     Call<Void> cancelAppointment(@Path("id") String appointmentId);
