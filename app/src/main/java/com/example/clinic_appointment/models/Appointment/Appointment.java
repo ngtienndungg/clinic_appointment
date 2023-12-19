@@ -5,6 +5,7 @@ import com.example.clinic_appointment.models.User.User;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Appointment implements Serializable {
     @SerializedName("_id")
@@ -17,6 +18,16 @@ public class Appointment implements Serializable {
     private DetailSchedule schedule;
     @SerializedName("time")
     private String appointmentTime;
+    @SerializedName("images")
+    private List<String> images;
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
 
     public User getPatient() {
         return patient;

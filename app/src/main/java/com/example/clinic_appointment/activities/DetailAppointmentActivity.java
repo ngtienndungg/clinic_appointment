@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.clinic_appointment.R;
+import com.example.clinic_appointment.adapters.ImageUrlAdapter;
 import com.example.clinic_appointment.databinding.ActivityDetailAppointmentBinding;
 import com.example.clinic_appointment.databinding.LayoutConfirmationDialogBinding;
 import com.example.clinic_appointment.models.Appointment.Appointment;
@@ -55,6 +56,9 @@ public class DetailAppointmentActivity extends AppCompatActivity {
             binding.tvGender.setText(appointment.getPatient().getGenderVietnamese());
             binding.tvPrice.setText(appointment.getSchedule().getPrice() + " VND");
             appointmentID = appointment.getId();
+            ImageUrlAdapter adapter = new ImageUrlAdapter(appointment.getImages());
+            binding.rvImages.setAdapter(adapter);
+            binding.rvImages.setVisibility(View.VISIBLE);
         }
     }
 

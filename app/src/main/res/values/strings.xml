@@ -186,4 +186,5 @@
     <string name="add_image">Thêm ảnh (Giúp bác sĩ xem trước triệu chứng của bạn)</string>
     <string name="limit_3_images">Vui lòng chỉ chọn tối đa 3 ảnh</string>
     <string name="this_schedule_was_book">Bạn đã đặt lịch này rồi. Vui lòng kiểm tra lại</string>
+    <string name="image">Hình ảnh</string>
 </resources>

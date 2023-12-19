@@ -334,7 +334,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginStart="@dimen/_8sdp"
+                            android:layout_marginStart="@dimen/_12sdp"
                             android:layout_toEndOf="@id/ivAddImage"
                             android:fontFamily="@font/quicksand_bold"
                             android:text="@string/add_image"

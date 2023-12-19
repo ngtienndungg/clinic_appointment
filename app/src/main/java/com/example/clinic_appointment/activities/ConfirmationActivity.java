@@ -18,7 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.clinic_appointment.R;
-import com.example.clinic_appointment.adapters.ImageAdapter;
+import com.example.clinic_appointment.adapters.ImageBase64Adapter;
 import com.example.clinic_appointment.databinding.ActivityConfirmationBinding;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Doctor.Doctor;
@@ -55,7 +55,7 @@ public class ConfirmationActivity extends AppCompatActivity {
                         String base64Image = convertImageToBase64(imageUri);
                         base64Images.add(base64Image);
                     }
-                    ImageAdapter adapter = new ImageAdapter(base64Images);
+                    ImageBase64Adapter adapter = new ImageBase64Adapter(base64Images);
                     binding.rvImages.setAdapter(adapter);
                     binding.rvImages.setVisibility(View.VISIBLE);
                     binding.tvAddImage.setVisibility(View.GONE);

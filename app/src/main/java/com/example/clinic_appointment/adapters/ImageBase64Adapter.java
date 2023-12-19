@@ -14,17 +14,17 @@ import com.example.clinic_appointment.databinding.ItemContainerImageBinding;
 
 import java.util.List;
 
-public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHolder> {
+public class ImageBase64Adapter extends RecyclerView.Adapter<ImageBase64Adapter.ItemViewHolder> {
     private final List<String> base64Images;
 
-    public ImageAdapter(List<String> base64Images) {
+    public ImageBase64Adapter(List<String> base64Images) {
         this.base64Images = base64Images;
     }
 
     @NonNull
     @Override
-    public ImageAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ImageAdapter.ItemViewHolder(ItemContainerImageBinding.inflate(
+    public ImageBase64Adapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ImageBase64Adapter.ItemViewHolder(ItemContainerImageBinding.inflate(
                 LayoutInflater.from(parent.getContext()),
                 parent,
                 false
@@ -32,7 +32,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ImageAdapter.ItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ImageBase64Adapter.ItemViewHolder holder, int position) {
         holder.setData(base64Images.get(position));
     }
 
