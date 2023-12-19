@@ -154,13 +154,13 @@ public class PaymentInformationActivity extends AppCompatActivity {
             jsonPayload.put("time", appointmentTime);
 
             JSONArray imagesArray = new JSONArray();
-            for (String imageData : images) {
-                String formattedImageData = "data:image/jpeg;base64," + imageData;
-                imagesArray.put(formattedImageData);
+            if (images != null) {
+                for (String imageData : images) {
+                    String formattedImageData = "data:image/jpeg;base64," + imageData;
+                    imagesArray.put(formattedImageData);
+                }
+                jsonPayload.put("images", imagesArray);
             }
-
-            jsonPayload.put("images", imagesArray);
-
 
             RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), jsonPayload.toString());
 

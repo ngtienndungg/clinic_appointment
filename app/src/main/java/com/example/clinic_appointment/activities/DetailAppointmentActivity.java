@@ -56,9 +56,12 @@ public class DetailAppointmentActivity extends AppCompatActivity {
             binding.tvGender.setText(appointment.getPatient().getGenderVietnamese());
             binding.tvPrice.setText(appointment.getSchedule().getPrice() + " VND");
             appointmentID = appointment.getId();
-            ImageUrlAdapter adapter = new ImageUrlAdapter(appointment.getImages());
-            binding.rvImages.setAdapter(adapter);
-            binding.rvImages.setVisibility(View.VISIBLE);
+            if (appointment.getImages() != null && appointment.getImages().size() > 0) {
+                ImageUrlAdapter adapter = new ImageUrlAdapter(appointment.getImages());
+                binding.rvImages.setAdapter(adapter);
+                binding.tvImage.setVisibility(View.VISIBLE);
+                binding.rvImages.setVisibility(View.VISIBLE);
+            }
         }
     }
 
