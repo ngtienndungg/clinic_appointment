@@ -5,13 +5,15 @@ import android.content.Context;
 import com.example.clinic_appointment.networking.interceptors.CurrentSessionInterceptor;
 import com.example.clinic_appointment.networking.services.AppointmentService;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    public static final String BASE_URL = "http://10.0.2.2:5000/api/";
+    public static final String BASE_URL = "http://172.28.53.31:5000/api/";
     public static final String PROVINCE_API_BASE_URL = "https://vapi.vnappmob.com/api/";
     static HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
     private static Retrofit authenticatedRetrofit = null;
@@ -22,6 +24,9 @@ public class RetrofitClient {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new CurrentSessionInterceptor(context))
                 .addInterceptor(loggingInterceptor)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
                 .build();
         if (authenticatedRetrofit == null) {
             authenticatedRetrofit = new Retrofit.Builder()

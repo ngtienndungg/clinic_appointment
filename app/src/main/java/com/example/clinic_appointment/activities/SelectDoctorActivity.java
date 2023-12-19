@@ -89,7 +89,8 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
                     (appointmentTime != null) ? appointmentTime.getTimeNumber() : null,
                     (department) != null ? department.getName() : null,
                     (healthFacility) != null ? healthFacility.getName() : null,
-                    null
+                    null,
+                    "-ratings"
             );
             call.enqueue(new Callback<ScheduleResponse>() {
                 @Override

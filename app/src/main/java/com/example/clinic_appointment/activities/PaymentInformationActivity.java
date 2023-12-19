@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -26,10 +27,15 @@ import com.example.clinic_appointment.zalopay.Api.CreateOrder;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.Objects;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -99,7 +105,7 @@ public class PaymentInformationActivity extends AppCompatActivity {
                 handleZalopay();
                 alertDialog.dismiss();
             } else {
-                saveAppointmentToServer();
+                bookAppointment(selectedSchedule.getScheduleId(), selectedTime, ConfirmationActivity.base64Images);
                 alertDialog.dismiss();
             }
         });
@@ -118,7 +124,7 @@ public class PaymentInformationActivity extends AppCompatActivity {
                 ZaloPaySDK.getInstance().payOrder(PaymentInformationActivity.this, token, "demozpdk://app", new PayOrderListener() {
                     @Override
                     public void onPaymentSucceeded(String s, String s1, String s2) {
-                        saveAppointmentToServer();
+                        bookAppointment(selectedSchedule.getScheduleId(), selectedTime, ConfirmationActivity.base64Images);
                     }
 
                     @Override
@@ -139,28 +145,56 @@ public class PaymentInformationActivity extends AppCompatActivity {
         }
     }
 
-    private void saveAppointmentToServer() {
-        Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(PaymentInformationActivity.this).bookAppointmentByPatient(selectedSchedule.getScheduleId(), selectedTime);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                if (response.code() == 200) {
-                    Intent intent = new Intent(PaymentInformationActivity.this, DashboardActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra(Constants.KEY_STATUS_CODE, response.code());
-                    overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
-                    startActivity(intent);
-                } else if (response.code() == 500) {
-                    Snackbar.make(binding.getRoot(), "Bạn đã đặt lịch này rồi. Vui lòng kiểm tra lại", BaseTransientBottomBar.LENGTH_SHORT).show();
-                }
+    public void bookAppointment(String scheduleID, String appointmentTime, List<String> images) {
+        try {
+            binding.tvConfirmPayment.setVisibility(View.GONE);
+            binding.pbLoading.setVisibility(View.VISIBLE);
+            JSONObject jsonPayload = new JSONObject();
+            jsonPayload.put("scheduleID", scheduleID);
+            jsonPayload.put("time", appointmentTime);
+
+            JSONArray imagesArray = new JSONArray();
+            for (String imageData : images) {
+                String formattedImageData = "data:image/jpeg;base64," + imageData;
+                imagesArray.put(formattedImageData);
             }
 
-            @Override
-            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                Snackbar.make(binding.getRoot(), getString(R.string.something_wrong_happened), BaseTransientBottomBar.LENGTH_SHORT).show();
-            }
-        });
+            jsonPayload.put("images", imagesArray);
+
+
+            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), jsonPayload.toString());
+
+            Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(this).bookAppointmentByPatient(requestBody);
+
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                    if (response.isSuccessful()) {
+                        Intent intent = new Intent(PaymentInformationActivity.this, DashboardActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.putExtra(Constants.KEY_STATUS_CODE, response.code());
+                        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
+                        startActivity(intent);
+                    } else if (response.code() == 500) {
+                        Snackbar.make(binding.getRoot(), getString(R.string.this_schedule_was_book), BaseTransientBottomBar.LENGTH_SHORT).show();
+                    }
+                    binding.pbLoading.setVisibility(View.GONE);
+                    binding.tvConfirmPayment.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                    Snackbar.make(binding.getRoot(), getString(R.string.something_wrong_happened), BaseTransientBottomBar.LENGTH_SHORT).show();
+                    binding.pbLoading.setVisibility(View.GONE);
+                    binding.tvConfirmPayment.setVisibility(View.VISIBLE);
+                }
+            });
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public void onNewIntent(Intent intent) {

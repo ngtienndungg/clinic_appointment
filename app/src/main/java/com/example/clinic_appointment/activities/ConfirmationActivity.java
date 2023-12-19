@@ -1,11 +1,24 @@
 package com.example.clinic_appointment.activities;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
+import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.clinic_appointment.R;
+import com.example.clinic_appointment.adapters.ImageAdapter;
 import com.example.clinic_appointment.databinding.ActivityConfirmationBinding;
 import com.example.clinic_appointment.models.Department.Department;
 import com.example.clinic_appointment.models.Doctor.Doctor;
@@ -13,8 +26,13 @@ import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.models.Schedule.DetailSchedule;
 import com.example.clinic_appointment.utilities.Constants;
 import com.example.clinic_appointment.utilities.CustomConverter;
-import com.example.clinic_appointment.utilities.SharedPrefs;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ConfirmationActivity extends AppCompatActivity {
@@ -24,6 +42,30 @@ public class ConfirmationActivity extends AppCompatActivity {
     private HealthFacility selectedHealthFacility;
     private DetailSchedule selectedSchedule;
     private String timeNumber;
+    public static ArrayList<String> base64Images;
+    ActivityResultLauncher<Intent> imagePickerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+        if (result.getResultCode() == Activity.RESULT_OK) {
+            Intent data = result.getData();
+            if (data != null) {
+                base64Images = new ArrayList<>();
+                ClipData clipData = data.getClipData();
+                if (clipData != null && clipData.getItemCount() <= 3) {
+                    for (int i = 0; i < clipData.getItemCount(); i++) {
+                        Uri imageUri = clipData.getItemAt(i).getUri();
+                        String base64Image = convertImageToBase64(imageUri);
+                        base64Images.add(base64Image);
+                    }
+                    ImageAdapter adapter = new ImageAdapter(base64Images);
+                    binding.rvImages.setAdapter(adapter);
+                    binding.rvImages.setVisibility(View.VISIBLE);
+                    binding.tvAddImage.setVisibility(View.GONE);
+                } else {
+                    Snackbar.make(binding.getRoot(), getString(R.string.limit_3_images), BaseTransientBottomBar.LENGTH_LONG).show();
+                }
+            }
+        }
+    });
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +86,6 @@ public class ConfirmationActivity extends AppCompatActivity {
         binding.tvHealthFacility.setText(Objects.requireNonNull(selectedHealthFacility).getName());
         binding.tvDepartment.setText(Objects.requireNonNull(selectedDepartment).getName());
         binding.tvDoctor.setText(Objects.requireNonNull(selectedDoctor).getDoctorInformation().getFullName());
-        binding.tvUid.setText(SharedPrefs.getInstance().getData(Constants.KEY_CURRENT_UID, String.class));
         binding.tvDate.setText(CustomConverter.getFormattedDate(selectedSchedule.getDate()));
         binding.tvPrice.setText(Objects.requireNonNull(selectedSchedule).getPrice() + " VND");
         binding.tvTime.setText(CustomConverter.getStringAppointmentTime(timeNumber));
@@ -61,5 +102,58 @@ public class ConfirmationActivity extends AppCompatActivity {
             intent.putExtra(Constants.KEY_TIME, timeNumber);
             startActivity(intent);
         });
+        binding.rlAddImage.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            imagePickerLauncher.launch(Intent.createChooser(intent, "Select images"));
+        });
     }
+
+    private String convertImageToBase64(Uri imageUri) {
+        try {
+            return new ConvertToBase64Task().execute(imageUri).get();
+        } catch (Exception e) {
+            Log.e("ImageConversion", "Error converting image to Base64", e);
+            return null;
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class ConvertToBase64Task extends AsyncTask<Uri, Void, String> {
+        @Override
+        protected String doInBackground(Uri... uris) {
+            Uri imageUri = uris[0];
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(imageUri);
+                if (inputStream != null) {
+                    Bitmap resizedBitmap = resizeImage(inputStream);
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    if (resizedBitmap != null) {
+                        resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+                    }
+                    byte[] bytes = byteArrayOutputStream.toByteArray();
+                    return Base64.encodeToString(bytes, Base64.DEFAULT);
+                }
+            } catch (IOException e) {
+                Log.e("ImageConversion", "Error converting image to Base64", e);
+            }
+            return null;
+        }
+
+        private Bitmap resizeImage(InputStream inputStream) {
+            try {
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize = 1;
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, options);
+                inputStream.close();
+                return bitmap;
+            } catch (IOException e) {
+                Log.e("ImageConversion", "Error resizing image", e);
+                return null;
+            }
+        }
+    }
+
 }

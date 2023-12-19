@@ -50,7 +50,7 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
     }    private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 Integer resultCode = result.getResultCode();
-                if (resultCode == Activity.RESULT_OK) {
+                if (result.getData() != null && resultCode == Activity.RESULT_OK && result.getData().getStringExtra("Cancel") != null) {
                     Toast.makeText(requireContext(), "Đã huỷ thành công", Toast.LENGTH_SHORT).show();
                     initiate();
                 }

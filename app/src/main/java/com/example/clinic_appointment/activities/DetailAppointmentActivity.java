@@ -1,6 +1,7 @@
 package com.example.clinic_appointment.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -75,6 +76,8 @@ public class DetailAppointmentActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         setResult(RESULT_OK);
+                        Intent intent = new Intent();
+                        intent.putExtra("Cancel", "Cancel");
                         onBackPressed();
                     }
 

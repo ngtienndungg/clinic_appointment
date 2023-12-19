@@ -172,7 +172,7 @@
     <string name="cancel">Huỷ bỏ</string>
     <string name="detail_appointment">Chi tiết lịch đặt khám</string>
     <string name="are_you_sure_to_book">Bạn có chắn chắn đặt lịch?</string>
-    <string name="ensure_exactly_information">Hãy đảm bảo thông tin đã chính xác khi bấm xác nhận</string>
+    <string name="ensure_exactly_information">Hãy đảm bảo thông tin đã chính xác</string>
     <string name="cancel_appointment">Huỷ lịch</string>
     <string name="your_rating">Đánh giá của bạn:&#160;</string>
     <string name="search_doctor">Tra cứu về bác sĩ</string>
@@ -183,4 +183,7 @@
     <string name="type_your_rate">Nhập đánh giá của bạn</string>
     <string name="are_you_sure_you_want_to_cancel">Bạn có chắc chắn muốn huỷ lịch?</string>
     <string name="please_make_sure_that_you_want_to_cancel">Vui lòng hãy chắc chắn rằng bạn muốn huỷ</string>
+    <string name="add_image">Thêm ảnh (Giúp bác sĩ xem trước triệu chứng của bạn)</string>
+    <string name="limit_3_images">Vui lòng chỉ chọn tối đa 3 ảnh</string>
+    <string name="this_schedule_was_book">Bạn đã đặt lịch này rồi. Vui lòng kiểm tra lại</string>
 </resources>

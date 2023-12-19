@@ -459,6 +459,17 @@
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_13ssp" />
 
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_below="@id/mdDividerEnd"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:indeterminateTint="@color/colorPrimary"
+            android:visibility="gone" />
+
     </RelativeLayout>
 
 </RelativeLayout>

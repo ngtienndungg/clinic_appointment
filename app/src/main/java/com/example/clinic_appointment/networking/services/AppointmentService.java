@@ -11,7 +11,9 @@ import com.example.clinic_appointment.models.Schedule.ScheduleResponse;
 import com.example.clinic_appointment.models.User.UserResponse;
 import com.google.gson.JsonObject;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -64,11 +66,11 @@ public interface AppointmentService {
                                         @Query("timeType.time") String time,
                                         @Query(encoded = true, value = "nameSpecialty") String departmentName,
                                         @Query(encoded = true, value = "nameClinic") String clinicName,
-                                        @Query("doctorID") String doctorId);
+                                        @Query("doctorID") String doctorId,
+                                        @Query("fields") String exclude);
 
     @POST("booking/patient")
-    @FormUrlEncoded
-    Call<Void> bookAppointmentByPatient(@Field("scheduleID") String scheduleID, @Field("time") String appointmentTime);
+    Call<Void> bookAppointmentByPatient(@Body RequestBody requestBody);
 
     @GET("booking")
     Call<AppointmentResponse> getEntireAppointment();
