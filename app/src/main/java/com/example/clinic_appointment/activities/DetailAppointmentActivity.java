@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -61,6 +62,11 @@ public class DetailAppointmentActivity extends AppCompatActivity {
                 binding.rvImages.setAdapter(adapter);
                 binding.tvImage.setVisibility(View.VISIBLE);
                 binding.rvImages.setVisibility(View.VISIBLE);
+            }
+            if (appointment.getDescription() != null && !appointment.getDescription().isEmpty()) {
+                binding.tvResultLabel.setVisibility(View.VISIBLE);
+                binding.tvResult.setVisibility(View.VISIBLE);
+                binding.tvResult.setText(Html.fromHtml(appointment.getDescription(), Html.FROM_HTML_MODE_COMPACT));
             }
         }
     }

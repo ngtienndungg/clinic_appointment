@@ -20,6 +20,16 @@ public class Appointment implements Serializable {
     private String appointmentTime;
     @SerializedName("images")
     private List<String> images;
+    @SerializedName("description")
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public List<String> getImages() {
         return images;

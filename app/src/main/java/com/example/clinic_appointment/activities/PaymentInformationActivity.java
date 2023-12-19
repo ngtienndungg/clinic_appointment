@@ -163,7 +163,6 @@ public class PaymentInformationActivity extends AppCompatActivity {
             }
 
             RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), jsonPayload.toString());
-
             Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(this).bookAppointmentByPatient(requestBody);
 
             call.enqueue(new Callback<Void>() {
