@@ -1,10 +1,10 @@
 package com.example.clinic_appointment.fragments;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +15,9 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.activities.DetailAppointmentActivity;
@@ -78,19 +80,22 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
         getAppointments();
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     private void setUnselectedBackground(TextView textView) {
-        textView.setTextColor(getResources().getColor(R.color.colorMyScheduleOptionText));
-        textView.setBackground(getResources().getDrawable(R.drawable.background_my_schedule_option_unselected));
+        textView.setTextColor(ContextCompat.getColor(requireActivity(), R.color.colorMyScheduleOptionText));
+        textView.setBackground(ContextCompat.getDrawable(requireActivity(), R.drawable.background_my_schedule_option_unselected));
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     private void setSelectedBackground(TextView textView) {
-        textView.setTextColor(getResources().getColor(R.color.colorWhite));
-        textView.setBackground(getResources().getDrawable(R.drawable.background_my_schedule_option_selected));
+        textView.setTextColor(ContextCompat.getColor(requireActivity(), R.color.colorWhite));
+        textView.setBackground(ContextCompat.getDrawable(requireActivity(), R.drawable.background_my_schedule_option_selected));
     }
 
     private void eventHandling() {
+        final SwipeRefreshLayout pullToRefresh = binding.swipeLayout;
+        pullToRefresh.setOnRefreshListener(() -> {
+            getAppointments();
+            pullToRefresh.setRefreshing(false);
+        });
         binding.tvWaitingConfirmation.setOnClickListener(v -> optionPerformClick(binding.tvWaitingConfirmation));
         binding.tvConfirmed.setOnClickListener(v -> optionPerformClick(binding.tvConfirmed));
         binding.tvCancelled.setOnClickListener(v -> optionPerformClick(binding.tvCancelled));
@@ -131,6 +136,7 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
                 public void onFailure(@NonNull Call<AppointmentResponse> call, @NonNull Throwable t) {
                     binding.pbLoading.setVisibility(View.GONE);
                     Snackbar.make(binding.getRoot(), "Error", BaseTransientBottomBar.LENGTH_SHORT).show();
+                    Log.d("FailCheck", t.getMessage());
                 }
             });
         }
@@ -146,7 +152,7 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
         if (appointment.getStatus().equals(Constants.STATUS_PROCESSING)) {
             intent.putExtra(Constants.KEY_STATUS, Constants.STATUS_PROCESSING);
         }
-        intent.putExtra(Constants.KEY_BOOKING_ID, appointment.getId());
+        intent.putExtra(Constants.KEY_BOOKING, appointment);
         startActivity(intent);
     }
 

@@ -74,7 +74,6 @@
                     android:text="@string/appointment_date"
                     android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/_11sdp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -86,6 +85,7 @@
                     app:boxBackgroundColor="@color/colorWhite"
                     app:boxStrokeColor="@color/colorStrokeBox"
                     app:boxStrokeWidth="1.2dp"
+                    android:layout_marginTop="@dimen/_1sdp"
                     app:endIconMode="clear_text"
                     app:hintEnabled="false"
                     app:layout_constraintTop_toBottomOf="@id/tvAppointmentDate"
@@ -252,7 +252,7 @@
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:background="@drawable/background_search_button"
-                    android:backgroundTint="@color/colorSearchButton"
+                    android:backgroundTint="@color/colorPrimary"
                     android:fontFamily="@font/quicksand_bold"
                     android:includeFontPadding="false"
                     android:text="@string/search"

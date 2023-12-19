@@ -70,7 +70,7 @@ public interface AppointmentService {
     @FormUrlEncoded
     Call<Void> bookAppointmentByPatient(@Field("scheduleID") String scheduleID, @Field("time") String appointmentTime);
 
-    @GET("booking/patient")
+    @GET("booking")
     Call<AppointmentResponse> getEntireAppointment();
 
     @GET("province")

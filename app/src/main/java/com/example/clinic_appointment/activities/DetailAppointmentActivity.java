@@ -12,8 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.databinding.ActivityDetailAppointmentBinding;
 import com.example.clinic_appointment.databinding.LayoutConfirmationDialogBinding;
-import com.example.clinic_appointment.models.Appointment.DetailAppointment;
-import com.example.clinic_appointment.models.Appointment.DetailAppointmentResponse;
+import com.example.clinic_appointment.models.Appointment.Appointment;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 import com.example.clinic_appointment.utilities.CustomConverter;
@@ -36,37 +35,26 @@ public class DetailAppointmentActivity extends AppCompatActivity {
         eventHandling();
     }
 
+    @SuppressLint("SetTextI18n")
     private void initiate() {
-        appointmentID = getIntent().getStringExtra(Constants.KEY_BOOKING_ID);
+        Appointment appointment = (Appointment) getIntent().getSerializableExtra(Constants.KEY_BOOKING);
         if (getIntent().getStringExtra(Constants.KEY_STATUS) != null) {
             binding.tvConfirm.setVisibility(View.VISIBLE);
         }
-        Call<DetailAppointmentResponse> call = RetrofitClient.getPublicAppointmentService().getAppointmentById(appointmentID);
-        call.enqueue(new Callback<DetailAppointmentResponse>() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onResponse(@NonNull Call<DetailAppointmentResponse> call, @NonNull Response<DetailAppointmentResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    DetailAppointment detailAppointment = response.body().getAppointment();
-                    binding.tvHealthFacility.setText(detailAppointment.getSchedule().getDoctor().getHealthFacility().getName());
-                    binding.tvAddress.setText(detailAppointment.getSchedule().getDoctor().getHealthFacility().getAddressString());
-                    binding.tvDepartment.setText(detailAppointment.getSchedule().getDoctor().getDepartmentInformation().getName());
-                    binding.tvDoctor.setText(detailAppointment.getSchedule().getDoctor().getDoctorInformation().getFullName());
-                    binding.tvDate.setText(CustomConverter.getFormattedDate(detailAppointment.getSchedule().getDate()));
-                    binding.tvTime.setText(CustomConverter.getStringAppointmentTime(detailAppointment.getAppointmentTime()));
-                    binding.tvStatus.setText(detailAppointment.getStatus());
-                    binding.tvPatientName.setText(detailAppointment.getPatientInformation().getFullName());
-                    binding.tvPhoneNumber.setText(detailAppointment.getPatientInformation().getPhoneNumber());
-                    binding.tvGender.setText(detailAppointment.getPatientInformation().getGenderVietnamese());
-                    binding.tvPrice.setText(detailAppointment.getSchedule().getPrice() + " VND");
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<DetailAppointmentResponse> call, @NonNull Throwable t) {
-
-            }
-        });
+        if (appointment != null) {
+            binding.tvHealthFacility.setText(appointment.getSchedule().getDoctor().getHealthFacility().getName());
+            binding.tvAddress.setText(appointment.getSchedule().getDoctor().getHealthFacility().getAddressString());
+            binding.tvDepartment.setText(appointment.getSchedule().getDoctor().getDepartmentInformation().getName());
+            binding.tvDoctor.setText(appointment.getSchedule().getDoctor().getDoctorInformation().getFullName());
+            binding.tvDate.setText(CustomConverter.getFormattedDate(appointment.getSchedule().getDate()));
+            binding.tvTime.setText(CustomConverter.getStringAppointmentTime(appointment.getAppointmentTime()));
+            binding.tvStatus.setText(appointment.getStatus());
+            binding.tvPatientName.setText(appointment.getPatient().getFullName());
+            binding.tvPhoneNumber.setText(appointment.getPatient().getPhoneNumber());
+            binding.tvGender.setText(appointment.getPatient().getGenderVietnamese());
+            binding.tvPrice.setText(appointment.getSchedule().getPrice() + " VND");
+            appointmentID = appointment.getId();
+        }
     }
 
     private void eventHandling() {

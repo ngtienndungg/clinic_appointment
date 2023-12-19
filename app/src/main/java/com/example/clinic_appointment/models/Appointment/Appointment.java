@@ -1,6 +1,7 @@
 package com.example.clinic_appointment.models.Appointment;
 
 import com.example.clinic_appointment.models.Schedule.DetailSchedule;
+import com.example.clinic_appointment.models.User.User;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -9,7 +10,7 @@ public class Appointment implements Serializable {
     @SerializedName("_id")
     private String id;
     @SerializedName("patientID")
-    private String patientId;
+    private User patient;
     @SerializedName("status")
     private String status;
     @SerializedName("scheduleID")
@@ -17,12 +18,12 @@ public class Appointment implements Serializable {
     @SerializedName("time")
     private String appointmentTime;
 
-    public String getPatientId() {
-        return patientId;
+    public User getPatient() {
+        return patient;
     }
 
-    public void setPatientId(String patientId) {
-        this.patientId = patientId;
+    public void setPatient(User patient) {
+        this.patient = patient;
     }
 
     public String getStatus() {
