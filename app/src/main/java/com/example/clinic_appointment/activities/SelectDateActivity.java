@@ -79,7 +79,7 @@ public class SelectDateActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<ScheduleResponse> call, @NonNull Throwable t) {
-                Log.d("FailCheck", t.getMessage());
+                Log.d("FailCheck", Objects.requireNonNull(t.getMessage()));
                 Snackbar.make(binding.getRoot(), getString(R.string.something_wrong_happened), BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });

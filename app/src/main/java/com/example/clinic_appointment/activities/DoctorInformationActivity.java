@@ -65,6 +65,9 @@ public class DoctorInformationActivity extends AppCompatActivity {
         }
         doctor = (Doctor) getIntent().getSerializableExtra(Constants.KEY_DOCTOR);
         if (doctor != null) {
+            binding.tvDepartment.setText(doctor.getDepartmentInformation().getName());
+            binding.tvPosition.setText(doctor.getAcademicLevel());
+            binding.tvClinic.setText(doctor.getHealthFacility().getName());
             binding.tvName.setText(doctor.getDoctorInformation().getFullName());
             binding.tvDescription.setText(Html.fromHtml(doctor.getDescription(), Html.FROM_HTML_MODE_COMPACT));
             binding.tvGender.setText(doctor.getDoctorInformation().getGenderVietnamese());
@@ -116,6 +119,13 @@ public class DoctorInformationActivity extends AppCompatActivity {
         binding.tvClinicInformation.setOnClickListener(v -> {
             Intent intent = new Intent(this, HealthFacilityInformationActivity.class);
             intent.putExtra(Constants.KEY_HEALTH_FACILITY, doctor.getHealthFacility());
+            startActivity(intent);
+        });
+        binding.tvSchedule.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SelectDateActivity.class);
+            intent.putExtra(Constants.KEY_DOCTOR, doctor);
+            intent.putExtra(Constants.KEY_HEALTH_FACILITY, doctor.getHealthFacility());
+            intent.putExtra(Constants.KEY_DEPARTMENT, doctor.getDepartmentInformation());
             startActivity(intent);
         });
     }
