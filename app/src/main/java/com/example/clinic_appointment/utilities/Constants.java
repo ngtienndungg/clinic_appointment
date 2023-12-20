@@ -2,6 +2,7 @@ package com.example.clinic_appointment.utilities;
 
 public class Constants {
     public static final String KEY_NAME = "name";
+    public static final String KEY_USER_ROLE = "userRole";
     public static final String KEY_ACCESS_TOKEN = "accessToken";
     public static final String KEY_REFRESH_TOKEN = "refreshToken";
     public static final String KEY_CURRENT_NAME = "currentName";

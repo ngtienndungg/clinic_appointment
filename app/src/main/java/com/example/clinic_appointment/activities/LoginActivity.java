@@ -70,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                         sharedPrefs.putData(Constants.KEY_CURRENT_PHONE_NUMBER, userResponse != null ? userResponse.getUser().getPhoneNumber() : null);
                         sharedPrefs.putData(Constants.KEY_CURRENT_EMAIL, userResponse != null ? userResponse.getUser().getEmail() : null);
                         sharedPrefs.putData(Constants.KEY_CURRENT_UID, userResponse != null ? userResponse.getUser().getId() : null);
+                        sharedPrefs.putData(Constants.KEY_USER_ROLE, userResponse != null ? userResponse.getUser().getUserRole() : null);
                         progressDialog.dismiss();
                         setResult(RESULT_OK);
                         onBackPressed();

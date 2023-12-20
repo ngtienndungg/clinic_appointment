@@ -18,7 +18,7 @@ public class User implements Serializable {
     @SerializedName("avatar")
     private String avatar;
     @SerializedName("role")
-    private String userRole;
+    private int userRole;
     @SerializedName("address")
     private String address;
     @SerializedName("refreshToken")
@@ -99,11 +99,11 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getUserRole() {
+    public int getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(String userRole) {
+    public void setUserRole(int userRole) {
         this.userRole = userRole;
     }
 }

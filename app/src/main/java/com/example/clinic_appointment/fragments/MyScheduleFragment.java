@@ -23,6 +23,7 @@ import com.example.clinic_appointment.R;
 import com.example.clinic_appointment.activities.DetailAppointmentActivity;
 import com.example.clinic_appointment.activities.LoginActivity;
 import com.example.clinic_appointment.adapters.AppointmentManagementAdapter;
+import com.example.clinic_appointment.adapters.DoctorAppointmentAdapter;
 import com.example.clinic_appointment.databinding.FragmentMyScheduleBinding;
 import com.example.clinic_appointment.databinding.LayoutDialogNotificationBinding;
 import com.example.clinic_appointment.listeners.AppointmentListener;
@@ -35,6 +36,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,15 +45,20 @@ import retrofit2.Response;
 public class MyScheduleFragment extends Fragment implements AppointmentListener {
     private FragmentMyScheduleBinding binding;
     private TextView currentOption = null;
+    private DoctorAppointmentAdapter doctorAppointmentAdapter;
+    private AppointmentManagementAdapter appointmentManagementAdapter;
+    private List<Appointment> appointments;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }    private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+    }
+
+    private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 Integer resultCode = result.getResultCode();
                 if (result.getData() != null && resultCode == Activity.RESULT_OK && result.getData().getStringExtra("Cancel") != null) {
-                    Toast.makeText(requireContext(), "Đã huỷ thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), getString(R.string.cancel_success_fully), Toast.LENGTH_SHORT).show();
                     initiate();
                 }
             });
@@ -105,9 +112,10 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
     }
 
     private void getAppointments() {
-        if (SharedPrefs.getInstance().getData(Constants.KEY_ACCESS_TOKEN, String.class).equals("")) {
+        SharedPrefs sharedPrefs = SharedPrefs.getInstance();
+        if (sharedPrefs.getData(Constants.KEY_ACCESS_TOKEN, String.class).equals("")) {
             displayDialog();
-        } else {
+        } else if (sharedPrefs.getData(Constants.KEY_USER_ROLE, Integer.class).equals(4)) {
             binding.rvAppointments.setVisibility(View.GONE);
             binding.pbLoading.setVisibility(View.VISIBLE);
             Call<AppointmentResponse> call = RetrofitClient.getAuthenticatedAppointmentService(requireContext()).getEntireAppointment();
@@ -115,7 +123,7 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
                 @Override
                 public void onResponse(@NonNull Call<AppointmentResponse> call, @NonNull Response<AppointmentResponse> response) {
                     if (response.body() != null && response.isSuccessful()) {
-                        List<Appointment> appointments = response.body().getBooking();
+                        appointments = response.body().getBooking();
                         if (currentOption == binding.tvWaitingConfirmation) {
                             getAppointmentByStatus(appointments, "Đang xử lý");
                         } else if (currentOption == binding.tvConfirmed) {
@@ -125,8 +133,8 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
                         } else if (currentOption == binding.tvChecked) {
                             getAppointmentByStatus(appointments, "Đã khám");
                         }
-                        AppointmentManagementAdapter adapter = new AppointmentManagementAdapter(MyScheduleFragment.this, appointments);
-                        binding.rvAppointments.setAdapter(adapter);
+                        appointmentManagementAdapter = new AppointmentManagementAdapter(MyScheduleFragment.this, appointments);
+                        binding.rvAppointments.setAdapter(appointmentManagementAdapter);
                         binding.pbLoading.setVisibility(View.GONE);
                         binding.rvAppointments.setVisibility(View.VISIBLE);
                     }
@@ -136,7 +144,39 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
                 public void onFailure(@NonNull Call<AppointmentResponse> call, @NonNull Throwable t) {
                     binding.pbLoading.setVisibility(View.GONE);
                     Snackbar.make(binding.getRoot(), "Error", BaseTransientBottomBar.LENGTH_SHORT).show();
-                    Log.d("FailCheck", t.getMessage());
+                    Log.d("FailCheck", Objects.requireNonNull(t.getMessage()));
+                }
+            });
+        } else if (sharedPrefs.getData(Constants.KEY_USER_ROLE, Integer.class).equals(3)) {
+            binding.rvAppointments.setVisibility(View.GONE);
+            binding.pbLoading.setVisibility(View.VISIBLE);
+            Call<AppointmentResponse> call = RetrofitClient.getAuthenticatedAppointmentService(requireContext()).getEntireAppointment();
+            call.enqueue(new Callback<AppointmentResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<AppointmentResponse> call, @NonNull Response<AppointmentResponse> response) {
+                    if (response.body() != null && response.isSuccessful()) {
+                        appointments = response.body().getBooking();
+                        if (currentOption == binding.tvWaitingConfirmation) {
+                            getAppointmentByStatus(appointments, "Đang xử lý");
+                        } else if (currentOption == binding.tvConfirmed) {
+                            getAppointmentByStatus(appointments, "Đã duyệt");
+                        } else if (currentOption == binding.tvCancelled) {
+                            getAppointmentByStatus(appointments, "Đã hủy");
+                        } else if (currentOption == binding.tvChecked) {
+                            getAppointmentByStatus(appointments, "Đã khám");
+                        }
+                        doctorAppointmentAdapter = new DoctorAppointmentAdapter(MyScheduleFragment.this, appointments);
+                        binding.rvAppointments.setAdapter(doctorAppointmentAdapter);
+                        binding.pbLoading.setVisibility(View.GONE);
+                        binding.rvAppointments.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<AppointmentResponse> call, @NonNull Throwable t) {
+                    binding.pbLoading.setVisibility(View.GONE);
+                    Snackbar.make(binding.getRoot(), "Error", BaseTransientBottomBar.LENGTH_SHORT).show();
+                    Log.d("FailCheck", Objects.requireNonNull(t.getMessage()));
                 }
             });
         }
@@ -156,6 +196,40 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
         startActivity(intent);
     }
 
+    @Override
+    public void onAcceptClick(Appointment appointment, int position) {
+        Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(getContext()).updateBooking(appointment.getId(), "Đã duyệt", null, null);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                appointments.remove(appointment);
+                doctorAppointmentAdapter.notifyItemRemoved(position);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onDenyClick(Appointment appointment, int position) {
+        Call<Void> call = RetrofitClient.getAuthenticatedAppointmentService(getContext()).updateBooking(appointment.getId(), "Đã huỷ", null, null);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                appointments.remove(appointment);
+                doctorAppointmentAdapter.notifyItemRemoved(position);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
     private void displayDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         LayoutDialogNotificationBinding dialogNotificationBinding = LayoutDialogNotificationBinding.inflate(getLayoutInflater());
@@ -171,6 +245,4 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
         dialogNotificationBinding.tvAction.setOnClickListener(v -> mStartForResult.launch(new Intent(requireActivity(), LoginActivity.class)));
         unLoginDialog.show();
     }
-
-
 }

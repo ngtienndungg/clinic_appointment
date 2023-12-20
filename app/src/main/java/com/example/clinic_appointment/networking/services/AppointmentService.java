@@ -50,6 +50,7 @@ public interface AppointmentService {
 
     @GET("clinic/{id}")
     Call<HealthFacilityResponse> getHealthFacilityById(@Path("id") String clinicId);
+
     @GET("doctor/{id}")
     Call<DoctorSingleResponse> getDoctorById(@Path("id") String clinicId);
 
@@ -95,4 +96,8 @@ public interface AppointmentService {
 
     @PUT("booking/patient/{id}")
     Call<Void> cancelAppointment(@Path("id") String appointmentId);
+
+    @PUT("booking/{id}")
+    @FormUrlEncoded
+    Call<Void> updateBooking(@Path("id") String id, @Field("status") String status, @Field("description") String description, @Field("isPaid") Boolean isPaid);
 }

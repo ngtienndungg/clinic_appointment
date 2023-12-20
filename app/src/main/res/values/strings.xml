@@ -194,4 +194,5 @@
     <string name="view_doctor_schedule">Xem lịch khám của bác sĩ</string>
     <string name="doctor_information">Thông tin bác sĩ</string>
     <string name="health_facility_information">Thông tin cơ sở y tế</string>
+    <string name="cancel_success_fully">Đã huỷ thành công</string>
 </resources>
