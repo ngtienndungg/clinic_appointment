@@ -192,4 +192,6 @@
     <string name="academic_level">Học vị</string>
     <string name="view_hospital_information">Xem thông tin bệnh viện</string>
     <string name="view_doctor_schedule">Xem lịch khám của bác sĩ</string>
+    <string name="doctor_information">Thông tin bác sĩ</string>
+    <string name="health_facility_information">Thông tin cơ sở y tế</string>
 </resources>

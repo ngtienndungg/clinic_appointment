@@ -53,18 +53,18 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ItemVi
 
         @SuppressLint("SetTextI18n")
         public void setData(DetailSchedule detailSchedule) {
-            Doctor Doctor = detailSchedule.getDoctor();
+            Doctor doctor = detailSchedule.getDoctor();
             String fullDoctorName;
-            if (Doctor.getAcademicLevel() == null || Doctor.getAcademicLevel().length() == 0) {
+            if (doctor.getAcademicLevel() == null || doctor.getAcademicLevel().length() == 0) {
                 fullDoctorName = "Bác sĩ ".toUpperCase() + detailSchedule.getDoctor().getDoctorInformation().getFullName();
             } else {
-                fullDoctorName = Doctor.getAcademicLevel() + " " + Doctor.getDoctorInformation().getFullName();
+                fullDoctorName = doctor.getAcademicLevel() + " " + doctor.getDoctorInformation().getFullName();
             }
             binding.tvName.setText(fullDoctorName);
-            binding.tvGender.setText(Doctor.getDoctorInformation().getGenderVietnamese());
-            binding.tvDepartment.setText(Doctor.getDepartmentInformation().getName());
+            binding.tvGender.setText(doctor.getDoctorInformation().getGenderVietnamese());
+            binding.tvDepartment.setText(doctor.getDepartmentInformation().getName());
             binding.tvCalendarLabel.setText("Bệnh viện: ");
-            binding.tvCalendar.setText(Doctor.getHealthFacility().getName());
+            binding.tvCalendar.setText(doctor.getHealthFacility().getName());
             binding.tvPrice.setText(detailSchedule.getPrice() + "đ");
         }
     }

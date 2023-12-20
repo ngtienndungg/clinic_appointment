@@ -4,54 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="@dimen/_8sdp"
-    android:paddingVertical="@dimen/_8sdp"
     tools:context=".activities.HealthFacilityInformationActivity">
 
-    <ImageView
-        android:id="@+id/ivLogo"
-        android:layout_width="@dimen/_75sdp"
-        android:layout_height="@dimen/_75sdp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:importantForAccessibility="no"
-        android:scaleType="fitCenter" />
-
-    <TextView
-        android:id="@+id/tvName"
+    <RelativeLayout
+        android:id="@+id/rlTopAppBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ivLogo"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:fontFamily="@font/quicksand_bold"
-        android:gravity="center"
-        android:textAllCaps="true"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/_15ssp" />
+        android:layout_height="@dimen/_50sdp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:paddingHorizontal="@dimen/_8sdp"
+        tools:ignore="UselessParent">
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:layout_below="@id/tvName"
-        android:layout_marginTop="@dimen/_18sdp"
-        app:dividerColor="@color/colorPrimary" />
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/icon_back"
+            android:src="@drawable/ic_back"
+            app:tint="@color/colorWhite" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/quicksand_semi_bold"
+            android:includeFontPadding="false"
+            android:text="@string/health_facility_information"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_14ssp" />
+
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/divider"
-        android:layout_marginTop="@dimen/_14sdp"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:layout_below="@id/rlTopAppBar"
         android:scrollbars="none">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="@dimen/_75sdp"
+                android:layout_height="@dimen/_75sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_alignParentTop="true"
+                android:importantForAccessibility="no"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ivLogo"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/quicksand_bold"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_15ssp" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_below="@id/tvName"
+                android:layout_marginTop="@dimen/_18sdp"
+                app:dividerColor="@color/colorPrimary" />
+
             <TextView
                 android:id="@+id/tvAddressLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/divider"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:fontFamily="@font/quicksand_semi_bold"
                 android:text="@string/address_colon"
                 android:textColor="@color/colorRegisterFieldLabel"

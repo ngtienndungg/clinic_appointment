@@ -4,41 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="@dimen/_8sdp"
-    android:paddingVertical="@dimen/_8sdp"
     tools:context=".activities.DoctorInformationActivity">
 
-    <ImageView
-        android:id="@+id/ivImage"
-        android:layout_width="@dimen/_150sdp"
-        android:layout_height="@dimen/_150sdp"
-        android:layout_centerHorizontal="true"
-        android:importantForAccessibility="no"
-        android:scaleType="fitCenter" />
-
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divider"
+    <RelativeLayout
+        android:id="@+id/rlTopAppBar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:layout_below="@id/ivImage"
-        android:layout_marginTop="@dimen/_6sdp"
-        app:dividerColor="@color/colorPrimary" />
+        android:layout_height="@dimen/_50sdp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:paddingHorizontal="@dimen/_8sdp"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/icon_back"
+            android:src="@drawable/ic_back"
+            app:tint="@color/colorWhite" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/quicksand_semi_bold"
+            android:includeFontPadding="false"
+            android:text="@string/doctor_information"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_14ssp" />
+
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/divider"
-        android:layout_marginTop="@dimen/_14sdp"
+        android:layout_below="@id/rlTopAppBar"
+        android:paddingHorizontal="@dimen/_8sdp"
         android:scrollbars="none">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:importantForAccessibility="no"
+                android:scaleType="fitCenter" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_below="@id/ivImage"
+                android:layout_marginTop="@dimen/_6sdp"
+                app:dividerColor="@color/colorPrimary" />
+
             <TextView
                 android:id="@+id/tvNameLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/divider"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:fontFamily="@font/quicksand_semi_bold"
                 android:text="@string/full_name"
                 android:textColor="@color/colorRegisterFieldLabel"
@@ -50,8 +82,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvNameLabel"
                 android:layout_marginTop="@dimen/_2sdp"
-                android:text="Nguyễn Hoàng Quang Trung"
                 android:fontFamily="@font/quicksand_regular"
+                android:text="Nguyễn Hoàng Quang Trung"
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
@@ -80,8 +112,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvPositionLabel"
                 android:layout_marginTop="@dimen/_2sdp"
-                android:text="BS CKII"
                 android:fontFamily="@font/quicksand_regular"
+                android:text="BS CKII"
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
@@ -140,8 +172,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvDepartmentLabel"
                 android:layout_marginTop="@dimen/_6sdp"
-                android:text="Khoa Nhi"
                 android:fontFamily="@font/quicksand_regular"
+                android:text="Khoa Nhi"
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
@@ -170,8 +202,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvClinicLabel"
                 android:layout_marginTop="@dimen/_6sdp"
-                android:text="Bệnh viện Đại học Y dược Tp.HCM"
                 android:fontFamily="@font/quicksand_regular"
+                android:text="Bệnh viện Đại học Y dược Tp.HCM"
                 android:textColor="@color/colorRegisterFieldLabel"
                 android:textSize="@dimen/_14ssp" />
 
