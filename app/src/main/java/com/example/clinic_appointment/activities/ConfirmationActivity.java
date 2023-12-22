@@ -36,13 +36,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class ConfirmationActivity extends AppCompatActivity {
-    private ActivityConfirmationBinding binding;
-    private Doctor selectedDoctor;
-    private Department selectedDepartment;
-    private HealthFacility selectedHealthFacility;
-    private DetailSchedule selectedSchedule;
-    private String timeNumber;
     public static ArrayList<String> base64Images;
+    private ActivityConfirmationBinding binding;
     ActivityResultLauncher<Intent> imagePickerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == Activity.RESULT_OK) {
             Intent data = result.getData();
@@ -65,7 +60,11 @@ public class ConfirmationActivity extends AppCompatActivity {
             }
         }
     });
-
+    private Doctor selectedDoctor;
+    private Department selectedDepartment;
+    private HealthFacility selectedHealthFacility;
+    private DetailSchedule selectedSchedule;
+    private String timeNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

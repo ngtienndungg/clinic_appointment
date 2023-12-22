@@ -31,6 +31,7 @@
     <string name="department_list">Danh sách chuyên khoa</string>
     <string name="create_account">Tạo tài khoản</string>
     <string name="please_fill_this_information">Vui lòng nhập đầy đủ thông tin bên dưới để tạo tài khoản</string>
+    <string name="please_fill_this_information_to_update">Vui lòng nhập đầy đủ thông tin bên dưới để cập nhật thông tin</string>
     <string name="asterisk">*</string>
     <string name="icon_back">Icon back</string>
     <string name="icon_information">Icon information</string>
@@ -195,4 +196,8 @@
     <string name="doctor_information">Thông tin bác sĩ</string>
     <string name="health_facility_information">Thông tin cơ sở y tế</string>
     <string name="cancel_success_fully">Đã huỷ thành công</string>
+    <string name="update_profile">Cập nhật thông tin</string>
+    <string name="this_week">Tuần này</string>
+    <string name="default_text">Mặc định</string>
+    <string name="select_date">Chọn ngày</string>
 </resources>

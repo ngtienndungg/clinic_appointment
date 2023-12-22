@@ -16,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
+import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -32,9 +33,17 @@ import com.example.clinic_appointment.models.Appointment.AppointmentResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 import com.example.clinic_appointment.utilities.SharedPrefs;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,17 +52,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MyScheduleFragment extends Fragment implements AppointmentListener {
+    private long dateFrom = -1;
+    private long dateTo = -1;
     private FragmentMyScheduleBinding binding;
-    private TextView currentOption = null;
+    private TextView currentStatusOption = null;
+    private TextView currentTimeOption = null;
     private DoctorAppointmentAdapter doctorAppointmentAdapter;
     private AppointmentManagementAdapter appointmentManagementAdapter;
     private List<Appointment> appointments;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 Integer resultCode = result.getResultCode();
@@ -62,6 +68,11 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
                     initiate();
                 }
             });
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -73,17 +84,29 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
     }
 
     private void initiate() {
-        optionPerformClick(binding.tvWaitingConfirmation);
+        optionPerformStatusClick(binding.tvWaitingConfirmation);
+        optionPerformTimeClick(binding.tvDefault);
     }
 
-    private void optionPerformClick(TextView newSelection) {
-        if (currentOption == null) {
+    private void optionPerformStatusClick(TextView newSelection) {
+        if (currentStatusOption == null) {
             setSelectedBackground(binding.tvWaitingConfirmation);
         } else {
-            setUnselectedBackground(currentOption);
+            setUnselectedBackground(currentStatusOption);
             setSelectedBackground(newSelection);
         }
-        currentOption = newSelection;
+        currentStatusOption = newSelection;
+        getAppointments();
+    }
+
+    private void optionPerformTimeClick(TextView newSelection) {
+        if (currentTimeOption == null) {
+            setSelectedBackground(binding.tvDefault);
+        } else {
+            setUnselectedBackground(currentTimeOption);
+            setSelectedBackground(newSelection);
+        }
+        currentTimeOption = newSelection;
         getAppointments();
     }
 
@@ -103,12 +126,37 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
             getAppointments();
             pullToRefresh.setRefreshing(false);
         });
-        binding.tvWaitingConfirmation.setOnClickListener(v -> optionPerformClick(binding.tvWaitingConfirmation));
-        binding.tvConfirmed.setOnClickListener(v -> optionPerformClick(binding.tvConfirmed));
-        binding.tvCancelled.setOnClickListener(v -> optionPerformClick(binding.tvCancelled));
-        binding.tvEntire.setOnClickListener(v -> optionPerformClick(binding.tvEntire));
-        binding.tvChecked.setOnClickListener(v -> optionPerformClick(binding.tvChecked));
+        binding.tvWaitingConfirmation.setOnClickListener(v -> optionPerformStatusClick(binding.tvWaitingConfirmation));
+        binding.tvConfirmed.setOnClickListener(v -> optionPerformStatusClick(binding.tvConfirmed));
+        binding.tvCancelled.setOnClickListener(v -> optionPerformStatusClick(binding.tvCancelled));
+        binding.tvEntire.setOnClickListener(v -> optionPerformStatusClick(binding.tvEntire));
+        binding.tvChecked.setOnClickListener(v -> optionPerformStatusClick(binding.tvChecked));
+        binding.tvDefault.setOnClickListener(v -> optionPerformTimeClick(binding.tvDefault));
+        binding.tvToday.setOnClickListener(v -> optionPerformTimeClick(binding.tvToday));
+        binding.tvThisWeek.setOnClickListener(v -> optionPerformTimeClick(binding.tvThisWeek));
+        binding.tvSelectDate.setOnClickListener(v -> {
+            Calendar currentDate = Calendar.getInstance();
+            MaterialDatePicker<Pair<Long, Long>> materialDatePicker = MaterialDatePicker.Builder.dateRangePicker()
+                    .setTitleText(getString(R.string.please_select_date))
+                    .setCalendarConstraints(new CalendarConstraints.Builder()
+                            .setStart(currentDate.getTimeInMillis())
+                            .setEnd(getTwoMonthLater(currentDate))
+                            .build())
+                    .setTheme(com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialCalendar)
+                    .build();
+            materialDatePicker.addOnPositiveButtonClickListener(selection -> {
+                dateFrom = selection.first;
+                dateTo = selection.second;
+                optionPerformTimeClick(binding.tvSelectDate);
+            });
+            materialDatePicker.show(requireActivity().getSupportFragmentManager(), materialDatePicker.toString());
+        });
         binding.ivBack.setOnClickListener(v -> requireActivity().onBackPressed());
+    }
+
+    private long getTwoMonthLater(Calendar calendar) {
+        calendar.add(Calendar.MONTH, 2);
+        return calendar.getTimeInMillis();
     }
 
     private void getAppointments() {
@@ -124,14 +172,33 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
                 public void onResponse(@NonNull Call<AppointmentResponse> call, @NonNull Response<AppointmentResponse> response) {
                     if (response.body() != null && response.isSuccessful()) {
                         appointments = response.body().getBooking();
-                        if (currentOption == binding.tvWaitingConfirmation) {
+                        if (currentStatusOption == binding.tvWaitingConfirmation) {
                             getAppointmentByStatus(appointments, "Đang xử lý");
-                        } else if (currentOption == binding.tvConfirmed) {
+                        } else if (currentStatusOption == binding.tvConfirmed) {
                             getAppointmentByStatus(appointments, "Đã duyệt");
-                        } else if (currentOption == binding.tvCancelled) {
+                        } else if (currentStatusOption == binding.tvCancelled) {
                             getAppointmentByStatus(appointments, "Đã hủy");
-                        } else if (currentOption == binding.tvChecked) {
+                        } else if (currentStatusOption == binding.tvChecked) {
                             getAppointmentByStatus(appointments, "Đã khám");
+                        }
+                        if (currentTimeOption == binding.tvToday) {
+                            appointments.removeIf(appointment -> !appointment.getSchedule().getDate().equals(new Date()));
+                        } else if (currentTimeOption == binding.tvThisWeek) {
+                            LocalDate today = LocalDate.now();
+                            DayOfWeek startOfWeek = DayOfWeek.MONDAY;
+
+                            LocalDate startOfWeekDate = today.with(TemporalAdjusters.previousOrSame(startOfWeek));
+                            LocalDate endOfWeekDate = startOfWeekDate.plusDays(6);
+
+                            appointments.removeIf(appointment -> {
+                                LocalDate appointmentDate = appointment.getSchedule().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                                return appointmentDate.isBefore(startOfWeekDate) || appointmentDate.isAfter(endOfWeekDate);
+                            });
+                        } else if (currentTimeOption == binding.tvSelectDate) {
+                            appointments.removeIf(appointment -> {
+                                Date appointmentDate = appointment.getSchedule().getDate();
+                                return appointmentDate.before(new Date(dateFrom)) || appointmentDate.after(new Date(dateTo));
+                            });
                         }
                         appointmentManagementAdapter = new AppointmentManagementAdapter(MyScheduleFragment.this, appointments);
                         binding.rvAppointments.setAdapter(appointmentManagementAdapter);
@@ -156,14 +223,33 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
                 public void onResponse(@NonNull Call<AppointmentResponse> call, @NonNull Response<AppointmentResponse> response) {
                     if (response.body() != null && response.isSuccessful()) {
                         appointments = response.body().getBooking();
-                        if (currentOption == binding.tvWaitingConfirmation) {
+                        if (currentStatusOption == binding.tvWaitingConfirmation) {
                             getAppointmentByStatus(appointments, "Đang xử lý");
-                        } else if (currentOption == binding.tvConfirmed) {
+                        } else if (currentStatusOption == binding.tvConfirmed) {
                             getAppointmentByStatus(appointments, "Đã duyệt");
-                        } else if (currentOption == binding.tvCancelled) {
+                        } else if (currentStatusOption == binding.tvCancelled) {
                             getAppointmentByStatus(appointments, "Đã hủy");
-                        } else if (currentOption == binding.tvChecked) {
+                        } else if (currentStatusOption == binding.tvChecked) {
                             getAppointmentByStatus(appointments, "Đã khám");
+                        }
+                        if (currentTimeOption == binding.tvToday) {
+                            appointments.removeIf(appointment -> !appointment.getSchedule().getDate().equals(new Date()));
+                        } else if (currentTimeOption == binding.tvThisWeek) {
+                            LocalDate today = LocalDate.now();
+                            DayOfWeek startOfWeek = DayOfWeek.MONDAY;
+
+                            LocalDate startOfWeekDate = today.with(TemporalAdjusters.previousOrSame(startOfWeek));
+                            LocalDate endOfWeekDate = startOfWeekDate.plusDays(6);
+
+                            appointments.removeIf(appointment -> {
+                                LocalDate appointmentDate = appointment.getSchedule().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                                return appointmentDate.isBefore(startOfWeekDate) || appointmentDate.isAfter(endOfWeekDate);
+                            });
+                        } else if (currentTimeOption == binding.tvSelectDate) {
+                            appointments.removeIf(appointment -> {
+                                Date appointmentDate = appointment.getSchedule().getDate();
+                                return appointmentDate.before(new Date(dateFrom)) || appointmentDate.after(new Date(dateTo));
+                            });
                         }
                         doctorAppointmentAdapter = new DoctorAppointmentAdapter(MyScheduleFragment.this, appointments);
                         binding.rvAppointments.setAdapter(doctorAppointmentAdapter);

@@ -45,13 +45,7 @@ public class HomeFragment extends Fragment {
         initiate();
         eventHandling();
         return binding.getRoot();
-    }    private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                Integer resultCode = result.getResultCode();
-                if (resultCode == Activity.RESULT_OK) {
-                    initiate();
-                }
-            });
+    }
 
     private void initiate() {
         if (!sharedPrefs.getData(Constants.KEY_CURRENT_NAME, String.class).equals("")) {
@@ -60,7 +54,13 @@ public class HomeFragment extends Fragment {
             binding.tvName.setText(getString(R.string.click_here_to_login));
             binding.tvName.setOnClickListener(v -> mStartForResult.launch(new Intent(requireActivity(), LoginActivity.class)));
         }
-    }
+    }    private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                Integer resultCode = result.getResultCode();
+                if (resultCode == Activity.RESULT_OK) {
+                    initiate();
+                }
+            });
 
     private void eventHandling() {
         binding.llMakeAppointmentAtHealthFacilities.setOnClickListener(v -> handleEvent(SelectHealthFacilityActivity.class));
@@ -119,6 +119,7 @@ public class HomeFragment extends Fragment {
         NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
         return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
     }
+
 
 
 

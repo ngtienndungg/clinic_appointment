@@ -222,61 +222,11 @@
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/rlResponse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/llInformation"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="horizontal">
-
-        <ProgressBar
-            android:id="@+id/pbLoadingAccept"
-            android:layout_width="@dimen/_28sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/_6sdp"
-            android:padding="@dimen/_3sdp"
-            android:visibility="gone" />
-
-        <ImageView
-            android:id="@+id/ivAccept"
-            android:layout_width="@dimen/_28sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/_14sdp"
-            android:background="@drawable/background_response_icon"
-            android:padding="@dimen/_3sdp"
-            android:src="@drawable/ic_accept"
-            tools:ignore="ContentDescription" />
-
-        <ProgressBar
-            android:id="@+id/pbLoadingDeny"
-            android:layout_width="@dimen/_28sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:layout_toStartOf="@id/ivAccept"
-            android:padding="@dimen/_3sdp"
-            android:visibility="gone"
-            tools:ignore="ContentDescription" />
-
-        <ImageView
-            android:id="@+id/ivDeny"
-            android:layout_width="@dimen/_28sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:layout_marginEnd="@dimen/_6sdp"
-            android:layout_toStartOf="@id/ivAccept"
-            android:background="@drawable/background_response_icon"
-            android:padding="@dimen/_3sdp"
-            android:src="@drawable/ic_deny"
-            tools:ignore="ContentDescription" />
-
-    </RelativeLayout>
-
     <LinearLayout
         android:id="@+id/llViewDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rlResponse"
+        android:layout_below="@id/llInformation"
         android:layout_marginTop="@dimen/_10sdp"
         android:gravity="center_vertical|end"
         android:orientation="horizontal"
@@ -305,5 +255,64 @@
             app:tint="@color/colorPrimary" />
 
     </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/mdDividerA"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_below="@id/llViewDetail"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:dividerColor="@color/colorSelectHealthFacilityItemBackground" />
+
+    <RelativeLayout
+        android:id="@+id/rlResponse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mdDividerA"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <ProgressBar
+            android:id="@+id/pbLoadingAccept"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:padding="@dimen/_3sdp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/ivAccept"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:background="@drawable/background_response_icon"
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/ic_accept"
+            tools:ignore="ContentDescription" />
+
+        <ProgressBar
+            android:id="@+id/pbLoadingDeny"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_toStartOf="@id/ivAccept"
+            android:padding="@dimen/_3sdp"
+            android:visibility="gone"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/ivDeny"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_toStartOf="@id/ivAccept"
+            android:background="@drawable/background_response_icon"
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/ic_deny"
+            tools:ignore="ContentDescription" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

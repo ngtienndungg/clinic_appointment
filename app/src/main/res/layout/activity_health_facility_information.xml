@@ -39,8 +39,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/_8sdp"
         android:layout_below="@id/rlTopAppBar"
+        android:paddingHorizontal="@dimen/_8sdp"
         android:scrollbars="none">
 
         <RelativeLayout
@@ -51,9 +51,9 @@
                 android:id="@+id/ivLogo"
                 android:layout_width="@dimen/_75sdp"
                 android:layout_height="@dimen/_75sdp"
+                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_alignParentTop="true"
                 android:importantForAccessibility="no"
                 android:scaleType="fitCenter" />
 
