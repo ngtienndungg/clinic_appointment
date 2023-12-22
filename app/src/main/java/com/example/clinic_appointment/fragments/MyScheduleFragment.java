@@ -139,7 +139,7 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
             MaterialDatePicker<Pair<Long, Long>> materialDatePicker = MaterialDatePicker.Builder.dateRangePicker()
                     .setTitleText(getString(R.string.please_select_date))
                     .setCalendarConstraints(new CalendarConstraints.Builder()
-                            .setStart(currentDate.getTimeInMillis())
+                            .setStart(currentDate.getTimeInMillis()- 12L * 30L * 86400000)
                             .setEnd(getTwoMonthLater(currentDate))
                             .build())
                     .setTheme(com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialCalendar)

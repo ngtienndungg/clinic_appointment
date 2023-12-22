@@ -1,9 +1,13 @@
 package com.example.clinic_appointment.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -29,6 +33,7 @@ import com.example.clinic_appointment.models.Schedule.ScheduleResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -39,6 +44,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SelectDoctorActivity extends AppCompatActivity implements DoctorListener, ScheduleListener {
+    private static List<Doctor> originalDoctors = new ArrayList<>();
+    private static List<Doctor> dynamicDoctors;
+    private final Handler handler = new Handler();
+    private final long SEARCH_DELAY_MILLIS = 300;
     private ActivitySelectDoctorBinding binding;
     private Department selectedDepartment;
 
@@ -62,8 +71,9 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
                 @Override
                 public void onResponse(@NonNull Call<DoctorResponse> call, @NonNull Response<DoctorResponse> response) {
                     if (response.body() != null && response.body().isSuccess() && response.body().getDoctors().size() > 0) {
-                        List<Doctor> doctors = response.body().getDoctors();
-                        SelectDoctorAdapter adapter = new SelectDoctorAdapter(SelectDoctorActivity.this, doctors);
+                        originalDoctors = response.body().getDoctors();
+                        dynamicDoctors = new ArrayList<>(originalDoctors);
+                        SelectDoctorAdapter adapter = new SelectDoctorAdapter(SelectDoctorActivity.this, dynamicDoctors);
                         binding.rvDoctor.setAdapter(adapter);
                         binding.rvDoctor.setVisibility(View.VISIBLE);
                         binding.pbLoading.setVisibility(View.GONE);
@@ -122,8 +132,9 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
                 @Override
                 public void onResponse(@NonNull Call<DoctorResponse> call, @NonNull Response<DoctorResponse> response) {
                     if (response.body() != null && response.body().isSuccess() && response.body().getDoctors().size() > 0) {
-                        List<Doctor> doctors = response.body().getDoctors();
-                        SelectDoctorAdapter adapter = new SelectDoctorAdapter(SelectDoctorActivity.this, doctors);
+                        originalDoctors = response.body().getDoctors();
+                        dynamicDoctors = new ArrayList<>(originalDoctors);
+                        SelectDoctorAdapter adapter = new SelectDoctorAdapter(SelectDoctorActivity.this, dynamicDoctors);
                         binding.rvDoctor.setAdapter(adapter);
                         binding.rvDoctor.setVisibility(View.VISIBLE);
                         binding.pbLoading.setVisibility(View.GONE);
@@ -147,6 +158,43 @@ public class SelectDoctorActivity extends AppCompatActivity implements DoctorLis
 
     private void eventHandling() {
         binding.ivBack.setOnClickListener(v -> onBackPressed());
+        binding.etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                handler.removeCallbacksAndMessages(null);
+                handler.postDelayed(() -> search(editable.toString().trim()), SEARCH_DELAY_MILLIS);
+            }
+        });
+    }
+
+    private void search(String name) {
+        dynamicDoctors.clear();
+        for (Doctor doctor : originalDoctors) {
+            if (doctor.getDoctorInformation().getFullName().toLowerCase().contains(name)) {
+                dynamicDoctors.add(doctor);
+            }
+        }
+        displayList();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void displayList() {
+        if (dynamicDoctors.size() > 0) {
+            binding.tvNotFound.setVisibility(View.GONE);
+            Objects.requireNonNull(binding.rvDoctor.getAdapter()).notifyDataSetChanged();
+        } else {
+            binding.tvNotFound.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
