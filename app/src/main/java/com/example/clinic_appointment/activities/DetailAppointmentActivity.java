@@ -19,6 +19,7 @@ import com.example.clinic_appointment.models.Appointment.Appointment;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
 import com.example.clinic_appointment.utilities.CustomConverter;
+import com.example.clinic_appointment.utilities.SharedPrefs;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,6 +44,9 @@ public class DetailAppointmentActivity extends AppCompatActivity {
         Appointment appointment = (Appointment) getIntent().getSerializableExtra(Constants.KEY_BOOKING);
         if (getIntent().getStringExtra(Constants.KEY_STATUS) != null) {
             binding.tvConfirm.setVisibility(View.VISIBLE);
+            if (SharedPrefs.getInstance().getData(Constants.KEY_USER_ROLE, Integer.class).equals(3)) {
+                binding.tvAccept.setVisibility(View.VISIBLE);
+            }
         }
         if (appointment != null) {
             binding.tvHealthFacility.setText(appointment.getSchedule().getDoctor().getHealthFacility().getName());

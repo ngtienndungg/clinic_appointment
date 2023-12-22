@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.example.clinic_appointment.activities.LoginActivity;
 import com.example.clinic_appointment.databinding.LayoutDialogNotificationBinding;
+import com.example.clinic_appointment.models.User.UserResponse;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.networking.services.AppointmentService;
 import com.example.clinic_appointment.utilities.Constants;
@@ -51,7 +52,7 @@ public class CurrentSessionInterceptor implements Interceptor {
 
     private boolean isAccessTokenExpired() throws IOException {
         boolean isExpired = false;
-        retrofit2.Response<Void> response = new Retrofit.Builder()
+        retrofit2.Response<UserResponse> response = new Retrofit.Builder()
                 .baseUrl(RetrofitClient.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

@@ -36,7 +36,14 @@ public interface AppointmentService {
     Call<JsonObject> refreshToken(@Header("Set-Cookie") String refreshToken);
 
     @GET("user/current")
-    Call<Void> getCurrent(@Header("Authorization") String accessToken);
+    Call<UserResponse> getCurrent(@Header("Authorization") String accessToken);
+
+    @PUT("user/current")
+    @FormUrlEncoded
+    Call<UserResponse> updateUser(@Field("fullName") String fullName,
+                                  @Field("email") String email,
+                                  @Field("gender") String gender,
+                                  @Field("address") String address);
 
     @POST("user/register")
     @FormUrlEncoded

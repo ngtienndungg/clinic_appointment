@@ -177,12 +177,16 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
                         } else if (currentStatusOption == binding.tvConfirmed) {
                             getAppointmentByStatus(appointments, "Đã duyệt");
                         } else if (currentStatusOption == binding.tvCancelled) {
-                            getAppointmentByStatus(appointments, "Đã hủy");
+                            getAppointmentByStatus(appointments, "Đã huỷ");
                         } else if (currentStatusOption == binding.tvChecked) {
                             getAppointmentByStatus(appointments, "Đã khám");
                         }
                         if (currentTimeOption == binding.tvToday) {
-                            appointments.removeIf(appointment -> !appointment.getSchedule().getDate().equals(new Date()));
+                            LocalDate today = LocalDate.now();
+                            appointments.removeIf(appointment -> {
+                                LocalDate appointmentDate = appointment.getSchedule().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                                return !appointmentDate.isEqual(today);
+                            });
                         } else if (currentTimeOption == binding.tvThisWeek) {
                             LocalDate today = LocalDate.now();
                             DayOfWeek startOfWeek = DayOfWeek.MONDAY;
@@ -228,12 +232,16 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
                         } else if (currentStatusOption == binding.tvConfirmed) {
                             getAppointmentByStatus(appointments, "Đã duyệt");
                         } else if (currentStatusOption == binding.tvCancelled) {
-                            getAppointmentByStatus(appointments, "Đã hủy");
+                            getAppointmentByStatus(appointments, "Đã huỷ");
                         } else if (currentStatusOption == binding.tvChecked) {
                             getAppointmentByStatus(appointments, "Đã khám");
                         }
                         if (currentTimeOption == binding.tvToday) {
-                            appointments.removeIf(appointment -> !appointment.getSchedule().getDate().equals(new Date()));
+                            LocalDate today = LocalDate.now();
+                            appointments.removeIf(appointment -> {
+                                LocalDate appointmentDate = appointment.getSchedule().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                                return !appointmentDate.isEqual(today);
+                            });
                         } else if (currentTimeOption == binding.tvThisWeek) {
                             LocalDate today = LocalDate.now();
                             DayOfWeek startOfWeek = DayOfWeek.MONDAY;

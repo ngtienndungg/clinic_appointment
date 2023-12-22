@@ -491,6 +491,21 @@
                 android:textSize="@dimen/_12ssp"
                 android:visibility="gone" />
 
+            <TextView
+                android:id="@+id/tvAccept"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="#00DAB1"
+                android:fontFamily="@font/quicksand_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/accept_appointment"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_12ssp"
+                android:visibility="gone" />
+
         </LinearLayout>
 
     </ScrollView>

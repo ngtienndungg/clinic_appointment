@@ -31,7 +31,7 @@
     <string name="department_list">Danh sách chuyên khoa</string>
     <string name="create_account">Tạo tài khoản</string>
     <string name="please_fill_this_information">Vui lòng nhập đầy đủ thông tin bên dưới để tạo tài khoản</string>
-    <string name="please_fill_this_information_to_update">Vui lòng nhập đầy đủ thông tin bên dưới để cập nhật thông tin</string>
+    <string name="please_fill_this_information_to_update">Vui lòng nhập đầy đủ thông tin bên dưới để cập nhật</string>
     <string name="asterisk">*</string>
     <string name="icon_back">Icon back</string>
     <string name="icon_information">Icon information</string>
@@ -200,4 +200,5 @@
     <string name="this_week">Tuần này</string>
     <string name="default_text">Mặc định</string>
     <string name="select_date">Chọn ngày</string>
+    <string name="accept_appointment">Duyệt lịch</string>
 </resources>

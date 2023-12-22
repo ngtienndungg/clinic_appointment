@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.clinic_appointment.activities.LoginActivity;
+import com.example.clinic_appointment.activities.UpdateProfileActivity;
 import com.example.clinic_appointment.databinding.FragmentAccountBinding;
 import com.example.clinic_appointment.networking.clients.RetrofitClient;
 import com.example.clinic_appointment.utilities.Constants;
@@ -71,6 +72,7 @@ public class AccountFragment extends Fragment {
             handleIsLoginDisplaying(false);
         });
         binding.tvLogin.setOnClickListener(v -> mStartForResult.launch(new Intent(requireActivity(), LoginActivity.class)));
+        binding.llAccountInformation.setOnClickListener(v -> startActivity(new Intent(requireActivity(), UpdateProfileActivity.class)));
     }
 
     private void handleIsLoginDisplaying(boolean isLogin) {
