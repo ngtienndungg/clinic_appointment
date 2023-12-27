@@ -139,7 +139,7 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
             MaterialDatePicker<Pair<Long, Long>> materialDatePicker = MaterialDatePicker.Builder.dateRangePicker()
                     .setTitleText(getString(R.string.please_select_date))
                     .setCalendarConstraints(new CalendarConstraints.Builder()
-                            .setStart(currentDate.getTimeInMillis()- 12L * 30L * 86400000)
+                            .setStart(currentDate.getTimeInMillis() - 12L * 30L * 86400000)
                             .setEnd(getTwoMonthLater(currentDate))
                             .build())
                     .setTheme(com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialCalendar)
@@ -269,8 +269,6 @@ public class MyScheduleFragment extends Fragment implements AppointmentListener 
                 @Override
                 public void onFailure(@NonNull Call<AppointmentResponse> call, @NonNull Throwable t) {
                     binding.pbLoading.setVisibility(View.GONE);
-                    Snackbar.make(binding.getRoot(), "Error", BaseTransientBottomBar.LENGTH_SHORT).show();
-                    Log.d("FailCheck", Objects.requireNonNull(t.getMessage()));
                 }
             });
         }

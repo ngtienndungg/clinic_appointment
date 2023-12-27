@@ -54,13 +54,7 @@ public class HomeFragment extends Fragment {
             binding.tvName.setText(getString(R.string.click_here_to_login));
             binding.tvName.setOnClickListener(v -> mStartForResult.launch(new Intent(requireActivity(), LoginActivity.class)));
         }
-    }    private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                Integer resultCode = result.getResultCode();
-                if (resultCode == Activity.RESULT_OK) {
-                    initiate();
-                }
-            });
+    }
 
     private void eventHandling() {
         binding.llMakeAppointmentAtHealthFacilities.setOnClickListener(v -> handleEvent(SelectHealthFacilityActivity.class));
@@ -80,7 +74,13 @@ public class HomeFragment extends Fragment {
             intent.setData(Uri.parse("tel:19001234"));
             startActivity(intent);
         });
-    }
+    }    private final ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                Integer resultCode = result.getResultCode();
+                if (resultCode == Activity.RESULT_OK) {
+                    initiate();
+                }
+            });
 
     private void handleEvent(Class<?> activityClass) {
         if (isNetworkAvailable()) {

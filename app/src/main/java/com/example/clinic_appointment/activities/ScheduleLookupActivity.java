@@ -25,6 +25,9 @@ import com.example.clinic_appointment.models.HealthFacility.HealthFacility;
 import com.example.clinic_appointment.utilities.Constants;
 import com.example.clinic_appointment.utilities.CustomConverter;
 import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.CompositeDateValidator;
+import com.google.android.material.datepicker.DateValidatorPointBackward;
+import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 
 import java.io.Serializable;
@@ -84,13 +87,20 @@ public class ScheduleLookupActivity extends AppCompatActivity {
         binding.etTime.setOnClickListener(v -> launchSelectActivity(SelectTimeActivity.class));
         binding.etFromDate.setOnClickListener(v -> {
             Calendar currentDate = Calendar.getInstance();
+            CalendarConstraints.Builder constraintsBuilderRange = new CalendarConstraints.Builder();
+            CalendarConstraints.DateValidator dateValidatorMin = DateValidatorPointForward.from(currentDate.getTimeInMillis());
+            CalendarConstraints.DateValidator dateValidatorMax = DateValidatorPointBackward.before(currentDate.getTimeInMillis() + 30L * 86400000 * 2);
+            ArrayList<CalendarConstraints.DateValidator> listValidators = new ArrayList<>();
+            listValidators.add(dateValidatorMin);
+            listValidators.add(dateValidatorMax);
+            CalendarConstraints.DateValidator validators = CompositeDateValidator.allOf(listValidators);
+            constraintsBuilderRange.setValidator(validators);
+            constraintsBuilderRange.setStart(currentDate.getTimeInMillis());
+            constraintsBuilderRange.setEnd(currentDate.getTimeInMillis() + 30L * 86400000 * 2);
             MaterialDatePicker<Pair<Long, Long>> materialDatePicker = MaterialDatePicker.Builder.dateRangePicker()
                     .setTitleText(getString(R.string.please_select_date))
-                    .setCalendarConstraints(new CalendarConstraints.Builder()
-                            .setStart(currentDate.getTimeInMillis())
-                            .setEnd(getTwoMonthLater(currentDate))
-                            .build())
                     .setTheme(com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialCalendar)
+                    .setCalendarConstraints(constraintsBuilderRange.build())
                     .build();
             materialDatePicker.addOnPositiveButtonClickListener(selection -> {
                 dateFrom = selection.first;
@@ -113,11 +123,6 @@ public class ScheduleLookupActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    private long getTwoMonthLater(Calendar calendar) {
-        calendar.add(Calendar.MONTH, 2);
-        return calendar.getTimeInMillis();
     }
 
     private String getDateFormatted(Long selectedDate) {
